@@ -45,6 +45,7 @@ class Connection {
             $dns .= 'port=' . $config['port'] . ';';
         $dns .= 'dbname=' . $config['db_name'] . ';';
         
+        echo $dns;
         $pdo = new PDO($dns, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec('SET search_path to ' . $config['schema']);
