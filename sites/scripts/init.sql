@@ -1,6 +1,10 @@
 create schema test;
 set search_path = "test";
-create table Artist(AName VARCHAR(20),Birthplace VARCHAR(20),Style VARCHAR(20),DateOfBirth DATE, PRIMARY KEY (AName));
+create table Artist(AName VARCHAR(20),
+    Birthplace VARCHAR(20),
+    Style VARCHAR(20),
+    DateOfBirth DATE,
+    PRIMARY KEY (AName));
 create table Artwork(
     Title VARCHAR(20),
     Year INTEGER,
