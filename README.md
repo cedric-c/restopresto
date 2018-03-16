@@ -13,7 +13,8 @@ This repository contains the final project for the Databases I course. This proj
 driver = pgsql
 host = postgresql
 port = 5432
-schema = postgres
+schema = test
+db_name = postgres
 username = <YOUR USERNAME>
 password = <YOUR PASSWORD>
 ```
