@@ -6,7 +6,7 @@ This repository contains the final project for the Databases I course. This proj
 
 1. Download Docker.
 2. Pull this repository to your system.
-3. Create a file named `php.ini` inside of the `sites` directory. `<YOUR USERNAME>` and `<YOUR PASSWORD>` must be the same as in the `docker-compose.yml` file. This file will contain the following
+3. Create a file named `php.ini` inside of the `sites` directory. `<YOUR USERNAME>` and `<YOUR PASSWORD>` must be the same as in the `docker-compose.yml` file. The `php.ini` file will contain the following
 
 ```
 [php]
