@@ -23,14 +23,14 @@ services:
       - 5432
     environment:
       # PGDATA: /var/lib/postgresql/data
-      POSTGRES_USER: 'cedric'
-      POSTGRES_PASSWORD: 'frost-marker'
+      POSTGRES_USER: 'dilanga'
+      POSTGRES_PASSWORD: 'potato-fridge'
       POSTGRES_DB: 'postgres'
-      PGDATA: /tmp
+      PGDATA: /tmp5
     volumes:
-      - ./data/postgres/:/var/lib/postgresql/data/
-      - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
-      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/postgres/:/var/lib/postgresql/data/:z
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:z
+      # - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
   
   nginx:
     image: nginx:alpine
