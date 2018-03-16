@@ -38,16 +38,21 @@ create table Serves();
     
 -- need IC on price for positive ints or 0
 create table MenuItem(
-    mid INTEGER,
-    name VARCHAR(100),
-    type VARCHAR(100), -- this is going to be a relation MenuItemType
-    category VARCHAR(100), -- this is going to be a relation MenuItemCategory
-    description TEXT,
-    price NUMERIC(8,2), -- 999999.00 is the max price
+    mid INTEGER,            --
+    name VARCHAR(100),      --
+    type VARCHAR(100),      -- TODO this is going to be a relation MenuItemType
+    category VARCHAR(100),  -- TODO this is going to be a relation MenuItemCategory
+    description TEXT,       -- unlimited in length
+    price NUMERIC(8,2),     -- 999999.00 is the max price
     FOREIGN KEY (rid) REFERENCES Restaurant,
     PRIMARY KEY (mid)
 );
 create table Refers();
 
 create table Written();
-create table User();
+create table User(
+    uid INTEGER,
+    name VARCHAR(100),
+    
+    PRIMARY KEY (uid)
+);
