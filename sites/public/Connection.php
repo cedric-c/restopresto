@@ -33,7 +33,7 @@ class Connection {
      * @return PDO
      */
     public function getConnection(): PDO {
-        $settings = parse_ini_file('../db-config.ini', true);
+        $settings = parse_ini_file('../php.ini', true);
         if(!$settings)
             throw new Exception('Error reading db-config');
         $config = $settings['database'];

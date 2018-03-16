@@ -6,9 +6,14 @@ This repository contains the final project for the Databases I course. This proj
 
 1. Download Docker.
 2. Pull this repository to your system.
-3. Create a file titled `db-config.ini` inside of the `sites` folder. This file will look like
+3. Create a file named `php.ini` inside of the `sites` directory. `<YOUR USERNAME>` and `<YOUR PASSWORD>` must be the same as in the `docker-compose.yml` file. This file will contain the following
 
 ```
+[php]
+register_globals = true
+track_errors = true
+include_path = "/var/www/sites/public"
+
 [database]
 driver = pgsql
 host = postgresql
@@ -17,24 +22,6 @@ schema = test
 db_name = postgres
 username = <YOUR USERNAME>
 password = <YOUR PASSWORD>
-```
-
-4. `<YOUR USERNAME>` and `<YOUR PASSWORD>` must be the same as in the `docker-compose.yml` file.
-5. Create a file named `php.ini` inside of the `sites` directory. This file will contain the following
-
-```
-; any text on a line after an unquoted semicolon (;) is ignored
-[php] ; section markers (text within square brackets) are also ignored
-; Boolean values can be set to either:
-;    true, on, yes
-; or false, off, no, none
-register_globals = off
-track_errors = yes
-
-; you can enclose strings in double-quotes
-include_path = "/var/www/sites/public"
-
-; backslashes are treated the same as any other character
 ```
 
 ## Running the Webserver
@@ -59,7 +46,6 @@ sites
 │   └── Person.php
 ├── scripts
 │   └── init.sql
-├── db-config.ini
 ├── docker-compose.yml
 ├── Dockerfile
 ├── php.ini
