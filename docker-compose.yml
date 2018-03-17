@@ -6,6 +6,7 @@ services:
     container_name: php2
     volumes:
       - ./sites:/var/www/sites
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ./php/php.ini:/usr/local/etc/php/php.ini
     entrypoint:
       - php-fpm
