@@ -7,7 +7,6 @@
  * 
  * DBC – Database Connection class used to communicated with a database.
  */
-
 class Connection {
     /**
      * Connection object implementing singleton design patter.
