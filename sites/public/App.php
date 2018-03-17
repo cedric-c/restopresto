@@ -7,6 +7,10 @@
  */
 class App implements Renderable {
     
+    public function getName(): string {
+        return __CLASS__;
+    }
+    
     public function render(): string {
         return 'Application Rendered';
     }
