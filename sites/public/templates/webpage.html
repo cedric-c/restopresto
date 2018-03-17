@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <script src="res/bootstrap-native.min.js" type="text/javascript"></script>
-        <script src="res/vue.js" type="text/javascript"></script>
-        <link rel="stylesheet" type="text/css" href="res/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="res/styles.css">
+        <script src="http://localhost:8080/res/bootstrap-native.min.js" type="text/javascript"></script>
+        <script src="http://localhost:8080/res/vue.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/res/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/res/styles.css">
 
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="content">
-            <?php echo $this->getApp()->render(); ?>
+            <h1><?php echo $this->getApp()->render(); ?></h1>
         </div>
         <footer>
         </footer>
