@@ -9,14 +9,17 @@ create table Restaurant(
     name VARCHAR(100),
     joined DATE,
     type VARCHAR(100),
-    reputation NUMERIC(3,2), 
+    reputation NUMERIC(3,2),
+    url VARCHAR(100), 
     PRIMARY KEY (rid)
 );
 
 create table Has(
+    rid INTEGER,
+    lid INTEGER,
+    PRIMARY KEY (rid, lid),
     FOREIGN KEY (rid) REFERENCES Restaurant,    
-    FOREIGN KEY (lid) REFERENCES Location
-    PRIMARY KEY (rid, lid)
+    FOREIGN KEY (lid) REFERENCES Location 
 );
 
 create table Location(
@@ -27,12 +30,34 @@ create table Location(
     address VARCHAR(100),
     hour_start TIME,
     hour_end TIME,
-    FOREIGN KEY (rid) REFERENCES Restaurant,    
-    PRIMARY KEY (lid)
+    rid INTEGER,
+    PRIMARY KEY (lid),
+    FOREIGN KEY (rid) REFERENCES Restaurant 
 );
 
 create table Rated();
-create table Rating();
+
+create table Rating(
+    uid VARCHAR(100),
+    date DATE,
+    price INTEGER,
+    food INTEGER,
+    mood INTEGER,
+    staff INTEGER,
+    comment VARCHAR(200),
+    rid INTEGER,
+    PRIMARY KEY (uid,date),
+    FOREIGN KEY (uid) REFERENCES User,
+    FOREIGN KEY (rid) REFERENCES Restaurant,
+    constraint price_range
+        check(price>=1 AND price<=5),
+    constraint food_range
+        check(food>=1 AND food<=5),
+    constraint mood_range
+        check(mood>=1 AND mood<=5),
+    constraint staff_range
+        check(staff>=1 AND staff<=5)
+);
 
 create table Serves();
     
@@ -44,15 +69,34 @@ create table MenuItem(
     category VARCHAR(100),  -- TODO this is going to be a relation MenuItemCategory
     description TEXT,       -- unlimited in length
     price NUMERIC(8,2),     -- 999999.00 is the max price
-    FOREIGN KEY (rid) REFERENCES Restaurant,
-    PRIMARY KEY (mid)
+    rid INTEGER,
+    PRIMARY KEY (mid),
+    FOREIGN KEY (rid) REFERENCES Restaurant
 );
 create table Refers();
 
 create table Written();
-create table User(
+
+create table User(          -- represents the rater relation
     uid INTEGER,
+    email VARCHAR(100),
     name VARCHAR(100),
-    
-    PRIMARY KEY (uid)
+    joined DATE,
+    type VARCHAR(100),
+    reputation NUMERIC(3,2) DEFAULT 1,
+    PRIMARY KEY (uid),
+    constraint reputation_range
+        check(reputation>=1 AND reputation<=5)
+);
+create table RatingItem(
+    uid INTEGER,
+    date DATE,
+    mid INTEGER,
+    rating INTEGER,
+    comment VARCHAR(200),
+    PRIMARY KEY (uid,date,mid),
+    FOREIGN KEY (uid) REFERENCES User,
+    FOREIGN KEY (mid) REFERENCES MenuItem,
+    constraint rating_range
+        check(rating>=1 AND rating<=5)
 );
