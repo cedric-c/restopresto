@@ -45,13 +45,15 @@ p {
 /*}*/
 
 footer {
-    background:black;
+    /*background:black;*/
+    color:#aaa;
 }
 
 footer > p{
     color:white;
     padding-left: 15px;
     padding-right: 15px;
+    vertical-align: middle;
 }
 
 body{

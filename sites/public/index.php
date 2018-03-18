@@ -5,7 +5,7 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-require_once('Core.php');
+require_once('core.php');
 try {
     $conn = Connection::init()->getConnection();
     $statement = $conn->query('select * from customer');

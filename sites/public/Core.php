@@ -6,9 +6,9 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 
-require_once('Model.php');
-require_once('Connection.php');
-require_once('Renderable.php');
-require_once('App.php');
-require_once('Webpage.php');
+require_once('classes/Model.php');
+require_once('classes/Connection.php');
+require_once('classes/Renderable.php');
+require_once('classes/App.php');
+require_once('classes/Webpage.php');
 
