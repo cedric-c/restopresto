@@ -5,11 +5,10 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-require_once('core.php');
-try {
-    $app = new App();
-    $page = new Webpage($app);
-    echo $page->render();
-} catch (Exception $e){
-    echo $e;
+class Controller {
+    private $model;
+    
+    public function __construct(Model $model) {
+        $this->model = $model;
+    }
 }

@@ -8,9 +8,15 @@
 class Webpage implements Renderable {
     
     /**
-     * @var The application which will be rendered by the webpage.
+     * @var string The application which will be rendered by the webpage.
      */
     private $app;
+
+    /**
+     * @var associative array Json encoded data.
+     */
+    
+    private $data;
     
     public function __construct(App $app) {
         $this->addApp($app);
@@ -23,7 +29,7 @@ class Webpage implements Renderable {
     public function getApp(): App {
         return $this->app;
     }
-    
+        
     public function render(): string {
         try{
             ob_start();
