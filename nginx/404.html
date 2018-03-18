@@ -1,14 +1,3 @@
-<?php 
-    /**
-     * @author Cédric Clément <cclem054@uottawa.ca>
-     * @version 1.0
-     * @since 1.0
-     * (c) Copyright 2018 Cédric Clément.
-     */
-    
-    $appName = $this->getApp()->getName();
-    
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,20 +10,22 @@
 
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title><?php echo $appName ;?></title>
+        <title>404</title>
     </head>
     <body>
 
     <div class="masthead">
             <div class="container">
-                <h1><?php echo $appName ;?></h1>
+                <h1>404 :(</h1>
             </div>
         </div>
         <div id="app" class="container">
             <header>
             </header>
             <div id="main_content">
-                <?php echo $appName; ?>
+                <i class="fa fa-map-signs fa-5x" aria-hidden="true">
+                    <p>Are you lost?</p>
+                </i>
             </div>
         </div>
     </body>

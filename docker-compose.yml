@@ -33,6 +33,7 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/404.html:/usr/share/nginx/html/404.html
       - ./sites/public/static:/var/www/sites/public/static
     links:
       - php2
