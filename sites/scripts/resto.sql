@@ -1,25 +1,13 @@
 create schema restopresto;
 set search_path = "restopresto";
 
-
 -- todo: integrity constraints on reputation
 create table Restaurant(
     rid INTEGER,
-    email VARCHAR(100),
     name VARCHAR(100),
-    joined DATE,
     type VARCHAR(100),
-    reputation NUMERIC(3,2),
     url VARCHAR(100), 
     PRIMARY KEY (rid)
-);
-
-create table Has(
-    rid INTEGER,
-    lid INTEGER,
-    PRIMARY KEY (rid, lid),
-    FOREIGN KEY (rid) REFERENCES Restaurant,    
-    FOREIGN KEY (lid) REFERENCES Location 
 );
 
 create table Location(
@@ -35,10 +23,20 @@ create table Location(
     FOREIGN KEY (rid) REFERENCES Restaurant 
 );
 
-create table Rated();
+create table Person(          -- represents the rater relation
+    uid INTEGER,
+    email VARCHAR(100),
+    name VARCHAR(100),
+    joined DATE,
+    type VARCHAR(100),
+    reputation NUMERIC(3,2) DEFAULT 1,
+    PRIMARY KEY (uid),
+    constraint reputation_range
+        check(reputation>=1 AND reputation<=5)
+);
 
 create table Rating(
-    uid VARCHAR(100),
+    uid INTEGER,
     date DATE,
     price INTEGER,
     food INTEGER,
@@ -47,7 +45,7 @@ create table Rating(
     comment VARCHAR(200),
     rid INTEGER,
     PRIMARY KEY (uid,date),
-    FOREIGN KEY (uid) REFERENCES User,
+    FOREIGN KEY (uid) REFERENCES Person,
     FOREIGN KEY (rid) REFERENCES Restaurant,
     constraint price_range
         check(price>=1 AND price<=5),
@@ -58,9 +56,6 @@ create table Rating(
     constraint staff_range
         check(staff>=1 AND staff<=5)
 );
-
-create table Serves();
-    
 -- need IC on price for positive ints or 0
 create table MenuItem(
     mid INTEGER,            --
@@ -73,21 +68,16 @@ create table MenuItem(
     PRIMARY KEY (mid),
     FOREIGN KEY (rid) REFERENCES Restaurant
 );
-create table Refers();
 
-create table Written();
-
-create table User(          -- represents the rater relation
+ create table Refers(
     uid INTEGER,
-    email VARCHAR(100),
-    name VARCHAR(100),
-    joined DATE,
-    type VARCHAR(100),
-    reputation NUMERIC(3,2) DEFAULT 1,
-    PRIMARY KEY (uid),
-    constraint reputation_range
-        check(reputation>=1 AND reputation<=5)
+    date DATE,
+    mid INTEGER,
+    PRIMARY KEY(uid,date,mid),
+    FOREIGN KEY(uid,date) REFERENCES Rating,
+    FOREIGN KEY(mid) REFERENCES MenuItem
 );
+
 create table RatingItem(
     uid INTEGER,
     date DATE,
@@ -95,7 +85,7 @@ create table RatingItem(
     rating INTEGER,
     comment VARCHAR(200),
     PRIMARY KEY (uid,date,mid),
-    FOREIGN KEY (uid) REFERENCES User,
+    FOREIGN KEY (uid) REFERENCES Person,
     FOREIGN KEY (mid) REFERENCES MenuItem,
     constraint rating_range
         check(rating>=1 AND rating<=5)
