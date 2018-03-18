@@ -5,9 +5,11 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-class Model implements JsonSerializable {
+abstract class Model implements JsonSerializable {
     
     private $id;
+    
+    private $_data;
     
     public function __construct(){}
     
@@ -15,12 +17,15 @@ class Model implements JsonSerializable {
         $this->id = $id;
     }
     
-    public function jsonSerialize(): string {
-        $properties = [
-            "id" => $this->id
-        ];
-        return json_encode($properties);
+    public function getData(): array {
+        return $this->_data;
     }
+    
+    public function setData(array $data): void {
+        $this->_data = $data;
+    }
+    
+    abstract public function jsonSerialize(): string;
     
     public function __toString(): string {
         return get_called_class(). '@' . $this->jsonSerialize();
