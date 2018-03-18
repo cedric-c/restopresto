@@ -23,6 +23,6 @@ class App implements Renderable {
     }
     
     public function render(): string {
-        return 'Application Rendered';
+        return 'Application Rendered<br><br><button type="button" class="btn btn-primary">Action</button>';
     }
 }
