@@ -6,16 +6,27 @@
         <script src="/static/js/vue.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?php echo $this->getApp()->getName() ;?></title>
     </head>
     <body>
-        <div id="content">
-            <h1><?php echo $this->getApp()->render(); ?></h1>
+
+    <div class="masthead">
+            <div class="container">
+                <h1><?php echo $this->getApp()->render(); ?></h1>
+            </div>
         </div>
-        <footer>
-        </footer>
+        <div id="app" class="container">
+            <header>
+            </header>
+            <div id="main_content">
+                <div class="alert alert-danger" role="alert">
+                    <p>Not all browsers are currently supported, there may be some issues displaying certain notation.</p>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
