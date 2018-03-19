@@ -20,51 +20,54 @@ class Location extends Model {
         return $this->opened;
     }
     public function setOpened(string $v): void {
-        return $this->opened = $v;
+        $this->opened = $v;
     }
         
     public function getManager(): int {
         return $this->manager;
     }
     public function setManager(int $v): void {
-        return $this->manager = $v;
+        $this->manager = $v;
     }
     
     public function getPhone(): string {
         return $this->phone;
     }
     public function setPhone(string $v): void {
-        return $this->phone = $v;
+        $this->phone = $v;
     }
     
     public function getAddress(): string {
         return $this->address;
     }
     public function setAddress(string $v): void {
-        return $this->address = $v;
+        $this->address = $v;
     }
 
     public function getHoursStart(): string {
         return $this->hoursStart;
     }
     public function setHoursStart(string $v): void {
-        return $this->hoursStart = $v;
+        $this->hoursStart = $v;
     }
 
     public function getHoursEnd(): string {
         return $this->hoursEnd;
     }
     public function setHoursEnd(string $v): void {
-        return $this->hoursEnd = $v;
+        $this->hoursEnd = $v;
     }
 
     public function getRestaurantID(): string {
         return $this->hoursEnd;
     }
     public function setRestaurantID(int $v): void {
-        return $this->hoursEnd = $v;
+        $this->hoursEnd = $v;
     }
     
+    public function getData(): array {
+        return [];
+    }
     public function getData(): array {
         $ret = [
             "lid" => $this->getId(),

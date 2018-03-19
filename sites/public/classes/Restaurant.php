@@ -26,15 +26,15 @@ class Restaurant extends Model {
     }
             
     public function setName(string $v): void {
-        return $this->name = $v;
+        $this->name = $v;
     }
         
     public function setType(string $v): void {
-        return $this->type = $v;
+        $this->type = $v;
     }
     
     public function setURL(string $v): void {
-        return $this->url = $v;
+        $this->url = $v;
     }
     
     public function getData(): array {

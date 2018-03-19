@@ -10,5 +10,9 @@ require_once('classes/Model.php');
 require_once('classes/Connection.php');
 require_once('classes/Renderable.php');
 require_once('classes/App.php');
+require_once('classes/Location.php');
+require_once('classes/Person.php');
+require_once('classes/Restaurant.php');
 require_once('classes/Webpage.php');
+require_once('classes/Rating.php');
 

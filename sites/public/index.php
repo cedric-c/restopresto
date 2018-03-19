@@ -9,6 +9,8 @@ require_once('core.php');
 try {
     $app = new App();
     $page = new Webpage($app);
+    $l = new Location();
+    // echo $l;
     echo $page->render();
 } catch (Exception $e){
     echo $e;

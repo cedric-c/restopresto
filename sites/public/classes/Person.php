@@ -35,23 +35,23 @@ class Person extends Model {
     }
         
     public function setEmail(string $v): void {
-        return $this->email = $v;
+        $this->email = $v;
     }
     
     public function setName(string $v): void {
-        return $this->name = $v;
+        $this->name = $v;
     }
     
     public function setJoined(string $v): void {
-        return $this->joined_date = $v;
+        $this->joined_date = $v;
     }
     
     public function setType(string $v): void {
-        return $this->type = $v;
+        $this->type = $v;
     }
     
     public function setRep(float $v): void {
-        return $this->reputation = $v;
+        $this->reputation = $v;
     }
     
     public function getData(): array {

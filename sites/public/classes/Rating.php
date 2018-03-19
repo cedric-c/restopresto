@@ -20,14 +20,14 @@ class Rating extends Model {
         return $this->date_rated;
     }
     public function setDateRated(string $v): void {
-        return $this->date_rated = $v;
+        $this->date_rated = $v;
     }
         
     public function getRestaurantID(): string {
         return $this->hoursEnd;
     }
     public function setRestaurantID(int $v): void {
-        return $this->hoursEnd = $v;
+        $this->hoursEnd = $v;
     }
 
     public function getPrice(): int {

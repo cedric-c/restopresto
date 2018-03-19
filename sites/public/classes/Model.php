@@ -16,6 +16,7 @@ abstract class Model implements JsonSerializable {
     }
     
     public function getId(): int {
+        // return 0;
         return $this->id;
     }
     
