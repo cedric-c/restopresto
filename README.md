@@ -7,7 +7,7 @@ This repository contains the final project for the Databases I course. This proj
 ### Question 1 (10 marks)
 
 - [ ] 1a) Transform the description into a relational model
-- [x] 1b) Create all the tables in POstgreSQL.
+- [x] ~~1b) Create all the tables in POstgreSQL.~~
 - [ ] 1c) Add all other relevant attributes and remember to enforce entity and referential integrity.
 
 ### Question 2 (10 marks)
