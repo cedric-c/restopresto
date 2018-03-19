@@ -6,7 +6,6 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class Person extends Model {
-    private $id;
     private $email;
     private $name;
     private $joined_date;
@@ -14,10 +13,6 @@ class Person extends Model {
     private $reputation;
     
     public function __construct(){}
-    
-    public function getId(): int {
-        return $this->id;
-    }
     
     public function getEmail(): string {
         return $this->email;
@@ -38,11 +33,7 @@ class Person extends Model {
     public function getRep(): float {
         return $this->reputation;
     }
-    
-    public function setId(int $v): void {
-        return $this->id = $v;
-    }
-    
+        
     public function setEmail(string $v): void {
         return $this->email = $v;
     }
@@ -74,10 +65,4 @@ class Person extends Model {
         ];
         return $ret;
     }
-        
-    public function jsonSerialize(): string {
-        $data = $this->getData();
-        return json_encode($data);
-    }
-    
 }
