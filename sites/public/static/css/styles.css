@@ -1,0 +1,168 @@
+body {
+    font-family: Georgie, Times, serif;
+    font-family: Arial, Verdana, sans-serif;
+    /*color:red;*/
+    /*font-size: 12px;*/
+}
+
+h1, h2 {
+    font-family: Arial, Verdana, sans-serif;
+ 
+    
+}
+
+h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 3em;
+    /*font-size: 36px;*/
+}
+
+.app{
+    padding: 0 0.3em 1.8em 0.8em;
+
+}
+
+p {
+    /*font-size: 30px;*/
+    font-size: 1em;
+    /*font-size: 2vmin;*/
+}
+
+.tag {
+    display:inline-block;
+    background: white;
+    border: 1px solid #3c6382;
+    border-radius: 26px;
+    padding: .6em 1.3em .6em 1.3em;
+    margin-bottom:2rem;
+    font-size: 1.9em;
+
+}
+
+/*.tag:hover{*/
+    /*background:;*/
+/*}*/
+
+footer {
+    /*background:black;*/
+    color:#aaa;
+}
+
+footer > p{
+    color:white;
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: middle;
+}
+
+body{
+    /*margin-left:15px;*/
+    /*margin-right:15px;*/
+}
+
+.masthead{
+    /*background: linear-gradient(#0abde3, #48dbfb);*/
+    padding-top: 2rem;
+    padding-right: 1rem;
+    background-image: linear-gradient(to bottom, #0a3d62 0%, #3c6382 100%);
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+.bgred {
+    background-image: linear-gradient(to bottom, #c23616 0%, #e84118 100%);    
+}
+.bgblue {
+    background-image: linear-gradient(to bottom, #0a3d62 0%, #3c6382 100%);
+}
+
+.bglavender {
+    background-image: linear-gradient(to bottom, #8c7ae6 0%, #9c88ff 100%);    
+}
+.bgdeepsea {
+    background-image: linear-gradient(to bottom, #192a56 0%, #273c75 100%);    
+}
+.bgorange {
+    background-image: linear-gradient(to bottom, #d35400 0%, #e67e22 100%);    
+}
+
+.bgemerald {
+    background-image: linear-gradient(to bottom, #16a085 0%, #1abc9c 100%);    
+}
+
+.bgforest {
+    background-image: linear-gradient(to bottom, #27ae60 0%, #2ecc71 100%);    
+}
+
+.bgdawn {
+    background-image: linear-gradient(to bottom, #1B1464 0%, #B53471 100%);    
+}
+
+.bgwater {
+    background-image: linear-gradient(to bottom, #1289A7 0%, #12CBC4 100%);    
+}
+.bgwine {
+    background-image: linear-gradient(to bottom, #6F1E51 0%, #833471 100%);    
+}
+.bgforest1 {
+    background-image: linear-gradient(to bottom, #006266 0%, #009432 100%);    
+}
+.bgdeeppurple {
+    background-image: linear-gradient(to bottom, #0c2461 0%, #1e3799 100%);    
+}
+
+.masthead p{
+    color: #c4e0e8;
+}
+
+.masthead h1{
+    color: white;
+    font-weight: 500;
+
+}
+
+.nav a {
+    color:#c4e0e8;
+    /*text-decoration-color:red;*/
+    /*background-color:red;*/
+}
+
+.nav a {
+    color:#c4e0e8;
+    /*text-decoration-color:red;*/
+    /*background-color:red;*/
+}
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
+}
+
+.nav > li > a:hover {
+    transition: background .2s ease-in;
+    /*background-color:red;*/
+    background:rgba(0,0,0,0.2);
+}
+
+.nav > li > a:focus {
+    background:rgba(0,0,0,0.5);
+}
+
+.nav-pills > .active > a:focus {
+    color:#c4e0e8;
+    text-decoration-color:red;
+    background-color:red;
+}
+
+
+/*.nav-pills > .active > a, .nav-pills > .active > a:hover {*/
+    /*background-color: red;*/
+/*}*/

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * @author Cédric Clément <cclem054@uottawa.ca>
  * @version 1.0
@@ -7,7 +7,6 @@
  * 
  * DBC – Database Connection class used to communicated with a database.
  */
-
 class Connection {
     /**
      * Connection object implementing singleton design patter.
@@ -33,7 +32,7 @@ class Connection {
      * @return PDO
      */
     public function getConnection(): PDO {
-        $settings = parse_ini_file('../php.ini', true);
+        $settings = parse_ini_file('/usr/local/etc/php/php.ini', true);
         if(!$settings)
             throw new Exception('Error reading db-config');
         $config = $settings['database'];
@@ -45,7 +44,6 @@ class Connection {
             $dns .= 'port=' . $config['port'] . ';';
         $dns .= 'dbname=' . $config['db_name'] . ';';
         
-        echo $dns;
         $pdo = new PDO($dns, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec('SET search_path to ' . $config['schema']);

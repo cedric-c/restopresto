@@ -5,11 +5,6 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-require_once('core.php');
-try {
-    $app = new App();
-    $page = new Webpage($app);
-    echo $page->render();
-} catch (Exception $e){
-    echo $e;
+interface Renderable {
+    public function render(): string;
 }
