@@ -13,13 +13,14 @@ create table Restaurant(
 create table Location(
     lid INTEGER,
     opened DATE,
-    manager VARCHAR(100),
+    manager INTEGER,
     phone VARCHAR(100),
     address VARCHAR(100),
     hour_start TIME,
     hour_end TIME,
     rid INTEGER,
     PRIMARY KEY (lid),
+    FOREIGN KEY (manager) REFERENCES Person,
     FOREIGN KEY (rid) REFERENCES Restaurant 
 );
 
