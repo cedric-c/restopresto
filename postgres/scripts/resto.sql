@@ -38,14 +38,14 @@ create table Person(          -- represents the rater relation
 
 create table Rating(
     uid INTEGER,
-    date DATE,
+    date_rated DATE,
     price INTEGER,
     food INTEGER,
     mood INTEGER,
     staff INTEGER,
     comment VARCHAR(200),
     rid INTEGER,
-    PRIMARY KEY (uid,date),
+    PRIMARY KEY (uid,date_rated),
     FOREIGN KEY (uid) REFERENCES Person,
     FOREIGN KEY (rid) REFERENCES Restaurant,
     constraint price_range

@@ -6,7 +6,6 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class Location extends Model {
-    private $id;
     private $opened;
     private $manager;
     private $phone;
@@ -16,14 +15,7 @@ class Location extends Model {
     private $rid;
     
     public function __construct(){}
-    
-    public function getId(): int {
-        return $this->id;
-    }
-    public function setId(int $v): void {
-        return $this->id = $v;
-    }
-        
+            
     public function getOpened(): string {
         return $this->opened;
     }
@@ -86,8 +78,4 @@ class Location extends Model {
         ];
         return $ret;
     }
-    public function jsonSerialize(): string {
-        $data = $this->getData();
-        return json_encode($data);
-    }    
 }

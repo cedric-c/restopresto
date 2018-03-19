@@ -6,16 +6,12 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class Restaurant extends Model {
-    private $id;
     private $name;
     private $type;
     private $url;
     
     public function __construct(){}
     
-    public function getId(): int {
-        return $this->id;
-    }
         
     public function getName(): string {
         return $this->name;
@@ -28,11 +24,7 @@ class Restaurant extends Model {
     public function getURL(): string {
         return $this->url;
     }
-    
-    public function setId(int $v): void {
-        return $this->id = $v;
-    }
-        
+            
     public function setName(string $v): void {
         return $this->name = $v;
     }
@@ -54,10 +46,4 @@ class Restaurant extends Model {
         ];
         return $ret;
     }
-        
-    public function jsonSerialize(): string {
-        $data = $this->getData();
-        return json_encode($data);
-    }
-    
 }
