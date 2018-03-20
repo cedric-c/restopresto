@@ -24,6 +24,7 @@ services:
     volumes:
       # - ./data/postgres/:/var/lib/postgresql/data/
       - ./postgres/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres/scripts/resto.sql:/docker-entrypoint-initdb.d/resto.sql
   
   nginx2:
     image: nginx:alpine

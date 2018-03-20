@@ -36,7 +36,7 @@ abstract class View implements Renderable {
             return $page;
             
         } catch(Exception $e){
-            return $e;
+            return print_r($e->getTrace());
         }
     }
 }

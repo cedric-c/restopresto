@@ -14,7 +14,6 @@ require_once('classes/Connection.php');
 require_once('classes/App.php');
 require_once('classes/Location.php');
 require_once('classes/Person.php');
-require_once('classes/Restaurant.php');
 require_once('classes/Webpage.php');
 require_once('classes/Rating.php');
 require_once('classes/LikeArtist.php');
@@ -26,7 +25,10 @@ require_once('artist/Artist.php');
 require_once('artist/ViewArtist.php');
 require_once('artist/ControllerArtist.php');
 
-
+// Restaurant App
+require_once('restaurant/Restaurant.php');
+require_once('restaurant/ViewRestaurant.php');
+require_once('restaurant/ControllerRestaurant.php');
 
 
 

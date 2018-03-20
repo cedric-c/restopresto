@@ -130,7 +130,7 @@ INSERT INTO Location (lid,opened,manager,phone,address,hour_start,hour_end,rid)
           (1980040,'2013-03-02',678007,'641-890-4327','380 Elgin St, Ottawa, Ontario K2P 1N1, Canada','10:00','20:00',100400),
           (1980050,'2000-05-29',678001,'613-789-4657','1902 Robertson Rd Suite 104, Ottawa, Ontario K2H 5B8, Canada','14:00','23:59',100500);
 
-INSERT INTO Rating (uid,date,price,food,mood,staff,comment,rid)
+INSERT INTO Rating (uid,date_rated,price,food,mood,staff,comment,rid)
     Values(678003,'2017-06-27',2.5,4,4,3,'Price were to expensive and staff services needs improvement',100100),
           (678008,'2008-04-06',3.5,3,4.5,3,NULL,100500),
           (678005,'2004-07-05',4,4,4,5,'Great Service. Will visit again.',100400),

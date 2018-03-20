@@ -12,17 +12,17 @@ class App implements Renderable {
     }
         
     public function getData(): Array {
-        $artist = [
-            'index'  => 'artist/index.php',
-            'folder' => 'artist',
-            'caption'=>'Manage Artists'
-        ];
         $testing = [
             'index'  => 'app/index.php',
             'folder' => 'app',
             'caption'=>'Manage Apps'
         ];
-        $apps = [$artist, $testing];
+        $restaurant = [
+            'index' => 'restaurant/index.php',
+            'folder' => 'restaurant',
+            'caption' => 'Manage Restaurants'
+        ];
+        $apps = [$testing, $restaurant];
         $r = [
             'available_apps' => $apps
         ];
