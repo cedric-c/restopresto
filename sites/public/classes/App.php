@@ -12,8 +12,17 @@ class App implements Renderable {
     }
         
     public function getData(): Array {
-        
-        $apps = [];
+        $artist = [
+            'index'  => 'artist/index.php',
+            'folder' => 'artist',
+            'caption'=>'Manage Artists'
+        ];
+        $testing = [
+            'index'  => 'app/index.php',
+            'folder' => 'app',
+            'caption'=>'Manage Tests'
+        ];
+        $apps = [$artist, $testing];
         $r = [
             'available_apps' => $apps
         ];

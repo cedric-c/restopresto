@@ -16,7 +16,11 @@ var data = {
 };
 
 Vue.component('app-component', {
-    template: '<p>Hello!</p>'
+    props:['data'],
+    // data: function (){
+        // return data;  
+    // },
+    template: '<p class="app">{{data.caption}}</p>'
 });
 
 Vue.component('applications-component',{
