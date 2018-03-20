@@ -12,7 +12,7 @@ This repository contains the final project for the Databases I course. This proj
 
 ### Question 2 (10 marks)
 
-- [ ] Populate the tables with your own data.
+- [x] ~~Populate the tables with your own data.~~
 - [ ] You need 40 different menu items.
 - [ ] You need 12 different restaurants.
 - [ ] Each restaurant has at least 8 ratings each.

@@ -72,14 +72,14 @@ create table MenuItem(
 );
 
 --redundant to the ratingItem table
- create table Refers(
-    uid INTEGER,
-    date DATE,
-    mid INTEGER,
-    PRIMARY KEY(uid,date,mid),
-    FOREIGN KEY(uid,date) REFERENCES Rating,
-    FOREIGN KEY(mid) REFERENCES MenuItem
-);
+-- create table Refers(
+--    uid INTEGER,
+--    date DATE,
+--    mid INTEGER,
+--    PRIMARY KEY(uid,date,mid),
+--    FOREIGN KEY(uid,date) REFERENCES Rating,
+--    FOREIGN KEY(mid) REFERENCES MenuItem
+--);
 
 create table RatingItem(
     uid INTEGER,
@@ -88,7 +88,7 @@ create table RatingItem(
     rating NUMERIC(3,2),
     comment VARCHAR(200),
     PRIMARY KEY (uid,date,mid),
-    FOREIGN KEY (uid,date) REFERENCES Person,
+    FOREIGN KEY (uid,date) REFERENCES Rating,
     FOREIGN KEY (mid) REFERENCES MenuItem,
     constraint rating_range
         check(rating>=1 AND rating<=5)
