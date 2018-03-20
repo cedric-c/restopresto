@@ -20,7 +20,7 @@ class App implements Renderable {
         $testing = [
             'index'  => 'app/index.php',
             'folder' => 'app',
-            'caption'=>'Manage Tests'
+            'caption'=>'Manage Apps'
         ];
         $apps = [$artist, $testing];
         $r = [

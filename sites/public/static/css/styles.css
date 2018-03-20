@@ -45,6 +45,13 @@ h1 {
 p.app{
     color:#cc7733;
 }
+
+p.app:hover {
+    color: #E60033;
+    border: 1px solid #E60033;
+    background: rgba(230,0,51,0.1);
+}
+
 p {
     /*font-size: 30px;*/
     font-size: 1em;
