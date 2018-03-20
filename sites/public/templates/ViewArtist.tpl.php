@@ -4,11 +4,10 @@
      * @version 1.0
      * @since 1.0
      * (c) Copyright 2018 Cédric Clément.
-     */    
-    $appName = $this->getApp()->getName();
-    $render  = $this->getApp()->render();
-    $data    = base64_encode(json_encode($this->getApp()->getData()));
-    $n       = 'App';
+     */
+    $appName = $this->getController()->getAppName();
+    $data    = base64_encode($this->getModel()->jsonSerialize());
+    $n       = $this->getController()->getAppDir();
     $path    =  $n . '/' . $n . '.app.js' ;
 ?>
 <!DOCTYPE html>
@@ -34,7 +33,7 @@
             <header>
             <div id="app-data" style="display: none;" data="<?php echo $data;?>"></div>
             </header>
-            <div id="main_content"><?php echo $render;?></div>
+            <div id="main_content"><?php echo 'replace me!';?></div>
         </div>
     </body>
     <footer>

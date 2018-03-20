@@ -38,14 +38,15 @@ create table Location(
 
 create table Rating(
     uid INTEGER,
-    date DATE,
+
+    date_rated DATE,
     price NUMERIC(3,2),
     food NUMERIC(3,2),
     mood NUMERIC(3,2),
     staff NUMERIC(3,2),
     comment VARCHAR(200),
     rid INTEGER,
-    PRIMARY KEY (uid,date),
+    PRIMARY KEY (uid,date_rated),
     FOREIGN KEY (uid) REFERENCES Person,
     FOREIGN KEY (rid) REFERENCES Restaurant,
     constraint price_range

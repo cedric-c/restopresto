@@ -5,8 +5,8 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-class Restaurant extends Model {
-
+class Artist extends Model {
+    
     public function __construct(){}
 
 }

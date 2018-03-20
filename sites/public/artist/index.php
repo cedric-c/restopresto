@@ -7,11 +7,9 @@
  */
 require_once('core.php');
 try {
-    $app = new App();
-    $view = new Webpage($app);
-    // $artist = new Artist();
-    // $controller = new ControllerArtist($artist);
-    // $view = new ViewArtist($controller, $artist);
+    $artist = new Artist();
+    $controller = new ControllerArtist($artist);
+    $view = new ViewArtist($controller, $artist);
     echo $view->render();
 } catch (Exception $e){
     echo $e;

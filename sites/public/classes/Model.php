@@ -9,23 +9,29 @@ abstract class Model implements JsonSerializable {
     
     private $id;
     
-    private $_data;
-    
     public function __construct(){}
     
     public function setId(int $id): void {
         $this->id = $id;
     }
     
-    public function getData(): array {
-        return $this->_data;
+    public function getId(): int {
+        return $this->id;
     }
     
-    public function setData(array $data): void {
-        $this->_data = $data;
+    public function getData(): Array {
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $statement = $conn->query("select * from $table");
+        $r = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $r;
     }
-    
-    abstract public function jsonSerialize(): string;
+
+        
+    public function jsonSerialize(): string {
+        $data = $this->getData();
+        return json_encode($data);
+    }
     
     public function __toString(): string {
         return get_called_class(). '@' . $this->jsonSerialize();

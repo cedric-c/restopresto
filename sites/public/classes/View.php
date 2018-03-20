@@ -5,7 +5,7 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-class View implements Renderable {
+abstract class View implements Renderable {
     private $model;
     private $controller;
     
@@ -14,10 +14,23 @@ class View implements Renderable {
         $this->model        = $model;
     }
     
+    public function getName(): string {
+        return get_called_class();
+    }
+    
+    public function getController(): Controller {
+        return $this->controller;
+    }
+    
+    public function getModel(): Model {
+        return $this->model;
+    }
+    
     public function render(): string {
+        $name = get_called_class();
         try{
             ob_start();
-            include 'templates/webpage.html';
+            include "templates/$name.tpl.php";
             $page = ob_get_contents();
             ob_end_clean();
             return $page;
