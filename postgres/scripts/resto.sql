@@ -1,3 +1,11 @@
+/**
+ * @author Dilanga Algama <...@uottawa.ca>
+ * @author Cédric Clément <cclem054@uottawa.ca>
+ * @version 1.0
+ * @since 1.0
+ * (c) Copyright 2018 Dilanga Algama, Cédric Clément.
+ */
+ 
 create schema restopresto;
 set search_path = "restopresto";
 
