@@ -30,6 +30,6 @@ class App implements Renderable {
     }
     
     public function render(): string {
-        return '<h1>Welcome to RestoPresto!</h1><br> <p>Some available applications:</p><applications-component></applications-component>';
+        return '<h1>Welcome to RestoPresto!</h1><br> <p><p class=txtb>Some available applications:</p></p><applications-component></applications-component>';
     }
 }

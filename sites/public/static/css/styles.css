@@ -1,3 +1,10 @@
+/**
+ * @author Cédric Clément <cclem054@uottawa.ca>
+ * @version 1.0
+ * @since 1.0
+ * (c) Copyright 2018 Cédric Clément.
+ */
+ 
 body {
     font-family: Georgie, Times, serif;
     font-family: Arial, Verdana, sans-serif;
@@ -18,9 +25,9 @@ h1 {
     /*font-size: 36px;*/
 }
 .txtb{
-    font-size:36px;
+    font-size:26px;
     line-height: 52px;
-    padding-top:40px;
+    padding-top:26px;
 }
 
 .app{
@@ -44,6 +51,11 @@ h1 {
 }
 p.app{
     color:#cc7733;
+    
+}
+
+a {
+    text-decoration: none !important;
 }
 
 p.app:hover {

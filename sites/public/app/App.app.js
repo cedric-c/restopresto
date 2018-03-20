@@ -20,7 +20,7 @@ Vue.component('app-component', {
     // data: function (){
         // return data;  
     // },
-    template: '<p class="app">{{data.caption}}</p>'
+    template: '<a v-bind:href="data.index"><p class="app">{{data.caption}}</p></a>'
 });
 
 Vue.component('applications-component',{
