@@ -5,18 +5,14 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-abstract class Controller {
-    private $model;
+class ControllerArtist extends Controller {
     
     public function __construct(Model $model) {
-        $this->model = $model;
+        parent::__construct($model);
     }
     
     public function getAppName(): string {
-        return get_called_class();
+        return 'artist';
     }
     
-    public function getModel(): Model {
-        return $this->model;
-    }
 }

@@ -5,19 +5,12 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-class App implements Renderable {
+class Customer extends Model {
 
     public function getName(): string {
         return __CLASS__;
     }
-        
-    public function getData(): Array {
-        $conn = Connection::init()->getConnection();
-        $statement = $conn->query('select * from Customer');
-        $r = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $r;
-    }
-    
+            
     public function render(): string {
         return 'Application Rendered<br><br><button type="button" class="btn btn-primary">Action</button>';
     }

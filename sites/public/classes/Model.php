@@ -16,11 +16,17 @@ abstract class Model implements JsonSerializable {
     }
     
     public function getId(): int {
-        // return 0;
         return $this->id;
     }
     
-    abstract function getData(): array;
+    public function getData(): Array {
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $statement = $conn->query("select * from $table");
+        $r = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $r;
+    }
+
         
     public function jsonSerialize(): string {
         $data = $this->getData();

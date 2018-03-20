@@ -15,7 +15,6 @@ class Webpage implements Renderable {
     /**
      * @var associative array Json encoded data.
      */
-    
     private $data;
     
     public function __construct(App $app) {

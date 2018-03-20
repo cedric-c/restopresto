@@ -7,11 +7,14 @@
  */
 require_once('core.php');
 try {
-    $app = new App();
-    $page = new Webpage($app);
-    $l = new Location();
-    // echo $l;
-    echo $page->render();
+    // $app = new App();
+    // $page = new Webpage($app);
+    // echo $page->render();
+    $artist = new Artist();
+    $controller = new ControllerArtist($artist);
+    $view = new ViewArtist($controller, $artist);
+    echo $view->render();
+    
 } catch (Exception $e){
     echo $e;
 }

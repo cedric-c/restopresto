@@ -1,4 +1,4 @@
-console.log("Test App");
+console.log("Artist App");
 var appData = document.getElementById("app-data");
 var wm = new Vue({
     el: '#app',
