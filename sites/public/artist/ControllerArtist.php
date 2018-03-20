@@ -11,8 +11,12 @@ class ControllerArtist extends Controller {
         parent::__construct($model);
     }
     
-    public function getAppName(): string {
+    public function getAppDir(): string {
         return 'artist';
+    }
+
+    public function getAppName(): string {
+        return 'Artist Manager';
     }
     
 }

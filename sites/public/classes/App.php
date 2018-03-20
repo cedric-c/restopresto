@@ -8,17 +8,19 @@
 class App implements Renderable {
 
     public function getName(): string {
-        return __CLASS__;
+        return 'RestoPresto';
     }
         
     public function getData(): Array {
-        $conn = Connection::init()->getConnection();
-        $statement = $conn->query('select * from Customer');
-        $r = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+        $apps = [];
+        $r = [
+            'available_apps' => $apps
+        ];
         return $r;
     }
     
     public function render(): string {
-        return 'Application Rendered<br><br><button type="button" class="btn btn-primary">Action</button>';
+        return '<h1>Welcome to RestoPresto!</h1><br> <p>Some available applications:</p><applications-component></applications-component>';
     }
 }

@@ -11,12 +11,20 @@ abstract class Controller {
     public function __construct(Model $model) {
         $this->model = $model;
     }
-    
-    public function getAppName(): string {
-        return get_called_class();
-    }
-    
+        
     public function getModel(): Model {
         return $this->model;
     }
+    
+    /**
+     * Return the name of the directory for this application.
+     * @return string
+     */
+    abstract function getAppDir(): string;
+    
+    /**
+     * Return a user-friendly name of the application.
+     * @return string
+     */
+    abstract function getAppName(): string;
 }

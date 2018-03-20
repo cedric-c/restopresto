@@ -11,17 +11,4 @@ class ViewArtist extends View {
         parent::__construct($controller, $model);
     }
         
-    // public function render(): string {
-        // $name = get_called_class();
-        // try{
-            // ob_start();
-            // include "templates/$name.tpl.php";
-            // $page = ob_get_contents();
-            // ob_end_clean();
-            // return $page;
-            // 
-        // } catch(Exception $e){
-            // return $e;
-        // }
-    // }
 }

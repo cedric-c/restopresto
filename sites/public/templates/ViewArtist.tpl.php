@@ -5,9 +5,9 @@
      * @since 1.0
      * (c) Copyright 2018 Cédric Clément.
      */
-    $appName = $this->getName();
+    $appName = $this->getController()->getAppName();
     $data    = base64_encode($this->getModel()->jsonSerialize());
-    $n       = $this->getController()->getAppName();
+    $n       = $this->getController()->getAppDir();
     $path    =  $n . '/' . $n . '.app.js' ;
 ?>
 <!DOCTYPE html>

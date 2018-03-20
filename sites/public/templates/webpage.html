@@ -8,7 +8,7 @@
     $appName = $this->getApp()->getName();
     $render  = $this->getApp()->render();
     $data    = base64_encode(json_encode($this->getApp()->getData()));
-    $n       = $this->getApp()->getName();
+    $n       = 'App';
     $path    =  $n . '/' . $n . '.app.js' ;
 ?>
 <!DOCTYPE html>
