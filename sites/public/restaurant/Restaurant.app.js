@@ -15,7 +15,7 @@ var data = {
 
 Vue.component('resto-component', {
     props:['data'],
-    template: '<p>{{data.name}}</p>'
+    template: '<p class="app">{{data.name}}</p>'
 });
 
 Vue.component('main-restaurant-component',{
