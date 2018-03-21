@@ -21,7 +21,7 @@ This repository contains the final project for the Databases I course. This proj
 
 ### Question 3 (10 marks)
 
-- [ ] Users can add and delete data from the **Restaurant** table.
+- [x] ~~Users can add and delete data from the **Restaurant** table.~~
 - [ ] Users can add and delete data from the **Rater** table.
 - [ ] Users can add and delete data from the **MenuItem** table.
 

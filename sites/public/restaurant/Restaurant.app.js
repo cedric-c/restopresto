@@ -39,7 +39,12 @@ Vue.component('create-resto-component', {
             var d = JSON.stringify(o);
             request.send('application=restaurant&action=create&'+'data='+d);
             request.onload = function(){
-                console.log(request.response);
+                var state = request.responseText;
+                if (state == 'success') {
+                    console.log('created item');
+                } else {
+                    console.log('an error occured');
+                }
             };
         },
     },
@@ -50,14 +55,24 @@ Vue.component('resto-component', {
     props:['data'],
     template: '#resto',
     methods: {
+        deleteResto: function (){
+            console.log('dete resto from resto component');
+            this.$emit('remove-resto');
+        },
         remove: function() {
-            console.log("deleting "+ this.data.rid);
             var request = new XMLHttpRequest()
             request.open("POST", '../dispatch/index.php');
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send('application=restaurant&action=delete&'+'data='+this.data.rid);
+            var self = this;
             request.onload = function(){
-                console.log(request.response);
+                var response = JSON.parse(request.responseText);
+                if (response.state == 'success') {
+                    console.log('deleted item');
+                    self.deleteResto();
+                } else {
+                    console.log('an error occured');
+                }
             };
         },
     },
@@ -67,7 +82,13 @@ Vue.component('main-restaurant-component',{
     data: function(){
         return data;
     },
-    template: '#resto-list'
+    template: '#resto-list',
+    methods: {
+        removeChild: function(index) {
+            console.log('removing child ' + index);
+            data.restaurants.splice(index, 1);
+        },
+    }
 });
 
 var wm = new Vue({

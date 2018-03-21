@@ -8,17 +8,13 @@
 class Response {
     private static $messages = [];
         
-    public static function add(string $key, array $value): void{
+    public static function add(string $key, $value): void{
         self::$messages[$key] = $value;
     }
-    
-    public static function render(): string {
+            
+    public static function send(): void {
         header('Content-Type: application/json');
-        return json_encode(self::$messages);
-    }
-        
-    public static function send(): string {
-        return json_encode(self::$messages);
+        echo json_encode(self::$messages);
     }
     
     

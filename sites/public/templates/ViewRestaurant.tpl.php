@@ -56,7 +56,9 @@
         </template>
         <template id="resto-list">
             <ul>
-                <resto-component v-for="resto in restaurants" :data="resto" :key="resto.rid"></resto-component>
+              <transition-group name="list">
+                <resto-component class="list-item" v-for="(resto, index) in restaurants" :data="resto" :key="resto.rid" v-on:remove-resto="removeChild(index)"></resto-component>
+              </transition-group>
             </ul>
         </template>
     <div class="masthead">

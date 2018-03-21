@@ -15,18 +15,28 @@ class ControllerRestaurant extends Controller {
     }
     
     public function getAppName(): string {
-        return 'Restaurant Manager';
+        return 'Restaurant List';
     }
     
     public function processPost(array $post): void {
-        $data   = $post['data'];
-        $data = json_decode($data, true);
+        $data = json_decode($post['data'], true);
         $action = $post['action'];
         $model = new Restaurant();
+        
         if($action == self::ACTION_DELETE){
-            // echo 'server deleting ' . $data;
+            Response::add('target', $data);
+            Response::add('state', 'success');
+            Response::send();
+            return;
             $result = $model->delete($data);
-            echo $result;
+            if ($result == 1) {
+                Response::add('state','success');
+                Response::send();
+            } else {
+                Response::add('state','error');
+                Response::add('message', 'Could not delete target from database');
+                Response::send();
+            }
         } else if ($action == self::ACTION_INSERT) {
             $id = (int) $model->getNextId();
             $name = $data['name'];
@@ -34,7 +44,11 @@ class ControllerRestaurant extends Controller {
             $url  = $data['url'];
             // echo 'nextid: ',$id;
             $result = $model->insert($id, $name, $type, $url);
-            echo $result;
+            if ($result == 1){
+                echo 'success';
+            } else {
+                echo 'error';
+            }
         }
     }
     
