@@ -7,9 +7,10 @@
  */
 class ControllerRestaurant extends Controller {
 
-    const INSERT = 'create';
-    const DELETE = 'delete';
-    const LIST_MENU = 'list_menu';
+    const INSERT    = 'create';
+    const DELETE    = 'delete';
+    const GET_MENU = 'list_menu';
+    const GET_LOCATION  = 'get_location';
 
     public function getAppDir(): string {
         return 'restaurant';
@@ -48,11 +49,17 @@ class ControllerRestaurant extends Controller {
                 Response::add('state', 'error');
                 Response::add('message', 'Could not create restaurant');
             }
-        } else if ($action == self::LIST_MENU) {
+        } else if ($action == self::GET_MENU) {
             $menuModel = new MenuItem();
             $result = $menuModel->getKeyValue('rid', $data);
             Response::add('payload', $result);
             Response::add('state', 'success');
+        } else if ($action == self::GET_LOCATION) {
+            Response::add('state', 'success');
+            Response::add('message','UNIMPLEMENTED');
+        // } else if ($action == self::GET_LOCATION) {
+        //     Response::add('state', 'success');
+        //     Response::add('message','UNIMPLEMENTED');
         } else {
             Response::add('state', 'error');
             Response::add('message', 'Unknown command');
