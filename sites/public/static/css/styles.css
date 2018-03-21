@@ -21,7 +21,7 @@ h1, h2 {
   /*margin-right: 10px;*/
 }
 .list-enter-active, .list-leave-active {
-  transition: all .5s;
+  transition: all .35s;
 }
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;

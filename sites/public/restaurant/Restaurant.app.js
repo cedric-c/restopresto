@@ -21,8 +21,8 @@ Vue.component('create-resto-component', {
         return data;
     },
     methods: {
-        print:function(v){
-            console.log(v);
+        createResto: function (resto){
+            data.restaurants.push(resto[0]);
         },
         post: function(){
             var request = new XMLHttpRequest()
@@ -40,10 +40,12 @@ Vue.component('create-resto-component', {
             request.send('application=restaurant&action=create&'+'data='+d);
             request.onload = function(){
                 var state = request.responseText;
-                if (state == 'success') {
-                    console.log('created item');
+                var response = JSON.parse(request.responseText);
+                if (response.state == 'success') {
+                    var resto = response.payload;
+                    self.createResto(resto);
                 } else {
-                    console.log('an error occured');
+                    console.log('while trying to create resto');
                 }
             };
         },
@@ -56,7 +58,7 @@ Vue.component('resto-component', {
     template: '#resto',
     methods: {
         deleteResto: function (){
-            console.log('dete resto from resto component');
+            console.log('delete resto from resto component');
             this.$emit('remove-resto');
         },
         remove: function() {
@@ -68,7 +70,6 @@ Vue.component('resto-component', {
             request.onload = function(){
                 var response = JSON.parse(request.responseText);
                 if (response.state == 'success') {
-                    console.log('deleted item');
                     self.deleteResto();
                 } else {
                     console.log('an error occured');
@@ -85,7 +86,6 @@ Vue.component('main-restaurant-component',{
     template: '#resto-list',
     methods: {
         removeChild: function(index) {
-            console.log('removing child ' + index);
             data.restaurants.splice(index, 1);
         },
     }
@@ -100,4 +100,10 @@ var wm = new Vue({
         var parsed  = JSON.parse(jsn);
         data.restaurants = parsed;
     },
+    methods: {
+        addChild: function(child) {
+            data.restaurants.push(child);
+        },
+    }
+    
 });

@@ -24,19 +24,15 @@ class ControllerRestaurant extends Controller {
         $model = new Restaurant();
         
         if($action == self::ACTION_DELETE){
-            Response::add('target', $data);
-            Response::add('state', 'success');
-            Response::send();
-            return;
+            Response::add('payload', $data);
             $result = $model->delete($data);
             if ($result == 1) {
                 Response::add('state','success');
-                Response::send();
             } else {
                 Response::add('state','error');
                 Response::add('message', 'Could not delete target from database');
-                Response::send();
             }
+            Response::send();
         } else if ($action == self::ACTION_INSERT) {
             $id = (int) $model->getNextId();
             $name = $data['name'];
@@ -45,10 +41,14 @@ class ControllerRestaurant extends Controller {
             // echo 'nextid: ',$id;
             $result = $model->insert($id, $name, $type, $url);
             if ($result == 1){
-                echo 'success';
+                $newResto = $model->get($id);
+                Response::add('payload', $newResto);
+                Response::add('state', 'success');
             } else {
-                echo 'error';
+                Response::add('state', 'error');
+                Response::add('message', 'Could not create restaurant');
             }
+            Response::send();
         }
     }
     

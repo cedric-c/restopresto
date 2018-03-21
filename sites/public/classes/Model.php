@@ -40,6 +40,15 @@ abstract class Model implements JsonSerializable {
         return $conn->exec("delete from $table where $pk=$id");
     }
     
+    public function get(int $id, bool $serialized = true): array {
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $key = $this->getPK();
+        $s = $conn->query("select * from $table where $key=$id");
+        $r = $s->fetchAll(PDO::FETCH_ASSOC);
+        return $r;
+    }
+    
     public function getTable(): string {
         return get_called_class();
     }
