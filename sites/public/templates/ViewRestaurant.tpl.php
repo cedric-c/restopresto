@@ -23,8 +23,7 @@
         <title><?php echo $appName ;?></title>
     </head>
     <body>
-        <template id="new-resto">
-            <div class="container">
+        <template id="create-resto">
                 <div class="row">
                   <div class="col-xs-4">
                     <input type="text" v-model="name" class="form-control" placeholder="Name">
@@ -40,14 +39,24 @@
                       <button @click="post" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
                   </div>
                 </div>
-            </div>        
         </template>
         <template id="resto">
-            <p class="app">{{data.name}}</p>
+            <div class="container">
+              <div class="row recordObject">
+                <div class="col-xs-8">
+                  <p class="txtb">{{data.name}}</p>
+                  <p>{{data.type}}</p>
+                </div>
+                <div class="col-xs-4">
+                  <a class="actionButton" :href="data.url"><i class="fa fa-external-link-square fa-3x"></i></a>
+                  <a class="actionButton" @click="remove"><i class="fa fa-times fa-3x"></i></a>
+                </div>
+                </div>
+              </div>
         </template>
         <template id="resto-list">
             <ul>
-                <resto-component v-for="resto in restaurants" :data="resto" :key="resto.name"></resto-component>
+                <resto-component v-for="resto in restaurants" :data="resto" :key="resto.rid"></resto-component>
             </ul>
         </template>
     <div class="masthead">
@@ -60,9 +69,19 @@
             <div id="app-data" style="display: none;" data="<?php echo $data;?>"></div>
             </header>
             <div id="main_content">
-                <new-resto-component></new-resto-component>
-                <main-restaurant-component>
-                </main-restaurant-component>
+              <div class="row">
+                <div class="container">
+                  <div class="container pdb15">
+                    <h2>Add a Restaurant</h2>
+                  <create-resto-component></create-resto-component>
+                  </div>
+                  <div class="container">
+                    <h2>Current Restaurants</h2>
+                  <main-restaurant-component>
+                  </main-restaurant-component>
+                  </div>
+              </div>
+              </div>
             </div>
         </div>
     </body>

@@ -16,7 +16,7 @@ var data = {
     url: '',
 };
 
-Vue.component('new-resto-component', {
+Vue.component('create-resto-component', {
     data: function(){
         return data;
     },
@@ -43,12 +43,17 @@ Vue.component('new-resto-component', {
             };
         },
     },
-    template: '#new-resto'
+    template: '#create-resto'
 });
 
 Vue.component('resto-component', {
     props:['data'],
-    template: '#resto'
+    template: '#resto',
+    methods: {
+        remove: function() {
+            console.log("deleting "+ this.data.rid);
+        },
+    },
 });
 
 Vue.component('main-restaurant-component',{

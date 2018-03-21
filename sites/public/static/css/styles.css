@@ -13,9 +13,19 @@ body {
 }
 
 h1, h2 {
-    font-family: Arial, Verdana, sans-serif;
- 
-    
+    font-family: Arial, Verdana, sans-serif;    
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.pdb5 {
+    padding-bottom: 5px;
+}
+.pdb15 {
+    padding-bottom: 15px;
 }
 
 h1 {
@@ -26,8 +36,8 @@ h1 {
 }
 .txtb{
     font-size:26px;
-    line-height: 52px;
-    padding-top:26px;
+    /*line-height: 52px;*/
+    /*padding-top:26px;*/
 }
 
 .app{
@@ -58,12 +68,32 @@ a {
     text-decoration: none !important;
 }
 
+.recordObject {
+    margin: 0.2em;    
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 3px;
+    -o-transition:.4s;
+    -ms-transition:.4s;
+    -moz-transition:.4s;
+    -webkit-transition:.4s;
+    /* ...and now for the proper property */
+    transition:.4s;
+}
+
+.recordObject:hover{
+    background: rgb(220,220,220);    
+}
+
 p.app:hover {
     color: #E60033;
     border: 1px solid #E60033;
     background: rgba(230,0,51,0.1);
 }
 
+.actionButton {
+    padding-right: 5px;
+}
 
 
 .masthead{
