@@ -20,7 +20,6 @@ class Restaurant extends Model {
         $table = get_called_class();
         $pk = $this->getPK();
         $query = "insert into $table (rid, name, type, url) values ('$id', '$name', '$type', '$url')";
-        echo $query;
         return $conn->exec($query);
     }
 

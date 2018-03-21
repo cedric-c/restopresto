@@ -6,4 +6,4 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 // echo 'hello';
-echo json_encode($_POST);
+// echo json_encode($_POST);

@@ -6,7 +6,6 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 require_once('core.php');
-echo print_r($_POST, true);
 $app    = $_POST['application'];
 $data   = $_POST['data'];
 $action = $_POST['action'];

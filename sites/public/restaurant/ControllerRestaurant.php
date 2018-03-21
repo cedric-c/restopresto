@@ -30,7 +30,8 @@ class ControllerRestaurant extends Controller {
             $type = $data['type'];
             $url  = $data['url'];
             // echo 'nextid: ',$id;
-            $model->insert($id,$name, $type, $url);
+            $result = $model->insert($id,$name, $type, $url);
+            echo $result;
         }
     }
     
