@@ -7,6 +7,13 @@
  */
 class Artwork extends Model {
 
+    const PRIMARY_KEY = 'title';
+
+    public function getPK(): string {
+        return PRIMARY_KEY;
+    }
+
+
     public function getName(): string {
         return __CLASS__;
     }

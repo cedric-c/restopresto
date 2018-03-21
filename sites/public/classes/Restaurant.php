@@ -7,6 +7,13 @@
  */
 class Restaurant extends Model {
 
+    const PRIMARY_KEY = 'rid';
+
+    public function getPK(): string {
+        return PRIMARY_KEY;
+    }
+
     public function __construct(){}
+    
 
 }

@@ -7,6 +7,12 @@
  */
 class Person extends Model {
 
+    const PRIMARY_KEY = 'uid';
+
+    public function getPK(): string {
+        return PRIMARY_KEY;
+    }
+
     public function __construct(){}
     
 }

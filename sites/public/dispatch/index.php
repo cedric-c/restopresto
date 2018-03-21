@@ -6,11 +6,12 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 require_once('core.php');
-try {
-    $model = new Restaurant();
+echo print_r($_POST, true);
+$app    = $_POST['application'];
+$data   = $_POST['data'];
+$action = $_POST['action'];
+
+if($_POST['application'] == 'restaurant'){
     $controller = ControllerRestaurant::getInstance();
-    $view = new ViewRestaurant($controller, $model);
-    echo $view->render();
-} catch (Exception $e){
-    echo $e;
-}
+    echo $controller->processPost($_POST);
+} 

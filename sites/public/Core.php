@@ -19,6 +19,7 @@ require_once('classes/Rating.php');
 require_once('classes/LikeArtist.php');
 require_once('classes/Artwork.php');
 require_once('classes/Customer.php');
+require_once('classes/Response.php');
 
 // Artist App
 require_once('artist/Artist.php');

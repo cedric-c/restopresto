@@ -23,7 +23,33 @@
         <title><?php echo $appName ;?></title>
     </head>
     <body>
-
+        <template id="new-resto">
+            <div class="container">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <input type="text" v-model="name" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="col-xs-2">
+                    <input type="text" v-model="type" class="form-control"  placeholder="Type">
+                  </div>
+                  
+                  <div class="col-xs-3">
+                    <input type="text" v-model="url" class="form-control" placeholder="URL">
+                  </div>
+                  <div class="col-xs-1">
+                      <button @click="post" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+            </div>        
+        </template>
+        <template id="resto">
+            <p class="app">{{data.name}}</p>
+        </template>
+        <template id="resto-list">
+            <ul>
+                <resto-component v-for="resto in restaurants" :data="resto" :key="resto.name"></resto-component>
+            </ul>
+        </template>
     <div class="masthead">
             <div class="container">
                 <h1><?php echo $appName ;?></h1>
@@ -34,6 +60,7 @@
             <div id="app-data" style="display: none;" data="<?php echo $data;?>"></div>
             </header>
             <div id="main_content">
+                <new-resto-component></new-resto-component>
                 <main-restaurant-component>
                 </main-restaurant-component>
             </div>

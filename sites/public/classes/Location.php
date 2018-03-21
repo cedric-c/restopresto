@@ -6,6 +6,12 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class Location extends Model {
+
+    const PRIMARY_KEY = 'lid';
+
+    public function getPK(): string {
+        return PRIMARY_KEY;
+    }
     
     public function __construct(){}
 

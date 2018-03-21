@@ -6,17 +6,32 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class ControllerRestaurant extends Controller {
-    
-    public function __construct(Model $model) {
-        parent::__construct($model);
-    }
-    
+
+    const ACTION_INSERT = 'create';
+    const ACTION_DELETE = 'delete';
+
     public function getAppDir(): string {
         return 'restaurant';
     }
-
+    
     public function getAppName(): string {
         return 'Restaurant Manager';
+    }
+    
+    public function processPost(array $post): void {
+        $data   = $post['data'];
+        $data = json_decode($data, true);
+        $action = $post['action'];
+        $model = new Restaurant();
+        if($action == self::ACTION_DELETE){
+        } else if ($action == self::ACTION_INSERT) {
+            $id = (int) $model->getNextId();
+            $name = $data['name'];
+            $type = $data['type'];
+            $url  = $data['url'];
+            // echo 'nextid: ',$id;
+            $model->insert($id,$name, $type, $url);
+        }
     }
     
 }

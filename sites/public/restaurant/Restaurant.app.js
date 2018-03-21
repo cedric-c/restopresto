@@ -11,22 +11,51 @@ var appData = document.getElementById("app-data");
 
 var data = {
     restaurants: [],
+    name: '',
+    type: '',
+    url: '',
 };
+
+Vue.component('new-resto-component', {
+    data: function(){
+        return data;
+    },
+    methods: {
+        print:function(v){
+            console.log(v);
+        },
+        post: function(){
+            var request = new XMLHttpRequest()
+            var self = this;
+            request.open("POST", '../dispatch/index.php');
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            var n = data.name;
+            var t = data.type;
+            var u = data.url;
+            var o = new Object();
+            o.name = data.name;
+            o.type = data.type;
+            o.url  = data.url;
+            var d = JSON.stringify(o);
+            request.send('application=restaurant&action=create&'+'data='+d);
+            request.onload = function(){
+                console.log(request.response);
+            };
+        },
+    },
+    template: '#new-resto'
+});
 
 Vue.component('resto-component', {
     props:['data'],
-    template: '<p class="app">{{data.name}}</p>'
+    template: '#resto'
 });
 
 Vue.component('main-restaurant-component',{
     data: function(){
         return data;
     },
-    template: 
-        '<ul>'+
-        '<resto-component v-for="resto in restaurants" :data="resto" :key="resto.name">'+
-        '</resto-component>'+
-        '</ul>'
+    template: '#resto-list'
 });
 
 var wm = new Vue({

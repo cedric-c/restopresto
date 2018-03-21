@@ -6,7 +6,22 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class Restaurant extends Model {
-    
+
+    const PRIMARY_KEY = 'rid';
+
+    public function getPK(): string {
+        return self::PRIMARY_KEY;
+    }
+
     public function __construct(){}
+        
+    public function insert(int $id, string $name, string $type, string $url): int{
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $pk = $this->getPK();
+        $query = "insert into $table (rid, name, type, url) values ('$id', '$name', '$type', '$url')";
+        echo $query;
+        return $conn->exec($query);
+    }
 
 }

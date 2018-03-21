@@ -6,7 +6,12 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class Artist extends Model {
-    
+    const PRIMARY_KEY = 'Aname';
+
+    public function getPK(): string {
+        return PRIMARY_KEY;
+    }
+
     public function __construct(){}
 
 }

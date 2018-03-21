@@ -33,6 +33,26 @@ abstract class Model implements JsonSerializable {
         return json_encode($data);
     }
     
+    public function delete(int $id): int {
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $pk = $this->getPK();
+        return $conn->exec("delete from $table where $pk=$id");
+    }
+    
+    public function getNextId(): int {
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $pk = $this->getPK();
+        $q = "select max($pk) from $table";
+        $statement = $conn->query($q);
+        $v = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $max = (int) $v[0]['max'];
+        return $max + 1;
+    }
+    
+    abstract function getPK();
+    
     public function __toString(): string {
         return get_called_class(). '@' . $this->jsonSerialize();
     }

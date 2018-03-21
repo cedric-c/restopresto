@@ -17,10 +17,19 @@ var data = {
 
 Vue.component('app-component', {
     props:['data'],
-    // data: function (){
-        // return data;  
-    // },
-    template: '<a v-bind:href="data.index"><p class="app">{{data.caption}}</p></a>'
+    methods: {
+        post: function(){
+            var request = new XMLHttpRequest()
+            var self = this;
+            request.open("POST", 'app/index.php');
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send('key1=value1&key2=value2');
+            request.onload = function(){
+                console.log(request.response);
+            };
+        },
+    },
+    template: '<div><a v-bind:href="data.index"><p class="app">{{data.caption}}</p></a></div>'
 });
 
 Vue.component('applications-component',{
@@ -42,3 +51,4 @@ var wm = new Vue({
         data.apps = parsed.available_apps;
     },
 });
+

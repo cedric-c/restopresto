@@ -7,6 +7,12 @@
  */
 class LikeArtist extends Model {
 
+    const PRIMARY_KEY = 'custid';
+
+    public function getPK(): string {
+        return PRIMARY_KEY;
+    }
+
     public function getName(): string {
         return __CLASS__;
     }

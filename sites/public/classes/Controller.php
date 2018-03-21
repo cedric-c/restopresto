@@ -5,15 +5,16 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-abstract class Controller {
-    private $model;
+abstract class Controller {    
+
+    private function __construct() {}
     
-    public function __construct(Model $model) {
-        $this->model = $model;
-    }
-        
-    public function getModel(): Model {
-        return $this->model;
+    public static function getInstance(): Controller {
+        static $instance = null;
+        if($instance === null){
+            $instance = new static();
+        }
+        return $instance;
     }
     
     /**

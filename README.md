@@ -29,7 +29,7 @@ This repository contains the final project for the Databases I course. This proj
 
 #### Restaurants and Menus
 
-- [ ] a1) The system must display a lists of restaurants.
+- [x] ~~a1) The system must display a lists of restaurants.~~
 - [ ] a2) The system must display the information found in the restaurant and location tables when a user selects a restaurant.
 - [ ] b1) The system must display the full menu for a specific restaurant.
 - [ ] b2) The system must display all menu items and their prices for a specific restaurant.
