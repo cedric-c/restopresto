@@ -183,7 +183,7 @@ INSERT INTO Rating (uid,date_rated,price,food,mood,staff,comment,rid)
         (678007,'2001-08-02',3.5,2.5,4,4,'Food taste funny',100400),
         (678006,'2009-03-06',2,5,5,5,'Pricy',100400),
         (678001,'2017-12-24',1,2,3,3,'Prices are to high.',100400),
-        (678001,'2015-03-23',2,2,2.5,2,NULL,100400),
+        (678001,'2015-03-27',2,2,2.5,2,NULL,100400),
         (678008,'2008-04-06',3.5,3,4.5,3,NULL,100500),
         (678014,'2016-03-20',3,3,3,3,'Keep if up',100500),
         (678001,'2017-03-04',4,4,4,4,'Cheers',100500),
@@ -235,8 +235,6 @@ INSERT INTO MenuItem (mid,name,type,category,description,price,rid)
           (369139,'Lamb leg','Food','main','Lamb leg 150g',24.95,100600),
           (369140,'Ice cream','Food','desert','Chocolate,Vanila,Strawberry Ice cream',3.75,100600);
 
-
-
 INSERT INTO RatingItem (uid,date,mid,rating,comment)
     Values(678003,'2017-06-27',369102,3.2,'Tasted better the last time I visited'),
           (678008,'2008-04-06',369112,3,'Very good meal but I find a little too expensive'),
@@ -244,6 +242,7 @@ INSERT INTO RatingItem (uid,date,mid,rating,comment)
           (678004,'2006-09-15',369113,1.5,'Food was very watery and smelt old'),
           (678003,'2018-01-29',369111,3,'Meal was too sweet'),
           (678002,'2017-12-24',369104,5,'Perfect meal');
+
 
 
 
