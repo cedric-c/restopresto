@@ -49,6 +49,17 @@ abstract class Model implements JsonSerializable {
         return $r;
     }
     
+    /**
+     * Returns all records which match the value of $v for the attribute $a.
+     */
+    public function getKeyValue(string $attribute, $value): array {
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $s = $conn->query("select * from $table where $attribute=$value");
+        $r = $s->fetchAll(PDO::FETCH_ASSOC);
+        return $r;
+    }
+    
     public function getTable(): string {
         return get_called_class();
     }

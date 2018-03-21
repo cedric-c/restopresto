@@ -76,6 +76,22 @@ Vue.component('resto-component', {
                 }
             };
         },
+        getMenu: function(){
+            var request = new XMLHttpRequest()
+            request.open("POST", '../dispatch/index.php');
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send('application=restaurant&action=list_menu&'+'data='+this.data.rid);
+            var self = this;
+            request.onload = function(){
+                var response = JSON.parse(request.responseText);
+                if (response.state == 'success') {
+                    console.log(response);
+                } else {
+                    console.log('an error occured');
+                }
+            };
+            
+        },
     },
 });
 

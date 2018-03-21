@@ -7,8 +7,9 @@
  */
 class ControllerRestaurant extends Controller {
 
-    const ACTION_INSERT = 'create';
-    const ACTION_DELETE = 'delete';
+    const INSERT = 'create';
+    const DELETE = 'delete';
+    const LIST_MENU = 'list_menu';
 
     public function getAppDir(): string {
         return 'restaurant';
@@ -23,7 +24,7 @@ class ControllerRestaurant extends Controller {
         $action = $post['action'];
         $model = new Restaurant();
         
-        if($action == self::ACTION_DELETE){
+        if($action == self::DELETE){
             Response::add('payload', $data);
             $result = $model->delete($data);
             if ($result == 1) {
@@ -32,8 +33,7 @@ class ControllerRestaurant extends Controller {
                 Response::add('state','error');
                 Response::add('message', 'Could not delete target from database');
             }
-            Response::send();
-        } else if ($action == self::ACTION_INSERT) {
+        } else if ($action == self::INSERT) {
             $id = (int) $model->getNextId();
             $name = $data['name'];
             $type = $data['type'];
@@ -48,8 +48,16 @@ class ControllerRestaurant extends Controller {
                 Response::add('state', 'error');
                 Response::add('message', 'Could not create restaurant');
             }
-            Response::send();
+        } else if ($action == self::LIST_MENU) {
+            $menuModel = new MenuItem();
+            $result = $menuModel->getKeyValue('rid', $data);
+            Response::add('payload', $result);
+            Response::add('state', 'success');
+        } else {
+            Response::add('state', 'error');
+            Response::add('message', 'Unknown command');
         }
+        Response::send();
     }
     
 }

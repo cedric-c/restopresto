@@ -50,6 +50,7 @@
                 <div class="col-xs-4">
                   <a class="actionButton" :href="data.url"><i class="fa fa-external-link-square fa-3x"></i></a>
                   <a class="actionButton" @click="remove"><i class="fa fa-times fa-3x"></i></a>
+                  <a class="actionButton" @click="getMenu"><i class="fa fa-coffee fa-3x"></i></a>
                 </div>
                 </div>
               </div>
