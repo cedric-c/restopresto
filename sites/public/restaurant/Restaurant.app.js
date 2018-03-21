@@ -52,6 +52,13 @@ Vue.component('resto-component', {
     methods: {
         remove: function() {
             console.log("deleting "+ this.data.rid);
+            var request = new XMLHttpRequest()
+            request.open("POST", '../dispatch/index.php');
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send('application=restaurant&action=delete&'+'data='+this.data.rid);
+            request.onload = function(){
+                console.log(request.response);
+            };
         },
     },
 });

@@ -24,13 +24,16 @@ class ControllerRestaurant extends Controller {
         $action = $post['action'];
         $model = new Restaurant();
         if($action == self::ACTION_DELETE){
+            // echo 'server deleting ' . $data;
+            $result = $model->delete($data);
+            echo $result;
         } else if ($action == self::ACTION_INSERT) {
             $id = (int) $model->getNextId();
             $name = $data['name'];
             $type = $data['type'];
             $url  = $data['url'];
             // echo 'nextid: ',$id;
-            $result = $model->insert($id,$name, $type, $url);
+            $result = $model->insert($id, $name, $type, $url);
             echo $result;
         }
     }
