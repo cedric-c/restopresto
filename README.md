@@ -13,11 +13,11 @@ This repository contains the final project for the Databases I course. This proj
 ### Question 2 (10 marks)
 
 - [x] ~~Populate the tables with your own data.~~
-- [ ] You need 40 different menu items.
-- [ ] You need 12 different restaurants.
-- [ ] Each restaurant has at least 8 ratings each.
-- [ ] You should have at least 15 different raters.
-- [ ] One of the users should have around ratings 10.
+- [x] ~~You need 40 different menu items.~~
+- [x] ~~You need 12 different restaurants.~~
+- [x] ~~Each restaurant has at least 8 ratings each.~~
+- [x] ~~You should have at least 15 different raters.~~
+- [x] ~~One of the users should have around ratings 10.~~
 
 ### Question 3 (10 marks)
 
