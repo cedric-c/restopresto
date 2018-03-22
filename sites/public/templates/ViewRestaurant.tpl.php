@@ -44,7 +44,7 @@
             <div class="container">
               <div class="row recordObject">
                 <div class="col-xs-8">
-                  <p class="txtb">{{data.name}}</p>
+                  <p class="restaurant-title">{{data.name}}</p>
                   <p>{{data.type}}</p>
                 </div>
                 <div class="col-xs-4">

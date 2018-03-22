@@ -55,7 +55,6 @@ Vue.component('resto-component', {
     template: '#resto',
     methods: {
         deleteResto: function (){
-            console.log('delete resto from resto component');
             this.$emit('remove-resto');
         },
         remove: function() {
@@ -69,7 +68,7 @@ Vue.component('resto-component', {
                 if (response.state == 'success') {
                     self.deleteResto();
                 } else {
-                    console.log('an error occured');
+                    console.log(response.message);
                 }
             };
         },
@@ -126,6 +125,7 @@ var wm = new Vue({
             resto.url       = data.url;
             resto.menu      = [];
             resto.ratings   = [];
+            resto.locations = [];
             return resto;
             
         },
