@@ -1,11 +1,5 @@
-/**
- * @author Cédric Clément <cclem054@uottawa.ca>
- * @version 1.0
- * @since 1.0
- * (c) Copyright 2018 Cédric Clément.
- *
- * NOTE: PLACE ALL COMPONENTS ABOVE THE VUE DECLARATION.
- *
+/*!
+ * (c) 2018 Cédric Clément.
  */
 var appData = document.getElementById("app-data");
 
@@ -22,7 +16,10 @@ Vue.component('create-resto-component', {
     },
     methods: {
         createResto: function (resto){
-            data.restaurants.push(resto[0]);
+            console.log(resto[0]);
+            var r = new Object();
+            var newResto = wm.createResto(resto[0]);
+            data.restaurants.push(newResto);
         },
         post: function(){
             var request = new XMLHttpRequest()
@@ -114,11 +111,34 @@ var wm = new Vue({
         var b64     = appData.getAttribute("data");
         var jsn     = atob(b64);
         var parsed  = JSON.parse(jsn);
-        data.restaurants = parsed;
+        var r = this.injectProperties(parsed);
+        data.restaurants = r;
     },
     methods: {
         addChild: function(child) {
             data.restaurants.push(child);
+        },
+        createResto: function(data){
+            var resto       = new Object();
+            resto.rid       = data.rid;
+            resto.name      = data.name;
+            resto.type      = data.type;
+            resto.url       = data.url;
+            resto.menu      = [];
+            resto.ratings   = [];
+            return resto;
+            
+        },
+        injectProperties: function(restos) {
+            var ret = [];
+            for(var i in restos){
+                var r = this.createResto(restos[i]);
+                ret.push(r);
+            }
+            return ret;
+        },
+        testMethod: function(){
+            console.log('test method worked!');
         },
     }
     

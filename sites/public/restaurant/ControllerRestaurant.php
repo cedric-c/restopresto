@@ -27,12 +27,12 @@ class ControllerRestaurant extends Controller {
         
         if($action == self::DELETE){
             Response::add('payload', $data);
-            $result = $model->delete($data);
-            if ($result == 1) {
+            try {
+                $result = $model->delete($data);
                 Response::add('state','success');
-            } else {
+            } catch (PDOException $e){
                 Response::add('state','error');
-                Response::add('message', 'Could not delete target from database');
+                Response::add('message', $e->getMessage());
             }
         } else if ($action == self::INSERT) {
             $id = (int) $model->getNextId();
