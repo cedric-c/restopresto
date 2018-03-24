@@ -152,8 +152,16 @@ INSERT INTO Location (lid,opened,manager,phone,address,hour_start,hour_end,rid)
 
 
 INSERT INTO Rating (uid,date_rated,price,food,mood,staff,comment,rid)
-    Values(678003,'2017-06-27',2.5,4,4,3,'Price were to expensive and staff services needs improvement',100100),
-          (678001,'2003-09-23',3.6,4.6,5,4.5,'Cheers',100100),
+    Values(678003,'2017-06-25',2.5,4,4,3,'Needs improvement in customer service',100000),
+        (678001,'2003-09-08',3.6,4.6,5,4.5,'Great servers',100000),
+        (678005,'2016-03-13',4,3.5,2.5,3.5,'Staff is very friendly',100000),
+        (678012,'2008-03-08',1.5,1,2.5,4.8,'Keep it up',100000),
+        (678006,'2010-03-07',2.3,4.4,5,4,'Price is to high.',100000),
+        (678001,'2005-02-08',3.4,4.5,2.5,2.9,'staff could be more helpful.',100000),
+        (678003,'2012-04-20',5,5,5,4.5,NULL,100000),
+        (678011,'2001-08-04',5,4,3.4,3,'Cheers',100000),
+        (678003,'2017-06-27',2.5,4,4,3,'Price were to expensive and staff services needs improvement',100100),
+        (678001,'2003-09-23',3.6,4.6,5,4.5,'Cheers',100100),
         (678005,'2016-03-29',4,3.5,2.5,3.5,'Staff is very friendly',100100),
         (678012,'2008-03-05',1.5,1,2.5,4.8,NULL,100100),
         (678006,'2010-03-06',2.3,4.4,5,4,'Price is to high.',100100),
@@ -185,7 +193,7 @@ INSERT INTO Rating (uid,date_rated,price,food,mood,staff,comment,rid)
         (678001,'2017-12-24',1,2,3,3,'Prices are to high.',100400),
         (678001,'2015-03-27',2,2,2.5,2,NULL,100400),
         (678008,'2008-04-06',3.5,3,4.5,3,NULL,100500),
-        (678014,'2016-03-20',3,3,3,3,'Keep if up',100500),
+        (678014,'2016-03-20',3,3,3,3,'Keep it up',100500),
         (678001,'2017-03-04',4,4,4,4,'Cheers',100500),
         (678006,'2017-03-04',3,3,3,3,NULL,100500),
         (678010,'2016-09-09',2.4,2.5,2.5,2.5,'Needs improvements in all the major fields',100500),
