@@ -109,7 +109,7 @@ INSERT INTO Restaurant (rid,name,type,url)
           (100400,'El Camino','Mexican','http://eatelcamino.com/?utm_source=tripadvisor&utm_medium=referral'),
           (100500,'Thai Flame Restaurant','Thai','http://www.thai-flame.ca/?utm_source=tripadvisor&utm_medium=referral'),
 
- (100600,'The Keg Steakhouse & Bar','American','https://www.kegsteakhouse.com/locations/hunt-club-keg/?utm_source=tripadvisor&utm_medium=referral'),
+      (100600,'The Keg Steakhouse & Bar','American','https://www.kegsteakhouse.com/locations/hunt-club-keg/?utm_source=tripadvisor&utm_medium=referral'),
           (100700,'Absinthe','French','http://www.absinthecafe.ca/?utm_source=tripadvisor&utm_medium=referral'),
           (100800,'Restaurant E18hteen','Canadian','http://www.restaurant18.com/?utm_source=tripadvisor&utm_medium=referral'),
           (100900,'Chez Fatima','Middle Eastern','http://www.chezfatima.ca/?utm_source=tripadvisor&utm_medium=referral'),
@@ -129,12 +129,12 @@ INSERT INTO PERSON(uid,email,name,joined,type,reputation)
           (678008,'Cohe097@uottawa.ca','Sacha Baron Cohen','2018-08-03','blog',1.2),
           (678009,'BartonMis@gmail.com','Mischa Barton','2005-04-07','foodcritic',4.3),
         
-    (678010,'SGuillory@hotmail.com','Sienna Guillory','2009-05-02','Online',3.6),
-(678011,'Parkerc@gmail.com','Cecil Parker','2017-12-24','blog',4.2),
-     (678012,'Bloom101@gmail.com','Orlando Bloom','2007-03-28','blog',2.8),
-    (678013,'@hotmail.com','Stanley Holloway','2004-07-27','online',3.2),
-(678014,'Helena@gmail.com','Helena Bonham Carter','2009-04-10','foodcritic',1.5),
-(678015,'Natasha.richardson@microsoft.com','Natasha Richardson ','2013-11-30','online',4.8);
+          (678010,'SGuillory@hotmail.com','Sienna Guillory','2009-05-02','Online',3.6),
+          (678011,'Parkerc@gmail.com','Cecil Parker','2017-12-24','blog',4.2),
+          (678012,'Bloom101@gmail.com','Orlando Bloom','2007-03-28','blog',2.8),
+          (678013,'@hotmail.com','Stanley Holloway','2004-07-27','online',3.2),
+          (678014,'Helena@gmail.com','Helena Bonham Carter','2009-04-10','foodcritic',1.5),
+          (678015,'Natasha.richardson@microsoft.com','Natasha Richardson ','2013-11-30','online',4.8);
 
 INSERT INTO Location (lid,opened,manager,phone,address,hour_start,hour_end,rid)
     Values(1980000,'2009-09-07',678009,'613-445-9807','2701 St. Joseph Blvd, Ottawa, Ontario K1C 1G4, Canada','16:00','23:00',100000),
@@ -143,7 +143,7 @@ INSERT INTO Location (lid,opened,manager,phone,address,hour_start,hour_end,rid)
           (1980030,'2012-09-04',678000,'814-765-9087','271 Dalhousie St | Corner of Dalhousie Street and Murray Street, Ottawa, Ontario K1N 7E5, Canada','9:00','22:00',100300),
           (1980040,'2013-03-02',678007,'641-890-4327','380 Elgin St, Ottawa, Ontario K2P 1N1, Canada','10:00','20:00',100400),
           (1980050,'2000-05-29',678001,'613-789-4657','1902 Robertson Rd Suite 104, Ottawa, Ontario K2H 5B8, Canada','14:00','23:59',100500),
- (1980060,'2011-05-15',678008,'613-248-0509','376 Hunt Club Rd, Ottawa, Ontario K1V 1C1, Canada','4:30','23:00',100600),
+          (1980060,'2011-05-15',678008,'613-248-0509','376 Hunt Club Rd, Ottawa, Ontario K1V 1C1, Canada','4:30','23:00',100600),
           (1980070,'2006-02-01',678003,'613-761-1138','1208 Wellington Street West Ottawa, Ontario','23:30','22:00',100700),
           (1980080,'2008-04-02',678004,'613-890-5643','18 York St, Ottawa, Ontario K1N 5S6, Canada','4:00','23:30',100800),
           (1980090,'2009-12-20',678005,'819-771-7568','125 Promenade Du Portage, Gatineau, Quebec J8X 2K2, Canada','14:30','22:00',100900),
@@ -191,8 +191,57 @@ INSERT INTO Rating (uid,date_rated,price,food,mood,staff,comment,rid)
         (678010,'2016-09-09',2.4,2.5,2.5,2.5,'Needs improvements in all the major fields',100500),
         (678008,'2015-03-23',3,3,4.5,3,'Server was very helpful.',100500),
         (678001,'2013-07-02',5,5,5,5,'very comforting environment',100500),
-        (678005,'2002-08-27',3,3,4.5,5,'Some dishes were expensive.',100500);
-
+        (678005,'2002-08-27',3,3,4.5,5,'Some dishes were expensive.',100500),
+        (678005,'2015-01-25',2,2,2,2,'Disappointing service',100600),
+        (678012,'2008-04-06',2.5,3.5,3.5,3.5,'-',100600),
+        (678001,'2011-03-28',2,2,2,2,'Could be better',100600),
+        (678002,'2018-01-29',4,4,4,4,'Had a great time.',100600),
+        (678003,'2003-05-09',3,3.5,2,5,'Server was very helpful.',100600),
+        (678004,'2000-09-08',4.5,4.5,3.5,2,'Needs improvements in all the major fields',100600),
+        (678006,'2004-07-04',1,1,2,1,NULL,100600),
+        (678007,'2013-04-16',2,2,2,1,'Falling apart',100600),
+        (678008,'2018-01-28',1,1,3,3,'price are too expensive',100700),
+        (678009,'2011-03-28',4,3,1,1,'Need more selection',100700),
+        (678010,'2017-12-24',4,4,4,4,'-',100700),
+        (678011,'2006-08-14',1,1,1,1,'far from perfect',100700),
+        (678012,'2004-07-05',2,3,4,5,NULL,100700),
+        (678013,'2007-04-06',5,5,5,5,'no comment',100700),
+        (678014,'2007-09-08',1,5,4,2,'Thank you',100700),
+        (678015,'2008-04-06',1,3,4,2,'Food taste funny',100700),
+        (678005,'2017-12-25',3.5,4,4,4,'Amazing experience',100800),
+        (678005,'2009-01-11',3,2.5,2.5,3,'Thanks',100800),
+        (678004,'2005-05-05',1,3,3,3,'pricy',100800),
+        (678004,'2013-04-16',5,1,3,2,'Thanks',100800),
+        (678006,'2008-03-01',4,3,4,3,NULL,100800),
+        (678009,'2015-01-25',1,2,1,1,'bad experience',100800),
+        (678003,'2011-03-20',1.5,1.5,1.5,1.5,'Food taste funny',100800),
+        (678011,'2009-01-29',2.5,2.5,2.5,2.5,'Too much salt in the food',100800),
+        (678013,'2018-03-20',4.5,4.5,4.5,4.5,'Too much salt in the food',100900),
+        (678015,'2013-04-16',3,3,3,3,NULL,100900),
+        (678015,'2011-03-06',2,2,2,4,'Needs improvements in all the major fields',100900),
+        (678015,'2017-12-27',3,3,3,2,'Need more selection',100900),
+        (678004,'2018-01-19',5,5,4,3,'Too much salt in the food',100900),
+        (678003,'2008-04-06',1,3,4,2,'Prices are to high',100900),
+        (678002,'2018-02-01',4,5,3.5,4,'Server was very helpful.',100900),
+        (678001,'2017-09-04',4,3,2,2,'Too much salt in the food',100900),
+        (678000,'2011-03-12',4,5,2,3,NULL,100900),
+        (678000,'2013-04-16',3,2,1,1,'Need more selection',101000),
+        (678000,'2003-09-09',2,2,5,5,'-',101000),
+        (678000,'2004-07-25',5,4,5,4,'Prices are to high',101000),
+        (678008,'2008-07-03',3.5,2.5,2.5,2.5,'Too much salt in the food',101000),
+        (678008,'2015-01-25',2,2,2,1,'Thank you',101000),
+        (678005,'2011-11-11',4,3,4,3,'Thanks',101000),
+        (678007,'2009-01-22',4,5,4,5,NULL,101000),
+        (678007,'2018-12-29',3,4,2,5,'Need more selection',101000),
+        (678008,'2012-11-13',5,5,5,5,'Server was very helpful.',101100),
+        (678009,'2017-12-20',2,3,5,4,'Too much salt in the food',101100),
+        (678009,'2013-12-13',1,3,4,2,NULL,101100),
+        (678013,'2014-12-19',5,1,1,5,'Thanks',101100),
+        (678012,'2016-09-09',5,4,5,5,'Cheers',101100),
+        (678012,'2009-01-15',4,4,3,2,'Thank you',101100),
+        (678010,'2007-08-28',2,1,2,1,'far from perfect',101100),
+        (678001,'2017-12-02',4,4,4,3,'Needs improvements in all the major fields',101100);
+    
 INSERT INTO MenuItem (mid,name,type,category,description,price,rid)
     Values(369101,'Tom Yum Goong','food','Starter','Hot and sour shrimp soup with lemongrass, fresh mushrooms and baby corn.',5.50,100500),
           (369102,'Gaeng Keaw Warn','food','Main','Traditional green curry with bamboo shoots, mixed vegetables, and coconut milk topped with Thai eggplant.',11.00,100500),
@@ -225,7 +274,7 @@ INSERT INTO MenuItem (mid,name,type,category,description,price,rid)
           (369129,'Tuna Dash','Food','main','Tuna BBQ style',17.75,101100),
           (369130,'Dew','Beverage','soft drink','Dew 250 ml',4.50,101100),
           (369131,'Torillas','Food','main','Torillas with steamed beef and vegitables',13.00,100900),
-          (369132,'Dragon Fish','Food','main','Dragon fish from the Pacific',15.00,100600),
+          (369132,'Dragon Fish','Food','main','Dragon fish from the Pacific',15.00,100900),
           (369133,'Fanta','Beverage','soft drink','Fanta 250ml',3.50,100800),
           (369134,'Fruit salad','Food','desert','Fruit salad',5.75,100500),
           (369135,'Rose bread','Food','main','Rose bread from europe with spicy chicken',6.50,100400),
@@ -242,6 +291,8 @@ INSERT INTO RatingItem (uid,date,mid,rating,comment)
           (678004,'2006-09-15',369113,1.5,'Food was very watery and smelt old'),
           (678003,'2018-01-29',369111,3,'Meal was too sweet'),
           (678002,'2017-12-24',369104,5,'Perfect meal');
+
+
 
 
 
