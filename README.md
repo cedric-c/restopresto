@@ -51,6 +51,7 @@ This repository contains the final project for the Databases I course. This proj
 - [ ] h2) The system must order the results by the dates of the ratings.
 
 - [ ] i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
+- [ ] i) The system must list the details of the highest rated (by food) restaurants for each respective category of restaurant. 
 - [ ] j) Provide a query to determine whether Type Y restaurants are “more popular” than other restaurants. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.) Yes, this query is open to your own interpretation!
 
 #### Raters and their ratings
