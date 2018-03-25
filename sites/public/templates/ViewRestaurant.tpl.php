@@ -43,18 +43,32 @@
         <template id="resto">
             <div class="container">
               <div class="row recordObject">
-                <div class="col-xs-8">
-                  <p class="restaurant-title">{{data.name}}</p>
-                  <p>{{data.type}}</p>
+                <div class="row">
+                  <div class="col-xs-8">
+                    <p class="restaurant-title">{{data.name}}</p>
+                    <span> <p>{{data.type}} – {{data.phone}}</p> </span>
+                  </div>
+                  <div class="col-xs-4">
+                    <a class="actionButton" :href="data.url"><i class="fa fa-external-link-square fa-3x"></i></a>
+                    <a class="actionButton" @click="remove"><i class="fa fa-times fa-3x"></i></a>
+                    <a class="actionButton" @click="getMenu"><i class="fa fa-coffee fa-3x"></i></a>
+                  </div>
                 </div>
-                <div class="col-xs-4">
-                  <a class="actionButton" :href="data.url"><i class="fa fa-external-link-square fa-3x"></i></a>
-                  <a class="actionButton" @click="remove"><i class="fa fa-times fa-3x"></i></a>
-                  <a class="actionButton" @click="getMenu"><i class="fa fa-coffee fa-3x"></i></a>
-                  <a class="actionButton" @click="getHighRaters"><i class="fa fa-star fa-3x"></i></a>
-                </div>
-                </div>
+                <div class="row menuRow">
+                <ul>
+                  <div class="row menuObject" v-for="(mi, index) in data.menu"><br><div><b>Name</b>: {{mi.name}} <b>Category</b>: {{mi.category}} <b>Type</b>: {{mi.type}} <b>Price</b>: {{mi.price}}<br><b>Description</b>: {{mi.description}}</div></div>
+                </ul>
               </div>
+              </div>
+              
+              </div>
+        </template>
+        <template id="resto-chooser">
+          <ul class="nav nav-pills">
+            <li role="presentation" @click="toggleAll" :class="[all ? 'active' : '']"><a>All</a></li>
+            <li role="presentation" @click="toggleUnrated" :class="[unrated ? 'active' : '']"><a>Unrated (Jan.)</a></li>
+            <!-- <li role="presentation"><a>Other</a></li> -->
+          </ul>
         </template>
         <template id="resto-list">
             <ul>
@@ -82,7 +96,9 @@
                   <create-resto-component></create-resto-component>
                   </div>
                   <div class="container">
-                    <h2>Current Restaurants</h2>
+                    <resto-chooser-component>
+                    </resto-chooser-component>
+                    <br>
                   <main-restaurant-component>
                   </main-restaurant-component>
                   </div>

@@ -50,8 +50,74 @@ Vue.component('create-resto-component', {
     template: '#create-resto'
 });
 
+Vue.component('resto-chooser-component', {
+   props:['data'],
+   template: '#resto-chooser',
+   data: function(){
+    return {
+        all:true,
+        unrated:false,
+        other:false,
+    }
+   },
+   methods: {
+    untoggle: function(){
+        this.all = false;
+        this.unrated = false;
+    },
+    toggleAll: function(){
+        this.untoggle();
+        this.all = !this.all;
+        if(this.all){
+            this.getAll();
+        }
+    },
+    toggleUnrated: function(){
+        this.untoggle();
+        this.unrated = !this.unrated;
+        if(this.unrated){
+            this.getUnrated();
+        }
+    },
+    getUnrated: function(){
+        var request = new XMLHttpRequest()
+        request.open("POST", '../dispatch/index.php');
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send('application=restaurant&action=get_unrated_restaurants&'+'data=null');
+        var self = this;
+        request.onload = function(){
+            var response = JSON.parse(request.responseText);
+            if (response.state == 'success') {
+                self.$parent.restaurants = response.payload;
+            } else {
+                console.log('an error occured');
+            }
+        };            
+    },
+    getAll: function(){
+        var request = new XMLHttpRequest()
+        request.open("POST", '../dispatch/index.php');
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send('application=restaurant&action=get_all_restaurants&'+'data=null');
+        var self = this;
+        request.onload = function(){
+            var response = JSON.parse(request.responseText);
+            if (response.state == 'success') {
+                self.$parent.restaurants = response.payload;
+            } else {
+                console.log('an error occured');
+            }
+        };            
+        
+    },
+   },
+});
+
 Vue.component('resto-component', {
     props:['data'],
+    // data: function(){
+        // return data;
+    // },
     template: '#resto',
     methods: {
         deleteResto: function (){
@@ -81,27 +147,12 @@ Vue.component('resto-component', {
             request.onload = function(){
                 var response = JSON.parse(request.responseText);
                 if (response.state == 'success') {
-                    console.log(response);
+                    self.data.menu = response.payload;
                 } else {
                     console.log('an error occured');
                 }
             };
         },
-        getHighRaters: function(){
-            var request = new XMLHttpRequest()
-            request.open("POST", '../dispatch/index.php');
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send('application=restaurant&action=get_high_raters&'+'data='+this.data.rid);
-            var self = this;
-            request.onload = function(){
-                var response = JSON.parse(request.responseText);
-                if (response.state == 'success') {
-                    console.log(response);
-                } else {
-                    console.log('an error occured');
-                }
-            };            
-        }
     },
 });
 
@@ -137,6 +188,7 @@ var wm = new Vue({
             resto.name      = data.name;
             resto.type      = data.type;
             resto.url       = data.url;
+            resto.phone     = data.phone;
             resto.menu      = [];
             resto.ratings   = [];
             resto.locations = [];

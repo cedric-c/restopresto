@@ -26,8 +26,11 @@ abstract class Model implements JsonSerializable {
         $r = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
+    
+    public function getAll(): Array {
+        return $this->getData();
+    }
 
-        
     public function jsonSerialize(): string {
         $data = $this->getData();
         return json_encode($data);

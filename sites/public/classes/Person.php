@@ -15,19 +15,4 @@ class Person extends Model {
 
     public function __construct(){}
     
-    public function getHighRaters(): array {
-        $conn = Connection::init()->getConnection();
-        $q  = "select Re.name, L.phone, Re.type";
-        $q .= " from restaurant as Re, location as L, rating as R";
-        $q .= " where Re.rid=L.rid and Re.rid not in (select Res.rid";
-        $q .= " FROM restaurant as Res, rating as Ra";
-        $q .= " WHERE Res.rid =Ra.rid and extract(year from Ra.date_rated) =";
-        $q .= " 2015  AND extract(month from Ra.date_rated)  = 1";
-        $q .= " group by Res.rid)";
-        $q .= " Group by Re.name,L.phone, Re.type";
-        $s = $conn->query($q);
-        $r = $s->fetchAll(PDO::FETCH_ASSOC);
-        return $r;
-    }
-    
 }

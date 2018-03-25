@@ -44,8 +44,8 @@ This repository contains the final project for the Databases I course. This proj
 - [ ] f1) Find the total number of rating for each restaurant, for each rater. That is, the data should be grouped by the restaurant, the specific raters and the numeric ratings they have received.
 - [ ] f1) For each rater, the system must display the total number of ratings for each restaurant.
 
-- [ ] g1) The system must display a list of restaurants which have not been reated for a given month.
-- [ ] g2) The system must display the name of the restaurant, the phone number, and the type of food.
+- [x] ~~g1) The system must display a list of restaurants which have not been reated for a given month.~~ (currently only works for January, which is what was specified in the assignment description)
+- [x] ~~g2) The system must display the name of the restaurant, the phone number, and the type of food.~~
 
 - [ ] h1) The system must display the names of opening dates for a given restaurant which obtained Staff raiting which is lower than any rating given by a rater. 
 - [ ] h2) The system must order the results by the dates of the ratings.

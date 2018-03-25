@@ -4,14 +4,14 @@ from Restaurant as Re, rating as R, person as P
 where P.uid=R.uid and R.rid= Re.rid
 GROUP BY P.name, Re.name;
 
---g-restuarants that has 
-select Re.name, L.phone, Re.type 
+--g-restuarants that has not been rated in january in 2015
+select Re.rid, Re.url, Re.name, L.phone, Re.type 
 from restaurant as Re, location as L, rating as R
 where Re.rid=L.rid and Re.rid not in (select Res.rid
 						FROM restaurant as Res, rating as Ra
 						WHERE Res.rid =Ra.rid and extract(year from Ra.date_rated) = 2015  AND extract(month from Ra.date_rated)  = 1
 						group by Res.rid)
-Group by Re.name,L.phone, Re.type; 
+Group by Re.rid, Re.url, Re.name,L.phone, Re.type; 
 
 --h -- 
 select Re.name, L.opened

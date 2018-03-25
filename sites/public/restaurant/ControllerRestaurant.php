@@ -7,11 +7,13 @@
  */
 class ControllerRestaurant extends Controller {
 
-    const INSERT    = 'create';
-    const DELETE    = 'delete';
-    const GET_MENU = 'list_menu';
-    const GET_LOCATION  = 'get_location';
-    const GET_HIGHEST_RATERS = 'get_high_raters';
+    const INSERT                = 'create';
+    const DELETE                = 'delete';
+    const GET_MENU              = 'list_menu';
+    const GET_LOCATION          = 'get_location';
+    const GET_HIGHEST_RATERS    = 'get_high_raters';
+    const GET_ALL_RESTAURANTS   = 'get_all_restaurants';
+    const GET_UNRATED           = 'get_unrated_restaurants';
 
     public function getAppDir(): string {
         return 'restaurant';
@@ -55,12 +57,22 @@ class ControllerRestaurant extends Controller {
             $result     = $menuModel->getKeyValue('rid', $data);
             Response::add('payload', $result);
             Response::add('state', 'success');
-        } else if ($action == self::GET_LOCATION) {
+        
+        } else if ($action == self::GET_ALL_RESTAURANTS) {
+            $data       = $model->getAll();
+            Response::add('payload', $data);
             Response::add('state', 'success');
-            Response::add('message','UNIMPLEMENTED');
-        } else if ($action == self::GET_HIGHEST_RATERS) {
-            $personModel    = new Person();
-            $result         = $personModel->getHighRaters();
+        
+        // } else if ($action == self::GET_LOCATION) {
+            // Response::add('state', 'success');
+            // Response::add('message','UNIMPLEMENTED');
+        
+        // } else if ($action == self::GET_LOCATION) {
+            // Response::add('state', 'success');
+            // Response::add('message','UNIMPLEMENTED');
+        
+        } else if ($action == self::GET_UNRATED) {
+            $result         = $model->getUnrated();
             Response::add('payload',$result);
             Response::add('state', 'success');
         } else {
