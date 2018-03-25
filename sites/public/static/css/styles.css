@@ -17,8 +17,8 @@ h1, h2 {
 }
 
 .list-item {
-  /*display: inline-block;*/
-  /*margin-right: 10px;*/
+/*display: inline-block;*/
+/*margin-right: 10px;*/
 }
 .list-enter-active, .list-leave-active {
   transition: all .35s;
@@ -80,8 +80,13 @@ a {
     text-decoration: none !important;
 }
 
+.restaurant-title{
+    font-weight:bold;
+    font-size: 26px;
+}
+
 .recordObject {
-    margin: 0.2em;    
+    margin: 0.5em;    
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 3px;
@@ -94,7 +99,14 @@ a {
 }
 
 .recordObject:hover{
-    background: rgb(220,220,220);    
+    background: rgb(230,230,230);    
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+.recordObject:active{
+    -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    
 }
 
 p.app:hover {
