@@ -11,6 +11,7 @@ class ControllerRestaurant extends Controller {
     const DELETE    = 'delete';
     const GET_MENU = 'list_menu';
     const GET_LOCATION  = 'get_location';
+    const GET_HIGHEST_RATERS = 'get_high_raters';
 
     public function getAppDir(): string {
         return 'restaurant';
@@ -50,16 +51,18 @@ class ControllerRestaurant extends Controller {
                 Response::add('message', 'Could not create restaurant');
             }
         } else if ($action == self::GET_MENU) {
-            $menuModel = new MenuItem();
-            $result = $menuModel->getKeyValue('rid', $data);
+            $menuModel  = new MenuItem();
+            $result     = $menuModel->getKeyValue('rid', $data);
             Response::add('payload', $result);
             Response::add('state', 'success');
         } else if ($action == self::GET_LOCATION) {
             Response::add('state', 'success');
             Response::add('message','UNIMPLEMENTED');
-        // } else if ($action == self::GET_LOCATION) {
-        //     Response::add('state', 'success');
-        //     Response::add('message','UNIMPLEMENTED');
+        } else if ($action == self::GET_HIGHEST_RATERS) {
+            $personModel    = new Person();
+            $result         = $personModel->getHighRaters();
+            Response::add('payload',$result);
+            Response::add('state', 'success');
         } else {
             Response::add('state', 'error');
             Response::add('message', 'Unknown command');
