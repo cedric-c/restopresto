@@ -137,9 +137,6 @@ var wm = new Vue({
             }
             return ret;
         },
-        testMethod: function(){
-            console.log('test method worked!');
-        },
     }
     
 });
