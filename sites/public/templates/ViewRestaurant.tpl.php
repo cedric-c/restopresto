@@ -56,8 +56,10 @@
                 </div>
                 <div class="row menuRow">
                 <ul>
-                  <div class="row menuObject" v-for="(mi, index) in data.menu"><br><div><b>Name</b>: {{mi.name}} <b>Category</b>: {{mi.category}} <b>Type</b>: {{mi.type}} <b>Price</b>: {{mi.price}}<br><b>Description</b>: {{mi.description}}</div></div>
-                </ul>
+                  <transition-group name="list">
+                  <div class="row menuObject" v-for="(mi, index) in data.menu" :key="mi.mid"><br><div><b>Name</b>: {{mi.name}} <b>Category</b>: {{mi.category}} <b>Type</b>: {{mi.type}} <b>Price</b>: {{mi.price}}<br><b>Description</b>: {{mi.description}}</div></div>
+                  </transition-group>
+              </ul>
               </div>
               </div>
               

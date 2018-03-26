@@ -141,6 +141,10 @@ Vue.component('resto-component', {
             }
         },
         getMenu: function(){
+            if(this.data.menu.length > 0){
+                this.data.menu = [];
+                return;
+            }
             var request = new XMLHttpRequest()
             request.open("POST", '../dispatch/index.php');
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
