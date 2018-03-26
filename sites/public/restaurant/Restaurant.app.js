@@ -88,7 +88,7 @@ Vue.component('resto-chooser-component', {
         request.onload = function(){
             var response = JSON.parse(request.responseText);
             if (response.state == 'success') {
-                self.$parent.restaurants = response.payload;
+                wm.replaceRestaurants(response.payload);
             } else {
                 console.log('an error occured');
             }
@@ -103,7 +103,7 @@ Vue.component('resto-chooser-component', {
         request.onload = function(){
             var response = JSON.parse(request.responseText);
             if (response.state == 'success') {
-                self.$parent.restaurants = response.payload;
+                wm.replaceRestaurants(response.payload);
             } else {
                 console.log('an error occured');
             }
@@ -115,9 +115,6 @@ Vue.component('resto-chooser-component', {
 
 Vue.component('resto-component', {
     props:['data'],
-    // data: function(){
-        // return data;
-    // },
     template: '#resto',
     methods: {
         deleteResto: function (){
@@ -138,6 +135,11 @@ Vue.component('resto-component', {
                 }
             };
         },
+        setMenu: function(m){
+            for(var i in m){
+                this.data.menu.push(m[i]);
+            }
+        },
         getMenu: function(){
             var request = new XMLHttpRequest()
             request.open("POST", '../dispatch/index.php');
@@ -147,7 +149,7 @@ Vue.component('resto-component', {
             request.onload = function(){
                 var response = JSON.parse(request.responseText);
                 if (response.state == 'success') {
-                    self.data.menu = response.payload;
+                    self.setMenu(response.payload);
                 } else {
                     console.log('an error occured');
                 }
@@ -202,6 +204,18 @@ var wm = new Vue({
                 ret.push(r);
             }
             return ret;
+        },
+        clearRestaurants: function(){
+            while (data.restaurants.length > 0){
+                data.restaurants.pop();
+            }
+        },
+        replaceRestaurants: function(restos) {
+            this.clearRestaurants();
+            for(var i in restos){
+                var r = this.createResto(restos[i]);
+                data.restaurants.push(r);
+            }
         },
     }
     
