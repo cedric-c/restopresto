@@ -85,6 +85,11 @@ a {
     font-size: 26px;
 }
 
+.record-object-title{
+    font-weight:bold;
+    font-size: 26px;    
+}
+
 .recordObject {
     margin: 0.5em;    
     border: 1px solid #ccc;

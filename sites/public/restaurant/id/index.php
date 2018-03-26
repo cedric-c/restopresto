@@ -8,8 +8,8 @@
 require_once('core.php');
 try {
     $model = new Restaurant();
-    $controller = ControllerRestaurantRoaster::getInstance();
-    $view = new ViewRestaurantRoaster($controller, $model);
+    $controller = ControllerRestaurant::getInstance();
+    $view = new ViewRestaurant($controller, $model);
     echo $view->render();
 } catch (Exception $e){
     echo $e;

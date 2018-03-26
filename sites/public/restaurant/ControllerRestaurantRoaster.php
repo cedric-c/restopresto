@@ -5,7 +5,7 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-class ControllerRestaurant extends Controller {
+class ControllerRestaurantRoaster extends Controller {
 
     const INSERT                = 'create';
     const DELETE                = 'delete';
@@ -20,13 +20,12 @@ class ControllerRestaurant extends Controller {
     }
     
     public function getAppName(): string {
-        return 'Restaurant Details';
+        return 'Restaurant List';
     }
     
     public function getAppFileName(): string {
-        return 'restaurant';
+        return 'restaurant-roaster';
     }
-    
     
     public function processPost(array $post): void {
         $data = json_decode($post['data'], true);

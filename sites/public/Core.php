@@ -23,6 +23,8 @@ require_once('classes/MenuItem.php');
 require_once('restaurant/Restaurant.php');
 require_once('restaurant/ViewRestaurant.php');
 require_once('restaurant/ControllerRestaurant.php');
+require_once('restaurant/ViewRestaurantRoaster.php');
+require_once('restaurant/ControllerRestaurantRoaster.php');
 
 
 

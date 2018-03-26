@@ -31,8 +31,8 @@ This repository contains the final project for the Databases I course. This proj
 
 - [x] ~~a1) The system must display a lists of restaurants.~~
 - [ ] a2) The system must display the information found in the restaurant and location tables when a user selects a restaurant.
-- [ ] b1) The system must display the full menu for a specific restaurant.
-- [ ] b2) The system must display all menu items and their prices for a specific restaurant.
+- [x] ~~b1) The system must display the full menu for a specific restaurant.~~
+- [x] ~~b2) The system must display all menu items and their prices for a specific restaurant.~~
 - [ ] b3) The system must filter displayed menu items based on their categories.
 - [ ] c1) The system must list the names of managers as well as the date the restaurant opened when provided with the category of a restaurant.
 - [ ] d1) The system must display the name of the most expensive menu item when provided with a restaurant.
