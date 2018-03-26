@@ -53,7 +53,7 @@
                     <a class="actionButton" :href="data.url"><i class="fa fa-link fa-3x"></i></a>
                     <a class="actionButton" @click="remove"><i class="fa fa-times fa-3x"></i></a>
                     <a class="actionButton" @click="getMenu"><i class="fa fa-coffee fa-3x"></i></a>
-                    <a class="actionButton" :href="data.restopage"><i class="fa fa-comments fa-3x"></i></a>
+                    <a class="actionButton" :href="data.restopage"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
                   </div>
                 </div>
                 <div class="row menuRow">
