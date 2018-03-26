@@ -7,7 +7,7 @@
  */
 require_once('core.php');
 try {
-    $model = new Restaurant();
+    $model = new Restaurant( (int) $_GET['id']);
     $controller = ControllerRestaurant::getInstance();
     $view = new ViewRestaurant($controller, $model);
     echo $view->render();

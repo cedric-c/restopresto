@@ -14,9 +14,5 @@ class ViewRestaurant extends View {
     public function _render(): string {
         return 'hello :)';
     }
-    
-    // public function render(): string {
-        // return 'hello :)';
-    // }
-        
+            
 }

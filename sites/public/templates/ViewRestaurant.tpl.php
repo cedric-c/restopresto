@@ -37,7 +37,7 @@
               <div class="row">
                 <div class="container">
                   <div class="container pdb15">
-                    <h2>Restaurant Details Page</h2>
+                    <h2 v-cloak >{{name}}</h2>
                   </div>
                   <div class="container">
                     <br>

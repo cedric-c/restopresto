@@ -4,6 +4,10 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
+
+[v-cloak] { 
+    display:none;
+}
  
 body {
     font-family: Georgie, Times, serif;
