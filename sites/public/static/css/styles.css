@@ -20,6 +20,14 @@ h1, h2 {
     font-family: Arial, Verdana, sans-serif;    
 }
 
+.restoinfo {
+
+}
+
+.restoinfo > p {
+    font-size:1.4em;
+}
+
 .list-item {
 /*display: inline-block;*/
 /*margin-right: 10px;*/

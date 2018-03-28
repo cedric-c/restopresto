@@ -15,14 +15,24 @@ class ControllerRestaurantRoaster extends Controller {
     const GET_ALL_RESTAURANTS   = 'get_all_restaurants';
     const GET_UNRATED           = 'get_unrated_restaurants';
 
+
+    /**
+     * The location for all the app's files.
+     */
     public function getAppDir(): string {
         return 'restaurant';
     }
     
+    /**
+     * The print friendly version of the app name.
+     */
     public function getAppName(): string {
         return 'Restaurant List';
     }
     
+    /**
+     * The name of the JS file.
+     */
     public function getAppFileName(): string {
         return 'restaurant-roaster';
     }

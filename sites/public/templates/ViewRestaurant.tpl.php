@@ -36,11 +36,17 @@
             <div id="main_content">
               <div class="row">
                 <div class="container">
-                  <div class="container pdb15">
-                    <h2 v-cloak >{{name}}</h2>
-                  </div>
-                  <div class="container">
-                    <br>
+                  <div v-cloak class="container pdb15 restoinfo">
+                    <div class="row">
+                      <div class="col-xs-6"><h2>{{name}}</h2></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6"><a class="actionButton" :href="url"><i class="fa fa-link fa-3x"></i></a></div>
+                      <div class="col-xs-12 restoinfo">
+                        <p><b>Type</b>: {{type}}</p>
+                        <p><b>Url</b>: {{url}}</p>
+                      </div>
+                    </div>
                   </div>
               </div>
               </div>

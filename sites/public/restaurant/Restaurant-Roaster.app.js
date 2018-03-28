@@ -34,7 +34,7 @@ Vue.component('create-resto-component', {
             o.type = data.type;
             o.url  = data.url;
             var d = JSON.stringify(o);
-            request.send('application=restaurant&action=create&'+'data='+d);
+            request.send('application=restaurant-roaster&action=create&'+'data='+d);
             request.onload = function(){
                 var state = request.responseText;
                 var response = JSON.parse(request.responseText);
@@ -83,7 +83,7 @@ Vue.component('resto-chooser-component', {
         var request = new XMLHttpRequest()
         request.open("POST", '../dispatch/index.php');
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send('application=restaurant&action=get_unrated_restaurants&'+'data=null');
+        request.send('application=restaurant-roaster&action=get_unrated_restaurants&'+'data=null');
         var self = this;
         request.onload = function(){
             var response = JSON.parse(request.responseText);
@@ -98,7 +98,7 @@ Vue.component('resto-chooser-component', {
         var request = new XMLHttpRequest()
         request.open("POST", '../dispatch/index.php');
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send('application=restaurant&action=get_all_restaurants&'+'data=null');
+        request.send('application=restaurant-roaster&action=get_all_restaurants&'+'data=null');
         var self = this;
         request.onload = function(){
             var response = JSON.parse(request.responseText);
@@ -124,7 +124,7 @@ Vue.component('resto-component', {
             var request = new XMLHttpRequest()
             request.open("POST", '../dispatch/index.php');
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send('application=restaurant&action=delete&'+'data='+this.data.rid);
+            request.send('application=restaurant-roaster&action=delete&'+'data='+this.data.rid);
             var self = this;
             request.onload = function(){
                 var response = JSON.parse(request.responseText);
@@ -148,7 +148,7 @@ Vue.component('resto-component', {
             var request = new XMLHttpRequest()
             request.open("POST", '../dispatch/index.php');
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send('application=restaurant&action=list_menu&'+'data='+this.data.rid);
+            request.send('application=restaurant-roaster&action=list_menu&'+'data='+this.data.rid);
             var self = this;
             request.onload = function(){
                 var response = JSON.parse(request.responseText);

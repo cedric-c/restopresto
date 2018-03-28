@@ -46,7 +46,7 @@ class Restaurant extends Model {
         if($this->isLoaded())
             $data = $this->get($this->getId());
         else
-            $data = $this->getAllWithNumber();
+            $data = $this->getAll();
         
         return json_encode($data);
     }
@@ -57,7 +57,7 @@ class Restaurant extends Model {
     
     public function getAllWithNumber(): array {
         $conn = Connection::init()->getConnection();
-        $q  = "SELECT R.rid, R.url, R.name, R.type, L.phone FROM restaurant as R, location as L WHERE R.rid=L.rid";
+        $q  = "select R.rid, R.url, R.name, R.type, L.phone FROM restaurant as R left join location as L ON R.rid=L.rid";
         $s  = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }

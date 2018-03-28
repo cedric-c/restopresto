@@ -7,22 +7,32 @@
  */
 class ControllerRestaurant extends Controller {
 
-    const INSERT                = 'create';
+    const GET_LOCATION          = 'get_location';  // a2
+    const GET_MENU              = 'get_menu';      // c1 d2
+    const GET_MOST_EXPENSIVE    = 'get_expensive'; // d1
+    
+    const INSERT_REVIEW         = 'create_review';
     const DELETE                = 'delete';
-    const GET_MENU              = 'list_menu';
-    const GET_LOCATION          = 'get_location';
     const GET_HIGHEST_RATERS    = 'get_high_raters';
-    const GET_ALL_RESTAURANTS   = 'get_all_restaurants';
-    const GET_UNRATED           = 'get_unrated_restaurants';
+    
 
+    /**
+     * The location for all the app's files.
+     */
     public function getAppDir(): string {
         return 'restaurant';
     }
     
+    /**
+     * The print friendly version of the app name.
+     */
     public function getAppName(): string {
         return 'Restaurant Details';
     }
     
+    /**
+     * The name of the JS file.
+     */
     public function getAppFileName(): string {
         return 'restaurant';
     }
@@ -32,11 +42,11 @@ class ControllerRestaurant extends Controller {
         $data = json_decode($post['data'], true);
         $action = $post['action'];
         $model = new Restaurant();
-        
-        if($action == self::DELETE){
+        Response::add('from','restaurant');
+        if($action == self::GET_LOCATION){
             Response::add('payload', $data);
+            Response::add('thiswasaction','action');
             try {
-                $result = $model->delete($data);
                 Response::add('state','success');
             } catch (PDOException $e){
                 Response::add('state','error');
