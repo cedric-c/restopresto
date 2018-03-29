@@ -30,7 +30,16 @@ var wm = new Vue({
         data.type = r.type;
         data.url  = r.url;
         data.rid  = r.rid;
+        
+        // get locations
         this.getPackage('restaurant','get_location',data.rid,this.printResult);
+        
+        // get manager
+        this.getPackage('restaurant','get_manager_info',data.rid,this.printResult);
+        
+        // get menu
+        this.getPackage('restaurant','get_menu',data.rid,this.printResult);
+
     },
     methods: {
         printResult(result){

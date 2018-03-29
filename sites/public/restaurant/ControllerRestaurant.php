@@ -10,6 +10,7 @@ class ControllerRestaurant extends Controller {
     const GET_LOCATION          = 'get_location';  // a2
     const GET_MENU              = 'get_menu';      // c1 d2
     const GET_MOST_EXPENSIVE    = 'get_expensive'; // d1
+    const GET_MANAGER_INFO      = 'get_manager_info';
     
     const INSERT_REVIEW         = 'create_review';
     const DELETE                = 'delete';
@@ -42,50 +43,32 @@ class ControllerRestaurant extends Controller {
         $data = json_decode($post['data'], true);
         $action = $post['action'];
         $model = new Restaurant();
-        Response::add('from','restaurant');
         if($action == self::GET_LOCATION){
-            Response::add('payload', $data);
-            Response::add('thiswasaction','action');
+            $loc = new Location();
             try {
+                $location = $loc->getKeyValue('rid',$data);
                 Response::add('state','success');
+                Response::add('payload', $location);
             } catch (PDOException $e){
                 Response::add('state','error');
                 Response::add('message', $e->getMessage());
             }
-        } else if ($action == self::INSERT) {
-            $id = (int) $model->getNextId();
-            $name = $data['name'];
-            $type = $data['type'];
-            $url  = $data['url'];
-            // echo 'nextid: ',$id;
-            $result = $model->insert($id, $name, $type, $url);
-            if ($result == 1){
-                $newResto = $model->get($id);
-                Response::add('payload', $newResto);
-                Response::add('state', 'success');
-            } else {
-                Response::add('state', 'error');
-                Response::add('message', 'Could not create restaurant');
-            }
+
         } else if ($action == self::GET_MENU) {
             $menuModel  = new MenuItem();
             $result     = $menuModel->getKeyValue('rid', $data);
             Response::add('payload', $result);
             Response::add('state', 'success');
         
-        } else if ($action == self::GET_ALL_RESTAURANTS) {
-            $data       = $model->getAll();
-            Response::add('payload', $data);
+        } else if ($action == self::GET_MANAGER_INFO) {
+            $loc        = new Location();
+            $location   = $loc->getKeyValue('rid', $data);
+            $mid        = $location[0]['manager'];
+            $mngr       = new Person();
+            $manager    = $mngr->getKeyValue('uid', $mid);
+            Response::add('payload', $manager);
             Response::add('state', 'success');
-        
-        // } else if ($action == self::GET_LOCATION) {
-            // Response::add('state', 'success');
-            // Response::add('message','UNIMPLEMENTED');
-        
-        // } else if ($action == self::GET_LOCATION) {
-            // Response::add('state', 'success');
-            // Response::add('message','UNIMPLEMENTED');
-        
+                
         } else if ($action == self::GET_UNRATED) {
             $result         = $model->getUnrated();
             Response::add('payload',$result);
