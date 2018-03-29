@@ -12,6 +12,7 @@ var data = {
     end_hours: null,
     most_expensive: null,
     rid: null,
+    managers: [],
     ratings: [],
     locations: [],
     menu: [],
@@ -32,25 +33,37 @@ var wm = new Vue({
         data.rid  = r.rid;
         
         // get locations
-        this.getPackage('restaurant','get_location',data.rid,this.printResult);
+        this.getPackage('restaurant','get_location',data.rid,this.setLocation);
         
         // get manager
-        this.getPackage('restaurant','get_manager_info',data.rid,this.printResult);
+        this.getPackage('restaurant','get_manager_info',data.rid,this.setManager);
         
         // get menu
-        this.getPackage('restaurant','get_menu',data.rid,this.printResult);
+        this.getPackage('restaurant','get_menu',data.rid,this.setMenu);
 
     },
     methods: {
         printResult(result){
             console.log(result);
         },
+        setLocation(response){
+            var loc = response.payload;
+            for(var i in loc){data.locations.push(loc[i]);}
+        },
+        setManager(response){
+            var m = response.payload;
+            for(var i in m){data.managers.push(m[i]);}
+        },
+        setMenu(response){
+            var m = response.payload;
+            for(var i in m){data.menu.push(m[i]);}
+        },
         getPackage: function(application, action, data, callback){
             var r = new XMLHttpRequest();
             r.open('POST', '../../dispatch/index.php');
             r.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             r.send('application='+application+'&action='+action+'&data='+data);
-            var self = this;
+            // var self = this;
             r.onload = function(){
                 var response = JSON.parse(r.responseText);
                 if(response.state == 'success') {

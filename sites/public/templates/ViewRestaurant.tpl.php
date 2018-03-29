@@ -24,7 +24,7 @@
         <title><?php echo $appName ;?></title>
     </head>
     <body>
-          <div class="masthead">
+        <div class="masthead">
             <div class="container">
                 <h1><?php echo $appName ;?></h1>
             </div>
@@ -46,6 +46,49 @@
                         <p><b>Type</b>: {{type}}</p>
                         <p><b>Url</b>: {{url}}</p>
                       </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <h3>Managers</h3>
+                        <ul><transition-group name="list">
+                        <div class="row menuObject" v-for="(o, index) in managers" :key="o.uid">
+                          <div>
+                            <b>Name</b>: {{o.name}}<br> 
+                            <b>Email</b>: {{o.email}}<br> 
+                            <b>Joined</b>: {{o.joined}}<br> 
+                            <b>Rep</b>: {{o.reputation}}<br>
+                            <b>Type</b>: {{o.type}}<br>
+                            <br>
+                          </div>
+                        </div>
+                      </transition-group></ul></div>
+                      <div class="col-xs-4">
+                        <h3>Locations</h3>
+                        <ul><transition-group name="list">
+                        <div class="row menuObject" v-for="(o, index) in locations" :key="o.lid">
+                          <div>
+                            <b>Open</b>: {{o.hour_start}}<br> 
+                            <b>Close</b>: {{o.hour_end}}<br> 
+                            <b>Address</b>: {{o.address}}<br> 
+                            <b>Opened</b>: {{o.opened}}<br>
+                            <b>Phone</b>: {{o.phone}}<br>
+                            <br>
+                          </div>
+                        </div>
+                      </transition-group></ul></div>
+                      <div class="col-xs-4">
+                        <h3>Menu</h3>                        
+                        <ul><transition-group name="list">
+                        <div class="row menuObject" v-for="(o, index) in menu" :key="o.mid">
+                          <div>
+                            <b>Name</b>: {{o.name}}<br> 
+                            <b>Category</b>: {{o.category}}<br> 
+                            <b>Type</b>: {{o.type}}<br> 
+                            <b>Price</b>: {{o.price}}<br>
+                            <b>Description</b>: {{o.description}}<br>
+                          </div>
+                        </div>
+                      </transition-group></ul></div>
                     </div>
                   </div>
               </div>

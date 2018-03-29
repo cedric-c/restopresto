@@ -101,7 +101,10 @@ a {
     font-weight:bold;
     font-size: 26px;    
 }
-
+.row {
+    padding:5px;
+    padding-left: 15px;
+}
 .recordObject {
     margin: 0.5em;    
     border: 1px solid #ccc;

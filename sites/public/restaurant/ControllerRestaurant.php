@@ -50,8 +50,7 @@ class ControllerRestaurant extends Controller {
                 Response::add('state','success');
                 Response::add('payload', $location);
             } catch (PDOException $e){
-                Response::add('state','error');
-                Response::add('message', $e->getMessage());
+                Response::error($e);
             }
 
         } else if ($action == self::GET_MENU) {
@@ -61,23 +60,24 @@ class ControllerRestaurant extends Controller {
             Response::add('state', 'success');
         
         } else if ($action == self::GET_MANAGER_INFO) {
-            $loc        = new Location();
-            $location   = $loc->getKeyValue('rid', $data);
-            $mid        = $location[0]['manager'];
-            $mngr       = new Person();
-            $manager    = $mngr->getKeyValue('uid', $mid);
-            Response::add('payload', $manager);
-            Response::add('state', 'success');
+            try{
+                $loc        = new Location();
+                $location   = $loc->getKeyValue('rid', $data);
+                $mid        = $location[0]['manager'];
+                $mngr       = new Person();
+                $manager    = $mngr->getKeyValue('uid', $mid);
+                Response::add('payload', $manager);
+                Response::add('state', 'success');
+            } catch (Exception $e) {
+                Response::error($e);
+            }
                 
-        } else if ($action == self::GET_UNRATED) {
-            $result         = $model->getUnrated();
-            Response::add('payload',$result);
-            Response::add('state', 'success');
         } else {
             Response::add('state', 'error');
             Response::add('message', 'Unknown command');
         }
         Response::send();
+            
     }
     
 }
