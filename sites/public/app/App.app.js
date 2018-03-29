@@ -29,7 +29,7 @@ Vue.component('app-component', {
             };
         },
     },
-    template: '<div><a v-bind:href="data.index"><p class="app">{{data.caption}}</p></a></div>'
+    template: '<div class="recordObject"><a v-bind:href="data.index"><p class="record-object-title">{{data.caption}}</p></a></div>'
 });
 
 Vue.component('applications-component',{

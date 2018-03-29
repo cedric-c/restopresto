@@ -11,6 +11,11 @@ class Response {
     public static function add(string $key, $value): void{
         self::$messages[$key] = $value;
     }
+    
+    public static function error(Exception $e): void {
+        self::add('state', 'error');
+        self::add('message', $e->getMessage());
+    }
             
     public static function send(): void {
         header('Content-Type: application/json');

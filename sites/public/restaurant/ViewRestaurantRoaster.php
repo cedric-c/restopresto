@@ -5,7 +5,7 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-class ViewRestaurant extends View {
+class ViewRestaurantRoaster extends View {
     
     public function __construct(Controller $controller, Model $model ) {
         parent::__construct($controller, $model);
@@ -14,5 +14,9 @@ class ViewRestaurant extends View {
     public function _render(): string {
         return 'hello :)';
     }
-            
+    
+    // public function render(): string {
+        // return 'hello :)';
+    // }
+        
 }

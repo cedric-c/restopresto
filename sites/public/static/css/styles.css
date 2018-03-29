@@ -4,6 +4,10 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
+
+[v-cloak] { 
+    display:none;
+}
  
 body {
     font-family: Georgie, Times, serif;
@@ -14,6 +18,14 @@ body {
 
 h1, h2 {
     font-family: Arial, Verdana, sans-serif;    
+}
+
+.restoinfo {
+
+}
+
+.restoinfo > p {
+    font-size:1.4em;
 }
 
 .list-item {
@@ -85,6 +97,14 @@ a {
     font-size: 26px;
 }
 
+.record-object-title{
+    font-weight:bold;
+    font-size: 26px;    
+}
+.row {
+    padding:5px;
+    padding-left: 15px;
+}
 .recordObject {
     margin: 0.5em;    
     border: 1px solid #ccc;

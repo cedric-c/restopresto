@@ -56,6 +56,8 @@ abstract class Model implements JsonSerializable {
      * Returns all records which match the value of $v for the attribute $a.
      */
     public function getKeyValue(string $attribute, $value): array {
+        if($value == null)
+            throw new Exception("Must have an attribute value to compare to. Value cannot be null ($attribute)");
         $conn = Connection::init()->getConnection();
         $table = get_called_class();
         $s = $conn->query("select * from $table where $attribute=$value");

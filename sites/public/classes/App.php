@@ -12,17 +12,17 @@ class App implements Renderable {
     }
         
     public function getData(): Array {
-        $testing = [
-            'index'  => 'app/index.php',
-            'folder' => 'app',
-            'caption'=>'Manage Apps'
+        $restaurantPage = [
+            'index'  => 'restaurant/id/index.php',
+            'folder' => 'restaurant',
+            'caption'=>'View Restaurant'
         ];
         $restaurant = [
             'index' => 'restaurant/index.php',
             'folder' => 'restaurant',
             'caption' => 'Manage Restaurants'
         ];
-        $apps = [$testing, $restaurant];
+        $apps = [$restaurantPage, $restaurant];
         $r = [
             'available_apps' => $apps
         ];

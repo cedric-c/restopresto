@@ -8,12 +8,23 @@
 class Restaurant extends Model {
 
     const PRIMARY_KEY = 'rid';
-
+    
+    private $loaded = false;
+    
     public function getPK(): string {
         return self::PRIMARY_KEY;
     }
+    
+    public function isLoaded(): bool {
+        return $this->loaded;
+    }
 
-    public function __construct(){}
+    public function __construct(int $id = null){
+        if($id != null){
+            $this->loaded = true;
+            $this->setId($id);
+        }
+    }
         
     public function insert(int $id, string $name, string $type, string $url): int{
         $conn = Connection::init()->getConnection();
@@ -25,21 +36,18 @@ class Restaurant extends Model {
 
     public function getUnrated(): array {
         $conn = Connection::init()->getConnection();
-        $q  = "select Re.rid, Re.url, Re.name, L.phone, Re.type";
-        $q .= " from restaurant as Re, location as L, rating as R";
-        $q .= " where Re.rid=L.rid and Re.rid not in (select Res.rid";
-        $q .= " FROM restaurant as Res, rating as Ra";
-        $q .= " WHERE Res.rid =Ra.rid and extract(year from Ra.date_rated) =";
-        $q .= " 2015  AND extract(month from Ra.date_rated)  = 1";
-        $q .= " group by Res.rid)";
-        $q .= " Group by Re.rid, Re.url, Re.name,L.phone, Re.type";
+        $q  = "SELECT Re.rid, Re.url, Re.name, L.phone, Re.type FROM restaurant as Re, location as L, rating as R WHERE Re.rid=L.rid AND Re.rid NOT IN (SELECT Res.rid FROM restaurant as Res, rating as Ra WHERE Res.rid=Ra.rid AND EXTRACT(year FROM Ra.date_rated) = 2015 AND EXTRACT(month from Ra.date_rated) = 1 GROUP BY Res.rid) GROUP BY Re.rid, Re.url, Re.name, L.phone, Re.type";
         $s = $conn->query($q);
         $r = $s->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
     
     public function jsonSerialize(): string {
-        $data = $this->getAllWithNumber();
+        if($this->isLoaded())
+            $data = $this->get($this->getId());
+        else
+            $data = $this->getAll();
+        
         return json_encode($data);
     }
     
@@ -49,7 +57,7 @@ class Restaurant extends Model {
     
     public function getAllWithNumber(): array {
         $conn = Connection::init()->getConnection();
-        $q  = "SELECT R.rid, R.url, R.name, R.type, L.phone FROM restaurant as R, location as L WHERE R.rid=L.rid";
+        $q  = "select R.rid, R.url, R.name, R.type, L.phone FROM restaurant as R left join location as L ON R.rid=L.rid";
         $s  = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }

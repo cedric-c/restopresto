@@ -10,10 +10,11 @@ $app    = $_POST['application'];
 $data   = $_POST['data'];
 $action = $_POST['action'];
 
-if($app == 'restaurant'){
+if($app == 'restaurant-roaster'){
+    $controller = ControllerRestaurantRoaster::getInstance();
+    echo $controller->processPost($_POST);
+} else if ($app == 'restaurant'){
     $controller = ControllerRestaurant::getInstance();
     echo $controller->processPost($_POST);
-} else if ($app == 'some-other-app'){
-    // $controller = 
     
 }
