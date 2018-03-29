@@ -30,13 +30,13 @@ This repository contains the final project for the Databases I course. This proj
 #### Restaurants and Menus
 
 - [x] ~~a1) The system must display a lists of restaurants.~~
-- [ ] a2) The system must display the information found in the restaurant and location tables when a user selects a restaurant.
+- [x] ~~a2) The system must display the information found in the restaurant and location tables when a user selects a restaurant.~~
 - [x] ~~b1) The system must display the full menu for a specific restaurant.~~
 - [x] ~~b2) The system must display all menu items and their prices for a specific restaurant.~~
 - [ ] b3) The system must filter displayed menu items based on their categories.
 - [ ] c1) The system must list the names of managers as well as the date the restaurant opened when provided with the category of a restaurant.
 - [ ] d1) The system must display the name of the most expensive menu item when provided with a restaurant.
-- [ ] d2) The system must display the opening hours, and the URL for the restaurant.
+- [x] ~~d2) The system must display the opening hours, and the URL for the restaurant.~~
 - [ ] e1) The system must list the average prices of the menu items, for each category of menu item, for each category of restaurant.
 
 #### Ratings of restaurants
