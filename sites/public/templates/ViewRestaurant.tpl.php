@@ -28,10 +28,10 @@
         <div class="container">
           <h3>New Menu Item</h3>
         <div class="row">
-          <div class="col-xs-4"><input type="text" v-model="name" class="form-control input-lg" placeholder="Name"></div>
+          <div class="col-xs-3"><input type="text" v-model="name" class="form-control input-lg" placeholder="Name"></div>
           <div class="col-xs-3"><input type="text" v-model="type" class="form-control input-lg" placeholder="Type"></div>
           <div class="col-xs-3"><input type="text" v-model="category" class="form-control input-lg" placeholder="Category"></div>
-          <div class="col-xs-2"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
+          <div class="col-xs-3"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
         </div>
         <div class="row">
           <div class="col-xs-10">
