@@ -11,6 +11,8 @@ class ControllerRestaurant extends Controller {
     const GET_MENU              = 'get_menu';      // c1 d2
     const GET_MOST_EXPENSIVE    = 'get_expensive'; // d1
     const GET_MANAGER_INFO      = 'get_manager_info';
+    const NEW_MENU_ITEM         = 'new_menu_item';
+    const DELETE_MENU_ITEM      = 'delete_menu_item';
     
     const INSERT_REVIEW         = 'create_review';
     const DELETE                = 'delete';
@@ -58,7 +60,15 @@ class ControllerRestaurant extends Controller {
             $result     = $menuModel->getKeyValue('rid', $data);
             Response::add('payload', $result);
             Response::add('state', 'success');
-        
+        } else if ($action == self::DELETE_MENU_ITEM) {
+            try{
+                $model  = new MenuItem();
+                $result = $model->delete($data);
+                Response::add('payload', $data);
+                Response::add('state', 'success');
+            } catch (Exception $e){
+                Response::error($e);
+            }
         } else if ($action == self::GET_MANAGER_INFO) {
             try{
                 $loc        = new Location();
@@ -71,7 +81,30 @@ class ControllerRestaurant extends Controller {
             } catch (Exception $e) {
                 Response::error($e);
             }
-                
+            
+        } else if ($action == self::NEW_MENU_ITEM) {
+            try{
+                $model = new MenuItem();
+                $id = (int) $model->getNextId();
+                $n  = $data['name'];
+                $t  = $data['type'];
+                $c  = $data['category'];
+                $p  = $data['price'];
+                $co = $data['comment'];
+                $ri = (string) $data['rid'];
+                $result = $model->insert($id, $n, $t, $c, $p, $co, $ri);
+                if($result == 1){
+                    $newMenuItem = $model->get($id);
+                    // var_dump($newMenuItem);
+                    Response::add('payload', $newMenuItem);
+                    Response::add('state', 'success');
+                } else {
+                    Response::add('state', 'error');
+                    Response::add('message', 'Could not create menu item');
+                }
+            } catch (Exception $e) {
+                Response::error($e);
+            }
         } else {
             Response::add('state', 'error');
             Response::add('message', 'Unknown command');

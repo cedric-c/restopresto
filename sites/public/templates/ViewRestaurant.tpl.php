@@ -24,6 +24,25 @@
         <title><?php echo $appName ;?></title>
     </head>
     <body>
+      <template id="create-menu-item">
+        <div class="container">
+          <h3>New Menu Item</h3>
+        <div class="row">
+          <div class="col-xs-4"><input type="text" v-model="name" class="form-control input-lg" placeholder="Name"></div>
+          <div class="col-xs-3"><input type="text" v-model="type" class="form-control input-lg" placeholder="Type"></div>
+          <div class="col-xs-3"><input type="text" v-model="category" class="form-control input-lg" placeholder="Category"></div>
+          <div class="col-xs-2"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10">
+          <textarea class="form-control input-lg" v-model="comment" rows="3" id="comment" placeholder="Comment"></textarea>
+          </div>
+          <div class="col-xs-2">
+            <button @click="newMenuItem" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+      </template>
         <div class="masthead">
             <div class="container">
                 <h1><?php echo $appName ;?></h1>
@@ -46,6 +65,7 @@
                         <p><b>Type</b>: {{type}}</p>
                         <p><b>Url</b>: {{url}}</p>
                       </div>
+                    <create-menu-item-component get-package=getPackage print-result=printResult></create-menu-item-component>
                     </div>
                     <div class="row">
                       <div class="col-xs-4">
@@ -81,11 +101,13 @@
                         <ul><transition-group name="list">
                         <div class="row menuObject" v-for="(o, index) in menu" :key="o.mid">
                           <div>
-                            <b>Name</b>: {{o.name}}<br> 
+                            <b>Name</b>: {{o.name}} 
+                            <a class="actionButton" @click="deleteMenuItem(o.mid)"><i class="fa fa-times fa-2x"></i></a><br>
                             <b>Category</b>: {{o.category}}<br> 
                             <b>Type</b>: {{o.type}}<br> 
                             <b>Price</b>: {{o.price}}<br>
                             <b>Description</b>: {{o.description}}<br>
+
                           </div>
                         </div>
                       </transition-group></ul></div>

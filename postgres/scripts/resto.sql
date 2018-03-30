@@ -39,7 +39,7 @@ create table Location(
     rid INTEGER,
     PRIMARY KEY (lid),
     FOREIGN KEY (manager) REFERENCES Person,
-    FOREIGN KEY (rid) REFERENCES Restaurant 
+    FOREIGN KEY (rid) REFERENCES Restaurant ON DELETE CASCADE
 );
 
 create table Rating(
@@ -54,7 +54,7 @@ create table Rating(
     rid INTEGER,
     PRIMARY KEY (uid,date_rated),
     FOREIGN KEY (uid) REFERENCES Person,
-    FOREIGN KEY (rid) REFERENCES Restaurant,
+    FOREIGN KEY (rid) REFERENCES Restaurant ON DELETE CASCADE,
     constraint price_range
         check(price>=1 AND price<=5),
     constraint food_range
@@ -74,7 +74,7 @@ create table MenuItem(
     price NUMERIC(8,2),     -- 999999.00 is the max price
     rid INTEGER,
     PRIMARY KEY (mid),
-    FOREIGN KEY (rid) REFERENCES Restaurant
+    FOREIGN KEY (rid) REFERENCES Restaurant ON DELETE CASCADE
 );
 
 --redundant to the ratingItem table
@@ -94,8 +94,8 @@ create table RatingItem(
     rating NUMERIC(3,2),
     comment VARCHAR(200),
     PRIMARY KEY (uid,date,mid),
-    FOREIGN KEY (uid,date) REFERENCES Rating,
-    FOREIGN KEY (mid) REFERENCES MenuItem,
+    FOREIGN KEY (uid,date) REFERENCES Rating ON DELETE CASCADE,
+    FOREIGN KEY (mid) REFERENCES MenuItem ON DELETE CASCADE,
     constraint rating_range
         check(rating>=1 AND rating<=5)
 );

@@ -27,14 +27,14 @@
         <template id="create-resto">
                 <div class="row">
                   <div class="col-xs-4">
-                    <input type="text" v-model="name" class="form-control" placeholder="Name">
+                    <input type="text" v-model="name" class="form-control input-lg" placeholder="Name">
                   </div>
                   <div class="col-xs-2">
-                    <input type="text" v-model="type" class="form-control"  placeholder="Type">
+                    <input type="text" v-model="type" class="form-control input-lg"  placeholder="Type">
                   </div>
                   
                   <div class="col-xs-3">
-                    <input type="text" v-model="url" class="form-control" placeholder="URL">
+                    <input type="text" v-model="url" class="form-control input-lg" placeholder="URL">
                   </div>
                   <div class="col-xs-1">
                       <button @click="post" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>

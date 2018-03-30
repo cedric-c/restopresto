@@ -13,6 +13,20 @@ class MenuItem extends Model {
         return self::PRIMARY_KEY;
     }
 
+    public function insert(int $id, 
+                           string $name, 
+                           string $type, 
+                           string $category, 
+                           string $price,
+                           string $comment,
+                           string $rid): int{
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $pk = $this->getPK();
+        $query = "insert into $table (mid, name, type, category, description, price, rid) values ('$id', '$name', '$type', '$category', '$comment', '$price', '$rid')";
+        return $conn->exec($query);
+    }
+
     public function __construct(){}
 
 }
