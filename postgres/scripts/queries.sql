@@ -33,19 +33,16 @@ where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and
 -- [ ] i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
 -- Get the highest food rating for some type of restaurant (type Y, could be anything) list the restaurant name along with the raters name.
 
-select max(f_sum)
-from 
-(select Re.rid, sum(R.food) as f_sum
-	from restaurant as Re, rating AS R
-	where Re.rid=R.rid
-	GROUP BY Re.rid) as sum;
+select Res.name,Pe.name
+from restaurant as Res, Rating as Ra, person as Pe,(select Re.name as Rname, sum(R.food) as f_sum
+													from restaurant as Re, rating as R, person as P
+													where Re.type='Canadian' and Re.rid=R.rid and P.uid=R.uid
+													GROUP BY Re.name
+ 													order by f_sum desc
+ 													limit 1) as Sum
+where Res.name=Rname and Pe.uid=Ra.uid and Ra.rid=Res.rid 
+group by Res.name,Pe.name;
 
------------------------------- New Implementation for i-------------
-select Rest, max(f_sum) from 
-	(select Re.rid, sum(R.food) as f_sum
-	from restaurant as Re, rating AS R
-	where Re.type ='Thai' and Re.rid=R.rid group by Re.rid) as sum 
-Group by Rest;
 
 ------------------------------------
 
