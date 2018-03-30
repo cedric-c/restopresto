@@ -22,7 +22,6 @@ class MenuItem extends Model {
                            string $rid): int{
         $conn = Connection::init()->getConnection();
         $table = get_called_class();
-        $pk = $this->getPK();
         $query = "INSERT INTO $table (mid, name, type, category, description, price, rid) VALUES ('$id', '$name', '$type', '$category', '$comment', '$price', '$rid')";
         return $conn->exec($query);
     }

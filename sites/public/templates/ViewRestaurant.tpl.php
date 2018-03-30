@@ -43,6 +43,25 @@
         </div>
       </div>
       </template>
+      <template id="create-rating-item">
+        <div class="container">
+          <h3>New Rating Item</h3>
+        <div class="row">
+          <div class="col-xs-3"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
+          <div class="col-xs-3"><input type="text" v-model="food" class="form-control input-lg" placeholder="Food"></div>
+          <div class="col-xs-3"><input type="text" v-model="mood" class="form-control input-lg" placeholder="Mood"></div>
+          <div class="col-xs-3"><input type="text" v-model="staff" class="form-control input-lg" placeholder="staff"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10">
+          <textarea class="form-control input-lg" v-model="comment" rows="3" id="comment" placeholder="Comment"></textarea>
+          </div>
+          <div class="col-xs-2">
+            <button @click="newRatingItem" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>        
+      </template>
         <div class="masthead">
             <div class="container">
                 <h1><?php echo $appName ;?></h1>
@@ -66,7 +85,9 @@
                         <p><b>Url</b>: {{url}}</p>
                         <p><b>Most Expensive</b>: {{mostExpensive}}</p>
                       </div>
-                    <create-menu-item-component get-package=getPackage print-result=printResult></create-menu-item-component>
+                    <create-menu-item-component></create-menu-item-component>
+                    <create-rating-item-component></create-menu-item-component>
+                    
                     </div>
                     <div class="row">
                       <div class="col-xs-4">
@@ -82,8 +103,7 @@
                             <br>
                           </div>
                         </div>
-                      </transition-group></ul></div>
-                      <div class="col-xs-4">
+                      </transition-group></ul>
                         <h3>Locations</h3>
                         <ul><transition-group name="list">
                         <div class="row menuObject" v-for="(o, index) in locations" :key="o.lid">
@@ -96,7 +116,8 @@
                             <br>
                           </div>
                         </div>
-                      </transition-group></ul></div>
+                      </transition-group></ul>
+                    </div>
                       <div class="col-xs-4">
                         <h3>Menu</h3>                        
                         <ul><transition-group name="list">
@@ -112,6 +133,24 @@
                           </div>
                         </div>
                       </transition-group></ul></div>
+                      <div class="col-xs-4">
+                        <h3>Reviews</h3>
+                        <ul><transition-group name="list">
+                        <div class="row menuObject" v-for="(o, index) in ratings" :key="o.date_rated">
+                          <div>
+                            <b>UID_NAME</b>: {{o.uid}} <br>
+                            <b>Date</b>: {{o.date_rated}}<br> 
+                            <b>Food</b>: {{o.food}}<br> 
+                            <b>Mood</b>: {{o.mood}}<br> 
+                            <b>Staff</b>: {{o.staff}}<br> 
+                            <b>Price</b>: {{o.price}}<br>
+                            <b>Comment</b>: {{o.comment}}<br>
+
+                          </div>
+                        </div>
+                      </transition-group></ul></div>
+
+                      </div>
                     </div>
                   </div>
               </div>
