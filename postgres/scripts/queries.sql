@@ -44,16 +44,43 @@ where Res.name=Rname and Pe.uid=Ra.uid and Ra.rid=Res.rid
 group by Res.name,Pe.name;
 
 
-------------------------------------
+-- [ ] J)
+select Re.type, sum(R.price) as price, sum(R.food) as food, sum(mood) as mood, sum(staff) as staff
+from Restaurant as Re, rating as R
+where Re.rid=R.rid
+Group By Re.type
+order by price desc, food desc, mood desc, staff desc
+limit 1;
+
 
 -- [ ] k) Find the names, join‐date and reputations of the raters that give the highest overall rating, in terms of the Food and the Mood of restaurants. Display this information together with the names of the restaurant and the dates the ratings were done.
 -- For each restaurant, find the person which rated the restaurant the highest in terms of Food and Mood. 
 -- there should be only 1 record returned per restaurant.
-select P.name,P.uid ,P.joined, P.reputation, Re.name, R.date_rated
-from person As P, restaurant as Re, rating as R
-where P.uid=R.uid and R.rid = Re.rid and R.food > (select avg (R.food) 
-													from rating As R) and R.mood >(select avg (R.mood) 
-																					from rating AS R);
+select Pe.name,Pe.joined, Pe.reputation, Re.name, R.date_rated
+from Rating as R, Person as Pe, Restaurant as Re
+where Pe.uid in (select P1.uid
+				from Person as P1
+				group by P1.uid
+				having (select avg(ra.mood + ra.food)
+						from Rating as Ra
+						where Ra.uid=P1.uid)>= All(select avg(Rat.mood +Rat.food)
+												  from Rating as Rat, person as p2
+												  where Rat.uid = p2.uid
+												  group by p2.uid))
+	  and R.uid = Pe.uid and R.rid = Re.rid;
+
 
 -- [ ] l) Find the names and reputations of the raters that give the highest overall rating, in terms of the Food or the Mood of restaurants. Display this information together with the names of the restaurant and the dates the ratings were done.
 -- Sum up all the rating
+select Pe.name,Pe.reputation, Re.name, R.date_rated
+from Rating as R, Person as Pe, Restaurant as Re
+where Pe.uid in (select P1.uid
+				from Person as P1
+				group by P1.uid
+				having (select avg(ra.mood + ra.food)
+						from Rating as Ra
+						where Ra.uid=P1.uid)>= All(select avg(Rat.mood +Rat.food)
+												  from Rating as Rat, person as p2
+												  where Rat.uid = p2.uid
+												  group by p2.uid))
+			    and R.uid = Pe.uid and R.rid = Re.rid;
