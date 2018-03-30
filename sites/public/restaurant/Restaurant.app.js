@@ -84,6 +84,40 @@ Vue.component('create-menu-item-component', {
     }
 });
 
+Vue.component('create-rating-item-component', {
+    template: '#create-rating-item',
+    mixins: [mixin],
+    data: function(){
+        return {
+            price: null,
+            food: null,
+            mood: null,
+            staff: null,
+            comment: null
+        }
+    },
+    methods: {
+        clear: function(){
+            this.price  = null,
+            this.food   = null,
+            this.mood   = null,
+            this.staff  = null,
+            this.comment    = null            
+        },
+        newRatingItem: function(){
+            var ob = new Object();
+            ob.price   = this.price;
+            ob.food    = this.food;
+            ob.mood    = this.mood;
+            ob.staff   = this.staff;
+            ob.comment = this.comment;
+            ob.rid     = data.rid;
+            var package = JSON.stringify(ob);
+            wm.getPackage('restaurant', 'create_review', package, wm.addRatingItem);
+        },
+    }
+});
+
 var wm = new Vue({
     el: '#app',
     data: data,
@@ -108,6 +142,9 @@ var wm = new Vue({
         
         // most expensive
         this.getPackage('restaurant', 'get_most_expensive', data.rid, this.setMostExpensive);
+        
+        // get ratings
+        this.getPackage('restaurant', 'get_ratings', data.rid, this.setRatings);
 
     },
     computed:{
@@ -138,9 +175,17 @@ var wm = new Vue({
             var m = response.payload;
             for(var i in m){data.menu.push(m[i]);}
         },
+        setRatings(response){
+            var m = response.payload;
+            for(var i in m){data.ratings.push(m[i]);}
+        },
         addMenuItem(response){
             var m = response.payload;
             data.menu.push(m[0]);
+        },
+        addRatingItem(response){
+            var m = response.payload;
+            data.ratings.push(m[0]);
         },
         removeMenuItem: function(mid){
             var i = this.getIndex(data.menu, 'mid', mid.payload);

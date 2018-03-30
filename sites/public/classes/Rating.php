@@ -16,4 +16,30 @@ class Rating extends Model {
     
     public function __construct(){}
 
+    public function insert(int $userId,
+                           string $date_rated,
+                           float $price,
+                           float $food,
+                           float $mood,
+                           float $staff,
+                           string $comment,
+                           int $restaurantId): int {
+        
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        
+        $q     = "INSERT INTO $table (uid,date_rated,price,food,mood,staff,comment,rid) VALUES ('$userId', '$date_rated', '$price', '$food', '$mood', '$staff', '$comment', '$restaurantId')";
+        return $conn->exec($q);
+    }
+        
+    // bad design... don't call get for this class did not think of multi-valued PK tuples...
+    public function _get(int $userId, string $date_rated, bool $serialized = true): array {
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $k1 = self::PK1;
+        $k2 = self::PK2;
+        $s = $conn->query("SELECT * FROM $table WHERE ($k1=$userId AND $k2='$date_rated')");
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

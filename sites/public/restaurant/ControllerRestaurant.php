@@ -13,7 +13,8 @@ class ControllerRestaurant extends Controller {
     const GET_MANAGER_INFO      = 'get_manager_info';
     const NEW_MENU_ITEM         = 'new_menu_item';
     const DELETE_MENU_ITEM      = 'delete_menu_item';
-    
+    const GET_RATINGS           = 'get_ratings';
+
     const INSERT_REVIEW         = 'create_review';
     const DELETE                = 'delete';
     const GET_HIGHEST_RATERS    = 'get_high_raters';
@@ -58,8 +59,8 @@ class ControllerRestaurant extends Controller {
         } else if ($action == self::GET_MENU) {
             $menuModel  = new MenuItem();
             $result     = $menuModel->getMenuByCategory((int) $data);
-            Response::add('payload', $result);
             Response::add('state', 'success');
+            Response::add('payload', $result);
         } else if ($action == self::DELETE_MENU_ITEM) {
             try{
                 $model  = new MenuItem();
@@ -76,8 +77,8 @@ class ControllerRestaurant extends Controller {
                 $mid        = $location[0]['manager'];
                 $mngr       = new Person();
                 $manager    = $mngr->getKeyValue('uid', $mid);
-                Response::add('payload', $manager);
                 Response::add('state', 'success');
+                Response::add('payload', $manager);
             } catch (Exception $e) {
                 Response::error($e);
             }
@@ -86,8 +87,42 @@ class ControllerRestaurant extends Controller {
             try {
                 $model = new MenuItem();
                 $result = $model->getMostExpensive($data);
-                Response::add('payload', $result);
                 Response::add('state', 'success');
+                Response::add('payload', $result);
+            } catch (Exception $e){
+                Response::error($e);
+            }
+
+        } else if ($action == self::INSERT_REVIEW) {
+            try {
+                $model = new Rating(); ///////////////// todo
+                $uid = 678004; // TODO: THIS WILL BE CHANGED ONCE WE GET SESSION GOING
+                $p = (float) $data['price'];
+                $f = (float) $data['food'];
+                $m = (float) $data['mood'];
+                $s = (float) $data['staff'];
+                $c = $data['comment'];
+                $r = $data['rid'];
+                $dt = date("Y-m-d H:i:s");
+                $result = $model->insert($uid, $dt, $p, $f, $m, $s, $c, $r);
+                if($result == 1){
+                    $newRating = $model->_get($uid, $dt);
+                    Response::add('state', 'success');
+                    Response::add('payload', $newRating);
+                } else {
+                    Response::add('state', 'error');
+                    Response::add('message', 'Could not create menu item');                    
+                }
+            } catch (Exception $e){
+                Response::error($e);
+            }
+
+        } else if ($action == self::GET_RATINGS) {
+            try {
+                $model      = new Rating();
+                $ratings    = $model->getKeyValue('rid', $data);
+                Response::add('state', 'success');
+                Response::add('payload', $ratings);
             } catch (Exception $e){
                 Response::error($e);
             }
@@ -106,8 +141,8 @@ class ControllerRestaurant extends Controller {
                 if($result == 1){
                     $newMenuItem = $model->get($id);
                     // var_dump($newMenuItem);
-                    Response::add('payload', $newMenuItem);
                     Response::add('state', 'success');
+                    Response::add('payload', $newMenuItem);
                 } else {
                     Response::add('state', 'error');
                     Response::add('message', 'Could not create menu item');
