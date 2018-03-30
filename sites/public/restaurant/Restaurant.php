@@ -30,7 +30,7 @@ class Restaurant extends Model {
         $conn = Connection::init()->getConnection();
         $table = get_called_class();
         $pk = $this->getPK();
-        $query = "insert into $table (rid, name, type, url) values ('$id', '$name', '$type', '$url')";
+        $query = "INSERT INTO $table (rid, name, type, url) VALUES ('$id', '$name', '$type', '$url')";
         return $conn->exec($query);
     }
 
@@ -57,7 +57,7 @@ class Restaurant extends Model {
     
     public function getAllWithNumber(): array {
         $conn = Connection::init()->getConnection();
-        $q  = "select R.rid, R.url, R.name, R.type, L.phone FROM restaurant as R left join location as L ON R.rid=L.rid";
+        $q  = "SELECT R.rid, R.url, R.name, R.type, L.phone FROM restaurant as R left join location as L ON R.rid=L.rid";
         $s  = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }

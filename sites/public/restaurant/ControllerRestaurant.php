@@ -9,7 +9,7 @@ class ControllerRestaurant extends Controller {
 
     const GET_LOCATION          = 'get_location';  // a2
     const GET_MENU              = 'get_menu';      // c1 d2
-    const GET_MOST_EXPENSIVE    = 'get_expensive'; // d1
+    const GET_MOST_EXPENSIVE    = 'get_most_expensive'; // d1
     const GET_MANAGER_INFO      = 'get_manager_info';
     const NEW_MENU_ITEM         = 'new_menu_item';
     const DELETE_MENU_ITEM      = 'delete_menu_item';
@@ -57,7 +57,7 @@ class ControllerRestaurant extends Controller {
 
         } else if ($action == self::GET_MENU) {
             $menuModel  = new MenuItem();
-            $result     = $menuModel->getKeyValue('rid', $data);
+            $result     = $menuModel->getMenuByCategory((int) $data);
             Response::add('payload', $result);
             Response::add('state', 'success');
         } else if ($action == self::DELETE_MENU_ITEM) {
@@ -81,7 +81,17 @@ class ControllerRestaurant extends Controller {
             } catch (Exception $e) {
                 Response::error($e);
             }
-            
+
+        } else if ($action == self::GET_MOST_EXPENSIVE) {
+            try {
+                $model = new MenuItem();
+                $result = $model->getMostExpensive($data);
+                Response::add('payload', $result);
+                Response::add('state', 'success');
+            } catch (Exception $e){
+                Response::error($e);
+            }
+
         } else if ($action == self::NEW_MENU_ITEM) {
             try{
                 $model = new MenuItem();
