@@ -41,11 +41,10 @@ from
 	GROUP BY Re.rid) as sum;
 
 ------------------------------ New Implementation for i-------------
-select Rest, max(f_sum)
-from 
-	(select sum(R.food) as f_sum
+select Rest, max(f_sum) from 
+	(select Re.rid, sum(R.food) as f_sum
 	from restaurant as Re, rating AS R
-	where Re.type ='Thai' and Re.rid=R.rid) as sum 
+	where Re.type ='Thai' and Re.rid=R.rid group by Re.rid) as sum 
 Group by Rest;
 
 ------------------------------------
