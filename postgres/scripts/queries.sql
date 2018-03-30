@@ -40,6 +40,16 @@ from
 	where Re.rid=R.rid
 	GROUP BY Re.rid) as sum;
 
+------------------------------ New Implementation for i-------------
+select Rest, max(f_sum)
+from 
+	(select sum(R.food) as f_sum
+	from restaurant as Re, rating AS R
+	where Re.type ='Thai' and Re.rid=R.rid) as sum 
+Group by Rest;
+
+------------------------------------
+
 -- [ ] k) Find the names, join‐date and reputations of the raters that give the highest overall rating, in terms of the Food and the Mood of restaurants. Display this information together with the names of the restaurant and the dates the ratings were done.
 -- For each restaurant, find the person which rated the restaurant the highest in terms of Food and Mood. 
 -- there should be only 1 record returned per restaurant.
