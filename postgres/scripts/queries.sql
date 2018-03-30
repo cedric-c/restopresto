@@ -16,22 +16,23 @@ Group by Re.rid, Re.url, Re.name,L.phone, Re.type;
 --h -- 
 select Re.name, L.opened
 from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 AND R.staff< R1.price
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015  and R1.rid = Re.rid and R.staff< R1.price
 UNION
 select Re.name, L.opened
 from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 AND R.staff< R1.food 
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and R.staff< R1.food 
 UNION
 select Re.name, L.opened
 from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 AND R.staff< R1.mood 
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and R.staff< R1.mood 
 UNION
 select Re.name, L.opened
 from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 AND R.staff< R1.staff;
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and R.staff< R1.staff;
 
 -- [ ] i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
 -- Get the highest food rating for some type of restaurant (type Y, could be anything) list the restaurant name along with the raters name.
+
 select max(f_sum)
 from 
 (select Re.rid, sum(R.food) as f_sum
