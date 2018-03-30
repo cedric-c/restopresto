@@ -23,9 +23,24 @@ class MenuItem extends Model {
         $conn = Connection::init()->getConnection();
         $table = get_called_class();
         $pk = $this->getPK();
-        $query = "insert into $table (mid, name, type, category, description, price, rid) values ('$id', '$name', '$type', '$category', '$comment', '$price', '$rid')";
+        $query = "INSERT INTO $table (mid, name, type, category, description, price, rid) VALUES ('$id', '$name', '$type', '$category', '$comment', '$price', '$rid')";
         return $conn->exec($query);
     }
+    
+    public function getMenuByCategory(int $restaurantId): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT * FROM menuitem WHERE rid = '$restaurantId' ORDER BY category";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getMostExpensive(int $restaurantId): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT * FROM menuitem WHERE price= (SELECT max(price) FROM menuitem WHERE rid='$restaurantId') AND rid = '$restaurantId'";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
     public function __construct(){}
 

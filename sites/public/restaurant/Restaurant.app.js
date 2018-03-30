@@ -105,7 +105,18 @@ var wm = new Vue({
         
         // get menu
         this.getPackage('restaurant','get_menu',data.rid,this.setMenu);
+        
+        // most expensive
+        this.getPackage('restaurant', 'get_most_expensive', data.rid, this.setMostExpensive);
 
+    },
+    computed:{
+        // the query is implemented in PHP/SQL but also in Javascript (because we don't want to have to reload the page)
+        mostExpensive(){
+            if (this.menu.length == 0) return;
+            var pricy = this.menu.reduce((a,b) => Number(a.price) > Number(b.price) ? a : b);
+            return pricy.name;
+        },
     },
     methods: {
         printResult(result){
@@ -114,6 +125,10 @@ var wm = new Vue({
         setLocation(response){
             var loc = response.payload;
             for(var i in loc){data.locations.push(loc[i]);}
+        },
+        setMostExpensive(response){
+            var me = response.payload[0];
+            this.most_expensive = me;
         },
         setManager(response){
             var m = response.payload;

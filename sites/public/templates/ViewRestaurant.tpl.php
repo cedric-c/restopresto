@@ -64,6 +64,7 @@
                       <div class="col-xs-12 restoinfo">
                         <p><b>Type</b>: {{type}}</p>
                         <p><b>Url</b>: {{url}}</p>
+                        <p><b>Most Expensive</b>: {{mostExpensive}}</p>
                       </div>
                     <create-menu-item-component get-package=getPackage print-result=printResult></create-menu-item-component>
                     </div>
