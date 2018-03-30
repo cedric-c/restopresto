@@ -13,6 +13,18 @@ class Location extends Model {
         return PRIMARY_KEY;
     }
     
+    public function getManagerAndDate (String $value): array{
+        $conn = Connection::init()->getConnection();
+        $q  = "select P.name, L.opened";
+        $q .= "from restaurant as Re, location as L, person as P";
+        $q .= "where R.type=$value and R.rid=L.rid and P.uid = L.manager";
+        $s = $conn->query($q);
+        $r = $s->fetchAll(PDO::FETCH_ASSOC);
+        return $r;
+    }
+
     public function __construct(){}
+
+
 
 }
