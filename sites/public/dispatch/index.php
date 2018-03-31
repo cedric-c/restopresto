@@ -17,4 +17,7 @@ if($app == 'restaurant-roaster'){
     $controller = ControllerRestaurant::getInstance();
     echo $controller->processPost($_POST);
     
+} else if ($app == 'dashboard'){
+    $controller = ControllerDashboard::getInstance();
+    echo $controller->processPost($_POST);
 }
