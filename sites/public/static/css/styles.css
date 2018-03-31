@@ -28,6 +28,21 @@ h1, h2 {
     font-size:1.4em;
 }
 
+.reviews { 
+    display: block;
+    flex: 0 1 auto; /* Default */
+    float:left; 
+    margin:35px ;
+    width:inherit;
+    overflow-wrap: break-word;
+    width:50%;
+}
+.item-text{
+    /*word-wrap: break-word;*/
+    /*width:inherit;*/
+    /*overflow-wrap: break-word;*/
+}
+
 .list-item {
 /*display: inline-block;*/
 /*margin-right: 10px;*/

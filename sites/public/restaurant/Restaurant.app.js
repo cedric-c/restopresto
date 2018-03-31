@@ -177,7 +177,11 @@ var wm = new Vue({
         },
         setRatings(response){
             var m = response.payload;
-            for(var i in m){data.ratings.push(m[i]);}
+            for(var i in m){
+                var o = m[i];
+                var i = this.createRatingItem(o);
+                data.ratings.push(i);
+            }
         },
         addMenuItem(response){
             var m = response.payload;
@@ -185,7 +189,21 @@ var wm = new Vue({
         },
         addRatingItem(response){
             var m = response.payload;
-            data.ratings.push(m[0]);
+            data.ratings.push(this.createRatingItem(m[0]));
+        },
+        createRatingItem(item){
+            var o = item;
+            o.comment = item.comment;
+            o.date_rated = item.date_rated;
+            o.food = item.food;
+            o.mood = item.mood;
+            o.price = item.price;
+            o.rid = item.rid;
+            o.staff = item.staff;
+            o.uid = item.uid;
+            o.key = item.date_rated + '_' + item.uid;
+            return o;
+            
         },
         removeMenuItem: function(mid){
             var i = this.getIndex(data.menu, 'mid', mid.payload);

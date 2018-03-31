@@ -45,7 +45,7 @@
       </template>
       <template id="create-rating-item">
         <div class="container">
-          <h3>New Rating Item</h3>
+          <h3>New Review</h3>
         <div class="row">
           <div class="col-xs-3"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
           <div class="col-xs-3"><input type="text" v-model="food" class="form-control input-lg" placeholder="Food"></div>
@@ -104,6 +104,8 @@
                           </div>
                         </div>
                       </transition-group></ul>
+                    </div>
+                    <div class="col-xs-4">
                         <h3>Locations</h3>
                         <ul><transition-group name="list">
                         <div class="row menuObject" v-for="(o, index) in locations" :key="o.lid">
@@ -133,23 +135,26 @@
                           </div>
                         </div>
                       </transition-group></ul></div>
-                      <div class="col-xs-4">
-                        <h3>Reviews</h3>
-                        <ul><transition-group name="list">
-                        <div class="row menuObject" v-for="(o, index) in ratings" :key="o.date_rated">
-                          <div>
-                            <b>UID_NAME</b>: {{o.uid}} <br>
-                            <b>Date</b>: {{o.date_rated}}<br> 
-                            <b>Food</b>: {{o.food}}<br> 
-                            <b>Mood</b>: {{o.mood}}<br> 
-                            <b>Staff</b>: {{o.staff}}<br> 
-                            <b>Price</b>: {{o.price}}<br>
-                            <b>Comment</b>: {{o.comment}}<br>
 
-                          </div>
-                        </div>
-                      </transition-group></ul></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h3>Reviews</h3>
+                          <ul><transition-group name="list">
+                          <li class="row menuObject reviews" v-for="(o, index) in ratings" :key="o.key">
+                            <div class="item-text">
+                              <b>UID_NAME</b>: {{o.uid}} <br>
+                              <b>Date</b>: {{o.date_rated}}<br> 
+                              <b>Food</b>: {{o.food}}<br> 
+                              <b>Mood</b>: {{o.mood}}<br> 
+                              <b>Staff</b>: {{o.staff}}<br> 
+                              <b>Price</b>: {{o.price}}<br>
+                              <b>Comment</b>: {{o.comment}}<br>
 
+                            </div>
+                          </li>
+                        </transition-group></ul></div>
+                        
                       </div>
                     </div>
                   </div>

@@ -1,3 +1,20 @@
+
+--------------------------------------
+-- e1
+--------------------------------------
+
+-- ;; get distinct types of restaurants;
+select distinct type from restaurant;
+
+-- ;; get distinct categories of menu items;
+select distinct category from menuitem;
+
+
+
+--------------------------------------
+--------------------------------------
+
+
 --f-Number of times a person has rated for all the restaurants they have rated
 select P.name,Re.name, count(*)
 from Restaurant as Re, rating as R, person as P
@@ -56,6 +73,8 @@ limit 1;
 -- [ ] k) Find the names, join‐date and reputations of the raters that give the highest overall rating, in terms of the Food and the Mood of restaurants. Display this information together with the names of the restaurant and the dates the ratings were done.
 -- For each restaurant, find the person which rated the restaurant the highest in terms of Food and Mood. 
 -- there should be only 1 record returned per restaurant.
+
+-- GOOD TO GO
 select Pe.name,Pe.joined, Pe.reputation, Re.name, R.date_rated
 from Rating as R, Person as Pe, Restaurant as Re
 where Pe.uid in (select P1.uid
@@ -85,7 +104,11 @@ where Pe.uid in (select P1.uid
 												  group by p2.uid))
 			    and R.uid = Pe.uid and R.rid = Re.rid;
 
+<<<<<<< HEAD
 --M)
+=======
+-- M)
+>>>>>>> 3d4651bca340bb60ccd8b1308ed1768fe3267c36
 select P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
 from Person as P, Rating as R,RatingItem as Rat, MenuItem as M, (select R1.uid as Rater,count(*) as count
 																 from Person as P,Restaurant as Res, Rating as R1

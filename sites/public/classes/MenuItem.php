@@ -40,6 +40,13 @@ class MenuItem extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function getCategories(): array {
+      $conn = Connection::init()->getConnection();
+      $q    = "SELECT DISTINCT category FROM menuitem";
+      $s    = $conn->query($q);
+      return $s->fetchAll(PDO::FETCH_COLUMN);
+    }
+    
 
     public function __construct(){}
 
