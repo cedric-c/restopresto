@@ -38,6 +38,24 @@ Vue.component('user-item-component',{
     template: '#user-item',
     mixins:[mixin],
     props:['user'],
+    data: function(){
+        return {
+            email:      this.user.email,
+            joined:     this.user.joined,
+            name:       this.user.name,
+            reputation: this.user.reputation,
+            type:       this.user.type,
+            uid:        this.user.uid,
+        }
+    },
+    methods: {
+        deleteUser: function(){
+            this.getPackage('person-roaster', 'delete_user',this.uid, wm.removeUser);
+        },
+        visitProfile: function(){
+            console.log('visiting profile for user with id '+this.uid);
+        },
+    }
     
 });
 
@@ -60,7 +78,6 @@ Vue.component('create-person-component',{
     },
     methods: {
         createUser: function(){
-            console.log('hello');
             var ob = new Object();
             ob.name = this.name;
             ob.email = this.email;
@@ -101,8 +118,12 @@ var wm = new Vue({
     methods: {
         addUser: function(response){
             var o = response.payload;
-            console.log(o);
             data.users.push(o[0]);
+        },
+        removeUser: function(response){
+            var o = response.payload;
+            var i = this.getIndex(data.users, 'uid', o);
+            data.users.splice(i, 1);
         },
     }
     

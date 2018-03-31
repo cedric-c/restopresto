@@ -43,19 +43,19 @@
         <template id="user-item">
             <div class="recordObject">
                 <div class="row">
-                    <div class="col-xs-4"><h4>{{user.name}}</h4></div>
+                    <div class="col-xs-3"><h4>{{user.name}}</h4></div>
                     <div class="col-xs-6">
-                        <div class="row">Email: {{user.email}}</div>
-                        <div class="row">Joined: {{user.joined}}</div>
-                        <div class="row">Type: {{user.type}}</div>
+                        <div class="row"><b>Email</b>: {{user.email}}</div>
+                        <div class="row"><b>Joined</b>: {{user.joined}}</div>
+                        <div class="row"><b>Type</b>: {{user.type}}</div>
                         
                     </div>
-                    <div class="col-xs-2">
+                    <div class="col-xs-3">
                         <div class="row">
-                            <button @click="printResult(user.uid)" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button @click="visitProfile" class="btn btn-primary">Profile</button>                            
                         </div>
                         <div class="row">
-                            
+                            <button @click="deleteUser" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                     </div>

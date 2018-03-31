@@ -8,6 +8,7 @@
 class ControllerPersonRoaster extends Controller {
 
     const INSERT_USER = 'create_user';
+    const DELETE_USER = 'delete_user';
 
     /**
      * The location for all the app's files.
@@ -20,7 +21,7 @@ class ControllerPersonRoaster extends Controller {
      * The print friendly version of the app name.
      */
     public function getAppName(): string {
-        return 'Profile';
+        return 'Users';
     }
     
     /**
@@ -34,7 +35,8 @@ class ControllerPersonRoaster extends Controller {
     public function processPost(array $post): void {
         $data = json_decode($post['data'], true);
         $action = $post['action'];
-        $model = new Restaurant();
+        $model = new Person();
+        // var_dump($model);
         try{
             
             if($action == self::INSERT_USER){
@@ -51,10 +53,20 @@ class ControllerPersonRoaster extends Controller {
                     Response::add('payload', $user);
                 } else {
                     Response::add('state', 'error');
-                    Response::add('message', 'could not create uer');
+                    Response::add('message', 'could not create user');
                 }
-            } else if ($action == 'other') {
-                
+            } else if ($action == self::DELETE_USER) {
+                Response::add('payload', $data);
+                try{
+                    $result = $model->delete($data);
+                    Response::add('state', 'success');
+                } catch (PDOException $pdo){
+                    // Response::add('state', 'error');
+                    Response::error($pdo);
+                }
+
+            } else {
+                Response::add('message', 'Received unidentified action');
             }
         } catch(Exception $e){
             Response::error($e);
