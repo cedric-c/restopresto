@@ -85,7 +85,7 @@ where Pe.uid in (select P1.uid
 												  group by p2.uid))
 			    and R.uid = Pe.uid and R.rid = Re.rid;
 
-M)
+--M)
 select P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
 from Person as P, Rating as R,RatingItem as Rat, MenuItem as M, (select R1.uid as Rater,count(*) as count
 																 from Person as P,Restaurant as Res, Rating as R1
