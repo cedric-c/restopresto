@@ -99,4 +99,25 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function StaffRateLowerThanRater(int $raterId): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT Re.name, L.opened
+                FROM restaurant as Re, location AS L,rating AS R, rating AS R1 
+                WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId  AND R1.rid = Re.rid AND R.staff< R1.price
+                UNION
+                SELECT Re.name, L.opened
+                FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
+                WHERE Re.rid=L.rid and Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.food 
+                UNION
+                SELECT Re.name, L.opened
+                FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
+                WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.mood 
+                UNION
+                SELECT Re.name, L.opened
+                FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
+                WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.staff";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

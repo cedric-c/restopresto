@@ -7,6 +7,16 @@
  */
 require_once('core.php');
 try {
+
+	//$model  = new Restaurant();
+	//$result = $model->getFrequentRaters(100200);
+	//var_dump($result);
+
+	//$model  = new Restaurant();
+	//$result = $model->StaffRateLowerThanRater(678015);
+	//var_dump($result);
+	
+
     $app = new App();
     $view = new Webpage($app);
     echo $view->render();

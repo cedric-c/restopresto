@@ -6,6 +6,7 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 require_once('core.php');
+
 try {
     $model = new Restaurant( (int) $_GET['id']);
     $controller = ControllerRestaurant::getInstance();

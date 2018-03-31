@@ -48,7 +48,7 @@ where Re.rid=L.rid and Re.rid not in (select Res.rid
 						group by Res.rid)
 Group by Re.rid, Re.url, Re.name,L.phone, Re.type; 
 
---h -- 
+--h -- (MODEL DONE->RESTAURANT.php) StaffRateLowerThanRater(int)
 select Re.name, L.opened
 from restaurant as Re, location as L,rating as R, rating as R1 
 where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015  and R1.rid = Re.rid and R.staff< R1.price
@@ -123,7 +123,7 @@ where Pe.uid in (select P1.uid
 			    and R.uid = Pe.uid and R.rid = Re.rid;
 
 
--- [ ] M)
+-- [ ] M)-(MODEL DONE->Restaurant.php) getFrequentRaters(int)
 select P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
 from Person as P, Rating as R,RatingItem as Rat, MenuItem as M, (select R1.uid as Rater,count(*) as count
 																 from Person as P,Restaurant as Res, Rating as R1
