@@ -122,23 +122,23 @@ INSERT INTO Restaurant (rid,name,type,url)
 
         
 INSERT INTO PERSON(uid,email,name,joined,type,reputation)
-    Values(678000,'DameJ@gmail.com','Dame Julie Andrews','2001-10-05','online',2.4),
-          (678001,'Angel@hotmail.com','Vanessa Angel','2007-09-24','blog',5),
-          (678002,'GAnwar@gmail.com','Gabrielle Anwar','2009-08-03','foodcritic',4.2),
-          (678003,'Richard.Armitage@microsoft.com','Richard Armitage','2003-06-30','online',2.5),
-          (678004,'Gemma190@hotmail.com','Gemma Arterton ','2008-04-08','blog',3.6),
-          (678005,'Tom.Baker@microsoft.com','Tom Baker','2002-04-05','online',3.7),
-          (678006,'Bale@gmail.com','Christian Bale','2003-09-15','online',2.6),
-          (678007,'Ben289@hotmail.com','Ben Barnes','2017-05-09','foodcritic',1.9),
-          (678008,'Cohe097@uottawa.ca','Sacha Baron Cohen','2018-08-03','blog',1.2),
-          (678009,'BartonMis@gmail.com','Mischa Barton','2005-04-07','foodcritic',4.3),
+    Values(678000,'DameJ@gmail.com','Dame Julie Andrews','2001-10-05','Online',2.4),
+          (678001,'Angel@hotmail.com','Vanessa Angel','2007-09-24','Blog',5),
+          (678002,'GAnwar@gmail.com','Gabrielle Anwar','2009-08-03','Foodcritic',4.2),
+          (678003,'Richard.Armitage@microsoft.com','Richard Armitage','2003-06-30','Online',2.5),
+          (678004,'Gemma190@hotmail.com','Gemma Arterton ','2008-04-08','Blog',3.6),
+          (678005,'Tom.Baker@microsoft.com','Tom Baker','2002-04-05','Online',3.7),
+          (678006,'Bale@gmail.com','Christian Bale','2003-09-15','Online',2.6),
+          (678007,'Ben289@hotmail.com','Ben Barnes','2017-05-09','Foodcritic',1.9),
+          (678008,'Cohe097@uottawa.ca','Sacha Baron Cohen','2018-08-03','Blog',1.2),
+          (678009,'BartonMis@gmail.com','Mischa Barton','2005-04-07','Foodcritic',4.3),
         
-          (678010,'SGuillory@hotmail.com','Sienna Guillory','2009-05-02','online',3.6),
-          (678011,'Parkerc@gmail.com','Cecil Parker','2017-12-24','blog',4.2),
-          (678012,'Bloom101@gmail.com','Orlando Bloom','2007-03-28','blog',2.8),
-          (678013,'Stanley2988@hotmail.com','Stanley Holloway','2004-07-27','online',3.2),
-          (678014,'Helena@gmail.com','Helena Bonham Carter','2009-04-10','foodcritic',1.5),
-          (678015,'Natasha.richardson@microsoft.com','Natasha Richardson ','2013-11-30','online',4.8);
+          (678010,'SGuillory@hotmail.com','Sienna Guillory','2009-05-02','Online',3.6),
+          (678011,'Parkerc@gmail.com','Cecil Parker','2017-12-24','Blog',4.2),
+          (678012,'Bloom101@gmail.com','Orlando Bloom','2007-03-28','Blog',2.8),
+          (678013,'Stanley2988@hotmail.com','Stanley Holloway','2004-07-27','Online',3.2),
+          (678014,'Helena@gmail.com','Helena Bonham Carter','2009-04-10','Foodcritic',1.5),
+          (678015,'Natasha.richardson@microsoft.com','Natasha Richardson ','2013-11-30','Online',4.8);
 
 INSERT INTO Location (lid,opened,manager,phone,address,hour_start,hour_end,rid)
     Values(1980000,'2009-09-07',678009,'613-445-9807','2701 St. Joseph Blvd, Ottawa, Ontario K1C 1G4, Canada','16:00','23:00',100000),
