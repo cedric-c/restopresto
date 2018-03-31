@@ -47,6 +47,7 @@ var data = {
     ratings: [],
     locations: [],
     menu: [],
+    rater_counts: [],
 };
 
 Vue.component('create-menu-item-component', {
@@ -145,6 +146,9 @@ var wm = new Vue({
         
         // get ratings
         this.getPackage('restaurant', 'get_ratings', data.rid, this.setRatings);
+        
+        // get rating counts
+        this.getPackage('restaurant', 'get_rating_counts', data.rid, this.setRaterCounts);
 
     },
     computed:{
@@ -182,6 +186,10 @@ var wm = new Vue({
                 var i = this.createRatingItem(o);
                 data.ratings.push(i);
             }
+        },
+        setRaterCounts(response){
+            var m = response.payload;
+            for(var i in m){data.rater_counts.push(m[i]);}
         },
         addMenuItem(response){
             var m = response.payload;

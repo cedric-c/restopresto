@@ -24,44 +24,62 @@
         <title><?php echo $appName ;?></title>
     </head>
     <body>
+      
       <template id="create-menu-item">
-        <div class="container">
-          <h3>New Menu Item</h3>
-        <div class="row">
-          <div class="col-xs-3"><input type="text" v-model="name" class="form-control input-lg" placeholder="Name"></div>
-          <div class="col-xs-3"><input type="text" v-model="type" class="form-control input-lg" placeholder="Type"></div>
-          <div class="col-xs-3"><input type="text" v-model="category" class="form-control input-lg" placeholder="Category"></div>
-          <div class="col-xs-3"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-10">
-          <textarea class="form-control input-lg" v-model="comment" rows="3" id="comment" placeholder="Comment"></textarea>
+      
+      
+      
+              <div class="row">
+          <div class="panel panel-default">
+              <div class="panel panel-heading"><h3 class="panel-title">New Menu Item</h3></div>
+              <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-3"><input type="text" v-model="name" class="form-control input-lg" placeholder="Name"></div>
+              <div class="col-xs-3"><input type="text" v-model="type" class="form-control input-lg" placeholder="Type"></div>
+              <div class="col-xs-3"><input type="text" v-model="category" class="form-control input-lg" placeholder="Category"></div>
+              <div class="col-xs-3"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
+            </div>
+            <div class="row">
+              <textarea class="form-control input-lg" v-model="comment" rows="3" id="comment" placeholder="Comment"></textarea>
+              <div class="row">
+                <button @click="newMenuItem" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Create</button>
+              </div>
+            </div>
           </div>
-          <div class="col-xs-2">
-            <button @click="newMenuItem" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
           </div>
-        </div>
-      </div>
+        </div>        
+
+      
+      
+      
+      
+      
       </template>
       <template id="create-rating-item">
-        <div class="container">
-          <h3>New Review</h3>
+        
         <div class="row">
-          <div class="col-xs-3"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
-          <div class="col-xs-3"><input type="text" v-model="food" class="form-control input-lg" placeholder="Food"></div>
-          <div class="col-xs-3"><input type="text" v-model="mood" class="form-control input-lg" placeholder="Mood"></div>
-          <div class="col-xs-3"><input type="text" v-model="staff" class="form-control input-lg" placeholder="staff"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-10">
-          <textarea class="form-control input-lg" v-model="comment" rows="3" id="comment" placeholder="Comment"></textarea>
+          <div class="panel panel-default">
+              <div class="panel panel-heading"><h3 class="panel-title">New Review</h3></div>
+              <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-3"><input type="text" v-model="price" class="form-control input-lg" placeholder="Price"></div>
+              <div class="col-xs-3"><input type="text" v-model="food" class="form-control input-lg" placeholder="Food"></div>
+              <div class="col-xs-3"><input type="text" v-model="mood" class="form-control input-lg" placeholder="Mood"></div>
+              <div class="col-xs-3"><input type="text" v-model="staff" class="form-control input-lg" placeholder="staff"></div>
+            </div>
+            <div class="row">
+              <textarea class="form-control input-lg" v-model="comment" rows="3" id="comment" placeholder="Comment"></textarea>
+              <div class="row">
+                <button @click="newRatingItem" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Create</button>
+              </div>
+            </div>
           </div>
-          <div class="col-xs-2">
-            <button @click="newRatingItem" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
           </div>
-        </div>
-      </div>        
+        </div>        
+      
+      
       </template>
+
         <div class="masthead">
             <div class="container">
                 <h1><?php echo $appName ;?></h1>
@@ -85,13 +103,17 @@
                         <p><b>Url</b>: {{url}}</p>
                         <p><b>Most Expensive</b>: {{mostExpensive}}</p>
                       </div>
-                    <create-menu-item-component></create-menu-item-component>
-                    <create-rating-item-component></create-menu-item-component>
-                    
                     </div>
                     <div class="row">
-                      <div class="col-xs-4">
-                        <h3>Managers</h3>
+                    <create-menu-item-component></create-menu-item-component>
+                    <create-rating-item-component></create-menu-item-component>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        
+                        <div class="panel panel-default">
+                        <div class="panel-heading"><h3 class="panel-title">Managers</h3></div>
+                        <div class="panel-body">
                         <ul><transition-group name="list">
                         <div class="row menuObject" v-for="(o, index) in managers" :key="o.uid">
                           <div>
@@ -103,10 +125,17 @@
                             <br>
                           </div>
                         </div>
-                      </transition-group></ul>
+                      </transition-group></ul></div>
                     </div>
-                    <div class="col-xs-4">
-                        <h3>Locations</h3>
+                      
+                      
+                    </div>
+                    <div class="col-xs-6">
+
+
+                        <div class="panel panel-default">
+                        <div class="panel-heading"><h3 class="panel-title">Locations</h3></div>
+                        <div class="panel-body">
                         <ul><transition-group name="list">
                         <div class="row menuObject" v-for="(o, index) in locations" :key="o.lid">
                           <div>
@@ -118,12 +147,19 @@
                             <br>
                           </div>
                         </div>
-                      </transition-group></ul>
+
+                      </transition-group></ul></div>
                     </div>
-                      <div class="col-xs-4">
-                        <h3>Menu</h3>                        
+                    </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="panel panel-default">
+                          <div class="panel-heading"><h3 class="panel-title">Menu</h3></div>                  
+                          <div class="panel-body">
                         <ul><transition-group name="list">
-                        <div class="row menuObject" v-for="(o, index) in menu" :key="o.mid">
+                        <div class="row menuObject reviews" v-for="(o, index) in menu" :key="o.mid">
                           <div>
                             <b>Name</b>: {{o.name}} 
                             <a class="actionButton" @click="deleteMenuItem(o.mid)"><i class="fa fa-times fa-2x"></i></a><br>
@@ -134,12 +170,32 @@
 
                           </div>
                         </div>
-                      </transition-group></ul></div>
-
+                      </transition-group></ul>
+                    </div>
                       </div>
+                    
+                    </div>
+                    
+                    
                       <div class="row">
-                        <div class="col-xs-12">
-                          <h3>Reviews</h3>
+                        <div class="panel panel-default">
+                          <div class="panel-heading"><h2 class="panel-title">Rater Counts</h2></div>
+                          <div class="panel-body">
+                            <ul><transition-group name="list">
+                              <div class="row menuObject reviews" v-for="(o, index) in rater_counts" :key="o.uid">
+                                <b>{{o.name}}</b>({{o.count}})
+                              </div>
+                            </transition-group></ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                      
+                      <div class="row">
+                        <div class="panel panel-default">
+                          <div class="panel-heading"><h3 class="panel-title">Reviews</h3></div>
+                          <div class="panel-body">
                           <ul><transition-group name="list">
                           <li class="row menuObject reviews" v-for="(o, index) in ratings" :key="o.key">
                             <div class="item-text">
@@ -153,9 +209,13 @@
 
                             </div>
                           </li>
-                        </transition-group></ul></div>
-                        
+                        </transition-group></ul>
                       </div>
+                        </div>  
+                      </div>
+                      
+                      
+                      
                     </div>
                   </div>
               </div>

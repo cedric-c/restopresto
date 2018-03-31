@@ -14,7 +14,8 @@ class ControllerRestaurant extends Controller {
     const NEW_MENU_ITEM         = 'new_menu_item';
     const DELETE_MENU_ITEM      = 'delete_menu_item';
     const GET_RATINGS           = 'get_ratings';
-
+    const GET_RATING_COUNTS     = 'get_rating_counts';
+    
     const INSERT_REVIEW         = 'create_review';
     const DELETE                = 'delete';
     const GET_HIGHEST_RATERS    = 'get_high_raters';
@@ -93,6 +94,14 @@ class ControllerRestaurant extends Controller {
                 Response::error($e);
             }
 
+        } else if ($action == self::GET_RATING_COUNTS) {
+            try {
+                $result = $model->getUserRatingCounts($data);
+                Response::add('state', 'success');
+                Response::add('payload', $result);
+            } catch (Exception $e) {
+                Response::error($e);
+            }
         } else if ($action == self::INSERT_REVIEW) {
             try {
                 $model = new Rating();
