@@ -34,8 +34,53 @@ var mixin = {
     }
 }
 
+Vue.component('user-item-component',{
+    template: '#user-item',
+    mixins:[mixin],
+    props:['user'],
+    
+});
+
+Vue.component('user-list-component',{
+    template: '#user-list',
+    mixins:[mixin],
+    data: function(){return data;}
+});
+
+Vue.component('create-person-component',{
+    template: '#create-person',
+    mixins: [mixin],
+    data: function(){
+        return {
+            name: null,
+            email: null,
+            type: null,
+            reputation: null,
+        }
+    },
+    methods: {
+        createUser: function(){
+            console.log('hello');
+            var ob = new Object();
+            ob.name = this.name;
+            ob.email = this.email;
+            ob.type = this.type;
+            ob.reputation = this.reputation;
+            var package = JSON.stringify(ob);
+            wm.getPackage('person-roaster', 'create_user', package, wm.addUser);
+            this.clear();
+        },
+        clear: function(){
+            this.name = null,
+            this.email = null,
+            this.type= null,
+            this.reputation = null
+        },
+    }
+});
+
 var data = {
-    people: null,
+    users: null,
 };
 
 
@@ -47,14 +92,18 @@ var wm = new Vue({
         var b64  = appData.getAttribute("data");
         var jsn  = atob(b64);
         var obj  = JSON.parse(jsn);
-        this.people = obj;
+        this.users = obj;
 
     },
     computed:{
         
     },
     methods: {
-
+        addUser: function(response){
+            var o = response.payload;
+            console.log(o);
+            data.users.push(o[0]);
+        },
     }
     
 });

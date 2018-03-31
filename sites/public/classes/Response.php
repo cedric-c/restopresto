@@ -7,7 +7,7 @@
  */
 class Response {
     private static $messages = [];
-        
+    
     public static function add(string $key, $value): void{
         self::$messages[$key] = $value;
     }

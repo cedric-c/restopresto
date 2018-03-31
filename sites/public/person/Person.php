@@ -10,9 +10,24 @@ class Person extends Model {
     const PRIMARY_KEY = 'uid';
 
     public function getPK(): string {
-        return PRIMARY_KEY;
+        return self::PRIMARY_KEY;
     }
-
-    public function __construct(){}
+    
+    
+    public function insert(int $id, string $name, string $email, string $type, string $rep): int{
+        $conn = Connection::init()->getConnection();
+        $table = get_called_class();
+        $date = date("Y-m-d");
+        $query = "INSERT INTO $table (uid, email, name, joined, type, reputation) VALUES ('$id','$email', '$name','$date', '$type', '$rep')";
+        return $conn->exec($query);
+    }    
+    
+    // public function jsonSerialize(): string {
+        // if($this->isLoaded())
+            // $data = $this->get($this->getId());
+        // else
+            // $data = $this->getAll();
+        // return json_encode($data);
+    // }
     
 }
