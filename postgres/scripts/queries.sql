@@ -29,14 +29,8 @@ select r.type, mi.price, mi.name from restaurant r, menuitem mi where (r.type='C
 select r.type, avg(mi.price) from restaurant r, menuitem mi where (r.type='Chinese' and r.rid=mi.rid and mi.category='Alcoholic Beverage') group by r.type;
 
 
-select 
-	RE.type, 
-	(select avg(mi.price) from restaurant r, menuitem mi where (r.rid=mi.rid) group by r.type, mi.category) as average,
-	MEI.category
-	from restaurant RE, menuitem MEI where (RE.type=r.type and MEI.category = mi.type);
+SELECT DISTINCT RE.type, (SELECT avg(mi.price) FROM restaurant r, menuitem mi WHERE (r.type=RE.type AND MEI.category=mi.category AND r.rid=mi.rid) GROUP BY r.type, mi.category) AS average, MEI.category FROM restaurant RE, menuitem MEI WHERE (RE.rid=MEI.rid) ORDER BY RE.type;
 
-
-select r.type, mi.category from restaurant r, menuitem mi where (select price from restaurant r2, menuitem mi2 where (r.type=r2.type and r.rid=r2.rid and r2.rid = mi2.rid and mi.category = mi2.category));
 
   -- type   | price |     name      
 -------+-------+---------------
