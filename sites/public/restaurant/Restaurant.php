@@ -61,5 +61,12 @@ class Restaurant extends Model {
         $s  = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function getTypes(): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT DISTINCT type FROM restaurant";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_COLUMN);
+    }
 
 }

@@ -8,6 +8,9 @@
 require_once('core.php');
 $mi = new MenuItem();
 var_dump($mi->getCategories());
+$re = new Restaurant();
+echo '<br>', '<br>';
+var_dump($re->getTypes());
 try {
     $model = new Restaurant( (int) $_GET['id']);
     $controller = ControllerRestaurant::getInstance();

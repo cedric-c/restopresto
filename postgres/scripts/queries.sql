@@ -9,7 +9,17 @@ select distinct type from restaurant;
 -- ;; get distinct categories of menu items;
 select distinct category from menuitem;
 
+-- ;; get the distinct types of menu items for a restaurant;
+select distinct category from menuitem mi, restaurant r where mi.rid=r.rid and r.rid=100700;
 
+-- ;; get the average price by menu item category for a restaurant;
+select distinct category, avg(price) average from menuitem mi, restaurant r where mi.rid=r.rid and r.rid=100400 group by mi.category;
+
+-- ;; get average price of menu item category 
+
+select category, avg(price) average from menuitem mi, restaurant r where mi.rid=r.rid and mi.category='Soft Drink' group by mi.category; -- need to tie this inside queries restaurant type to outer one
+
+-- ;; get all menu items of type Y for a restaurant of type X
 
 --------------------------------------
 --------------------------------------
