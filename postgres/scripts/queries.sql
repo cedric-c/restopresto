@@ -1,3 +1,20 @@
+
+--------------------------------------
+-- e1
+--------------------------------------
+
+-- ;; get distinct types of restaurants;
+select distinct type from restaurant;
+
+-- ;; get distinct categories of menu items;
+select distinct category from menuitem;
+
+
+
+--------------------------------------
+--------------------------------------
+
+
 --f-Number of times a person has rated for all the restaurants they have rated
 select P.name,Re.name, count(*)
 from Restaurant as Re, rating as R, person as P

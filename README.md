@@ -47,7 +47,7 @@ This repository contains the final project for the Databases I course. This proj
 - [x] ~~g1) The system must display a list of restaurants which have not been reated for a given month.~~ (currently only works for January, which is what was specified in the assignment description)
 - [x] ~~g2) The system must display the name of the restaurant, the phone number, and the type of food.~~
 
-- [ ] h1) The system must display the names of opening dates for a given restaurant which obtained Staff rating which is lower than any rating given by a rater. 
+- [ ] h1) The system must display the names and opening dates for a given restaurant which obtained Staff rating which is lower than any rating given by a rater. 
 - [ ] h2) The system must order the results by the dates of the ratings.
 
 - [ ] i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
