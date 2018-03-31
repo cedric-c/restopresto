@@ -120,4 +120,20 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function HighestRatedInType(string $restaurantType): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT Res.name,Pe.name
+                 FROM restaurant AS Res, Rating AS Ra, person AS Pe,
+                (SELECT Re.name AS Rname, sum(R.food) AS f_sum
+                 FROM restaurant AS Re, rating AS R, person AS P
+                 WHERE Re.type= '$restaurantType' AND Re.rid=R.rid AND P.uid=R.uid
+                 GROUP BY Re.name
+                 ORDER BY f_sum desc
+                 LIMIT 1) as Sum
+                 WHERE Res.name=Rname AND Pe.uid=Ra.uid AND Ra.rid=Res.rid 
+                 GROUP BY Res.name,Pe.name";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

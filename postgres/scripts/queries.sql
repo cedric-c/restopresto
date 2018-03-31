@@ -48,7 +48,7 @@ where Re.rid=L.rid and Re.rid not in (select Res.rid
 						group by Res.rid)
 Group by Re.rid, Re.url, Re.name,L.phone, Re.type; 
 
---h -- (MODEL DONE->RESTAURANT.php) StaffRateLowerThanRater(int)
+--[ ] h) -- (MODEL DONE->RESTAURANT.php) StaffRateLowerThanRater(int)
 select Re.name, L.opened
 from restaurant as Re, location as L,rating as R, rating as R1 
 where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015  and R1.rid = Re.rid and R.staff< R1.price
@@ -65,7 +65,8 @@ select Re.name, L.opened
 from restaurant as Re, location as L,rating as R, rating as R1 
 where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and R.staff< R1.staff;
 
--- [ ] i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
+-- [ ] i) (MODEL DONE->RESTAURANT.php) HighestRatedInType(string)
+--List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
 -- Get the highest food rating for some type of restaurant (type Y, could be anything) list the restaurant name along with the raters name.
 
 select Res.name,Pe.name

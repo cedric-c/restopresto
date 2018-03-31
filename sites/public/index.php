@@ -13,7 +13,7 @@ try {
 	//var_dump($result);
 
 	//$model  = new Restaurant();
-	//$result = $model->StaffRateLowerThanRater(678015);
+	//$result = $model->HighestRatedInType("Canadian");
 	//var_dump($result);
 	
 
