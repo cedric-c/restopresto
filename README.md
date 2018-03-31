@@ -37,7 +37,7 @@ This repository contains the final project for the Databases I course. This proj
 - [x] ~~c1) The system must list the names of managers as well as the date the restaurant opened when provided with the category of a restaurant.~~
 - [x] ~~d1) The system must display the name of the most expensive menu item when provided with a restaurant.~~
 - [x] ~~d2) The system must display the opening hours, and the URL for the restaurant.~~
-- [ ] e1) The system must list the average prices of the menu items, for each category of menu item, for each category of restaurant.
+- [X] ~~e1) The system must list the average prices of the menu items, for each category of menu item, for each category of restaurant.~~
 
 #### Ratings of restaurants
 

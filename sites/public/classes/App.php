@@ -10,6 +10,10 @@ class App implements Renderable {
     public function getName(): string {
         return 'RestoPresto';
     }
+    
+    public function getDir(): string {
+        return 'App';
+    }
         
     public function getData(): Array {
         $restaurantPage = [
@@ -22,7 +26,12 @@ class App implements Renderable {
             'folder' => 'restaurant',
             'caption' => 'Manage Restaurants'
         ];
-        $apps = [$restaurantPage, $restaurant];
+        $dashboard = [
+            'index' => 'dashboard/index.php',
+            'folder'=> 'dashboard',
+            'caption'=> 'Dashboard'
+        ];
+        $apps = [$restaurantPage, $restaurant, $dashboard];
         $r = [
             'available_apps' => $apps
         ];
