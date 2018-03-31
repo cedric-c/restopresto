@@ -301,7 +301,8 @@ INSERT INTO RatingItem (uid,date_rated,mid,rating,comment)
           (678005,'2004-07-05 00:00:00',369107,4,'Very good drink'),
           (678004,'2006-09-15 00:00:00',369113,1.5,'Food was very watery and smelt old'),
           (678003,'2018-01-29 00:00:00',369111,3,'Meal was too sweet'),
-          (678002,'2017-12-24 00:00:00',369104,5,'Perfect meal');
+          (678002,'2017-12-24 00:00:00',369104,5,'Perfect meal')
+          (678003,'2018-01-29 00:00:00',369107,4,'Really like the mixture of vegitables');
 
 
 

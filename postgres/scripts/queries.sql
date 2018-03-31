@@ -84,3 +84,14 @@ where Pe.uid in (select P1.uid
 												  where Rat.uid = p2.uid
 												  group by p2.uid))
 			    and R.uid = Pe.uid and R.rid = Re.rid;
+
+M)
+select P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
+from Person as P, Rating as R,RatingItem as Rat, MenuItem as M, (select R1.uid as Rater,count(*) as count
+																 from Person as P,Restaurant as Res, Rating as R1
+																 where Res.name ='Kochin Kitchen'and P.uid=R1.uid and R1.rid=Res.rid
+																 group by R1.uid
+																 order by count desc
+																 limit 1) as MostFrequent
+where R.uid =Rater and P.uid=R.uid and Rat.uid= R.uid and M.mid = Rat.mid and M.rid = R.rid
+Group by P.name,P.reputation,Rat.comment,M.name,M.price;
