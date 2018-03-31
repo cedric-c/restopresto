@@ -83,4 +83,20 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getFrequentRaters(int $restaurantId): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
+                FROM Person AS P, Rating AS R,RatingItem AS Rat, MenuItem AS M, 
+                (SELECT R1.uid AS Rater,count(*) AS count
+                FROM Person AS P,Restaurant AS Res, Rating AS R1
+                WHERE Res.rid = $restaurantId AND P.uid=R1.uid AND R1.rid=Res.rid
+                GROUP BY R1.uid
+                ORDER BY count desc
+                LIMIT 1) AS MostFrequent
+                WHERE R.uid =Rater AND P.uid=R.uid AND Rat.uid= R.uid AND M.mid = Rat.mid AND M.rid = R.rid
+                GROUP BY P.name,P.reputation,Rat.comment,M.name,M.price";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
