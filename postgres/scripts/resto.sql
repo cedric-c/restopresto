@@ -133,10 +133,10 @@ INSERT INTO PERSON(uid,email,name,joined,type,reputation)
           (678008,'Cohe097@uottawa.ca','Sacha Baron Cohen','2018-08-03','blog',1.2),
           (678009,'BartonMis@gmail.com','Mischa Barton','2005-04-07','foodcritic',4.3),
         
-          (678010,'SGuillory@hotmail.com','Sienna Guillory','2009-05-02','Online',3.6),
+          (678010,'SGuillory@hotmail.com','Sienna Guillory','2009-05-02','online',3.6),
           (678011,'Parkerc@gmail.com','Cecil Parker','2017-12-24','blog',4.2),
           (678012,'Bloom101@gmail.com','Orlando Bloom','2007-03-28','blog',2.8),
-          (678013,'@hotmail.com','Stanley Holloway','2004-07-27','online',3.2),
+          (678013,'Stanley2988@hotmail.com','Stanley Holloway','2004-07-27','online',3.2),
           (678014,'Helena@gmail.com','Helena Bonham Carter','2009-04-10','foodcritic',1.5),
           (678015,'Natasha.richardson@microsoft.com','Natasha Richardson ','2013-11-30','online',4.8);
 
