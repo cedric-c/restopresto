@@ -143,7 +143,7 @@
                           <ul><transition-group name="list">
                           <li class="row menuObject reviews" v-for="(o, index) in ratings" :key="o.key">
                             <div class="item-text">
-                              <b>UID_NAME</b>: {{o.uid}} <br>
+                              <b>Name</b>: {{o.name}} <br>
                               <b>Date</b>: {{o.date_rated}}<br> 
                               <b>Food</b>: {{o.food}}<br> 
                               <b>Mood</b>: {{o.mood}}<br> 

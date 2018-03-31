@@ -197,6 +197,7 @@ var wm = new Vue({
             o.date_rated = item.date_rated;
             o.food = item.food;
             o.mood = item.mood;
+            o.name = item.name;
             o.price = item.price;
             o.rid = item.rid;
             o.staff = item.staff;
