@@ -34,10 +34,10 @@ SELECT DISTINCT RE.type, (SELECT avg(mi.price) FROM restaurant r, menuitem mi WH
 
 
 --f-Number of times a person has rated for all the restaurants they have rated
-select P.name,Re.name, count(*)
+select P.name, P.uid, count(*) count
 from Restaurant as Re, rating as R, person as P
-where P.uid=R.uid and R.rid= Re.rid
-GROUP BY P.name, Re.name;
+where P.uid=R.uid and R.rid= Re.rid and Re.rid=100400
+GROUP BY P.name, P.uid order by count DESC;
 
 --g-restuarants that has not been rated in january in 2015
 select Re.rid, Re.url, Re.name, L.phone, Re.type 
