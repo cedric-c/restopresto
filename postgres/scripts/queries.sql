@@ -10,16 +10,41 @@ select distinct type from restaurant;
 select distinct category from menuitem;
 
 -- ;; get the distinct types of menu items for a restaurant;
-select distinct category from menuitem mi, restaurant r where mi.rid=r.rid and r.rid=100700;
+select distinct category from menuitem mi, restaurant r where mi.rid=r.rid and r.rid=100400;
 
 -- ;; get the average price by menu item category for a restaurant;
 select distinct category, avg(price) average from menuitem mi, restaurant r where mi.rid=r.rid and r.rid=100400 group by mi.category;
 
 -- ;; get average price of menu item category 
 
-select category, avg(price) average from menuitem mi, restaurant r where mi.rid=r.rid and mi.category='Soft Drink' group by mi.category; -- need to tie this inside queries restaurant type to outer one
+select category, avg(price) average from menuitem mi, restaurant r where mi.rid=r.rid and mi.category='Alcoholic Beverage' and r.type='Chinese' group by mi.category; -- need to tie this inside queries restaurant type to outer one
 
--- ;; get all menu items of type Y for a restaurant of type X
+-- ;; get all restaurants and their categories with they types for their menu items;
+select distinct r.type, mi.category, average from restaurant r, menuitem mi where (r.rid=mi.rid) order by type;
+
+select r.type, mi.price, mi.name from restaurant r, menuitem mi where (r.type='Chinese' and r.rid=mi.rid and mi.category='Alcoholic Beverage');
+
+
+-- ;; get average price for Alcoholic Beverages served in Chinese restaurants
+select r.type, avg(mi.price) from restaurant r, menuitem mi where (r.type='Chinese' and r.rid=mi.rid and mi.category='Alcoholic Beverage') group by r.type;
+
+
+select 
+	RE.type, 
+	(select avg(mi.price) from restaurant r, menuitem mi where (r.rid=mi.rid) group by r.type, mi.category) as average,
+	MEI.category
+	from restaurant RE, menuitem MEI where (RE.type=r.type and MEI.category = mi.type);
+
+
+select r.type, mi.category from restaurant r, menuitem mi where (select price from restaurant r2, menuitem mi2 where (r.type=r2.type and r.rid=r2.rid and r2.rid = mi2.rid and mi.category = mi2.category));
+
+  -- type   | price |     name      
+-------+-------+---------------
+ -- Chinese | 16.50 | Chivas Regal
+ -- Chinese | 19.00 | Canadian Beer
+ -- (2 rows)
+
+
 
 --------------------------------------
 --------------------------------------
