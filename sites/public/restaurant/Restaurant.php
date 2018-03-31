@@ -75,5 +75,12 @@ class Restaurant extends Model {
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_COLUMN);
     }
+    
+    public function getRatingCounts(int $restaurantId): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT P.name, P.uid, count(*) count FROM Restaurant AS Re, rating AS R, person AS P WHERE P.uid=R.uid AND R.rid= Re.rid AND Re.rid=$restaurantId GROUP BY P.name, P.uid ORDER BY count DESC";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 }

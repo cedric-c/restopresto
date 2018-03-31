@@ -95,7 +95,7 @@ class ControllerRestaurant extends Controller {
 
         } else if ($action == self::INSERT_REVIEW) {
             try {
-                $model = new Rating(); ///////////////// todo
+                $model = new Rating();
                 $uid = 678004; // TODO: THIS WILL BE CHANGED ONCE WE GET SESSION GOING
                 $p = (float) $data['price'];
                 $f = (float) $data['food'];
@@ -120,7 +120,7 @@ class ControllerRestaurant extends Controller {
         } else if ($action == self::GET_RATINGS) {
             try {
                 $model      = new Rating();
-                $ratings    = $model->getKeyValue('rid', $data);
+                $ratings    = $model->getNamedRatings($data);
                 Response::add('state', 'success');
                 Response::add('payload', $ratings);
             } catch (Exception $e){

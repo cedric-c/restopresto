@@ -38,8 +38,15 @@ class Rating extends Model {
         $table = get_called_class();
         $k1 = self::PK1;
         $k2 = self::PK2;
-        $s = $conn->query("SELECT * FROM $table WHERE ($k1=$userId AND $k2='$date_rated')");
+        $s = $conn->query("SELECT r.uid, r.date_rated, r.price, r.food, r.mood, r.staff, r.comment, r.rid, p.name FROM $table r, person p WHERE (r.$k1=$userId AND r.$k1=p.uid AND $k2='$date_rated')");
         return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getNamedRatings(int $restaurantId): array {
+      $conn = Connection::init()->getConnection();
+      $table = get_called_class();
+      $s = $conn->query("SELECT p.name as name, r.date_rated, r.uid, r.price, r.food, r.mood, r.staff, r.comment, r.rid from rating r, person p where r.rid='$restaurantId' and p.uid=r.uid");
+      return $s->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }
