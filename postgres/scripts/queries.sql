@@ -104,11 +104,8 @@ where Pe.uid in (select P1.uid
 												  group by p2.uid))
 			    and R.uid = Pe.uid and R.rid = Re.rid;
 
-<<<<<<< HEAD
---M)
-=======
--- M)
->>>>>>> 3d4651bca340bb60ccd8b1308ed1768fe3267c36
+
+-- [ ] M)
 select P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
 from Person as P, Rating as R,RatingItem as Rat, MenuItem as M, (select R1.uid as Rater,count(*) as count
 																 from Person as P,Restaurant as Res, Rating as R1
@@ -118,3 +115,12 @@ from Person as P, Rating as R,RatingItem as Rat, MenuItem as M, (select R1.uid a
 																 limit 1) as MostFrequent
 where R.uid =Rater and P.uid=R.uid and Rat.uid= R.uid and M.mid = Rat.mid and M.rid = R.rid
 Group by P.name,P.reputation,Rat.comment,M.name,M.price;
+
+-- [ ] N) The name should be 'John' but I changed it to 'Sacha' to test to make sure the query is work
+select P.name,P.email
+from Rating as R, Person as P, Restaurant as Res 
+where R.uid=P.uid and Res.rid=R.rid
+group by P.name,P.email
+having sum(R.price +R.food +R.mood+ R.staff)<(select sum(R1.price +R1.food +R1.mood+ R1.staff)
+											  from Rating as R1 INNER JOIN Person as P1 ON (R1.uid=P1.uid)
+											  where P1.name like 'Sacha%');
