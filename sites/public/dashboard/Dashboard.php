@@ -5,14 +5,14 @@
  * @since 1.0
  * (c) Copyright 2018 Cédric Clément.
  */
-class App implements Renderable {
+class Dashboard extends App {
 
     public function getName(): string {
-        return 'RestoPresto';
+        return 'Dashboard';
     }
     
     public function getDir(): string {
-        return 'App';
+        return 'Dashboard';
     }
         
     public function getData(): Array {
@@ -29,7 +29,7 @@ class App implements Renderable {
         $dashboard = [
             'index' => 'dashboard/index.php',
             'folder'=> 'dashboard',
-            'caption'=> 'Dashboard'
+            'caption'=> 'Dashboard: Statistics'
         ];
         $apps = [$restaurantPage, $restaurant, $dashboard];
         $r = [
@@ -39,6 +39,6 @@ class App implements Renderable {
     }
     
     public function render(): string {
-        return '<h1>Welcome to RestoPresto!</h1><p class=txtb>Some available applications:</p><applications-component></applications-component>';
+        return '';
     }
 }

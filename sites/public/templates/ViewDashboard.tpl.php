@@ -4,11 +4,11 @@
      * @version 1.0
      * @since 1.0
      * (c) Copyright 2018 Cédric Clément.
-     */    
+     */
     $appName = $this->getApp()->getName();
     $render  = $this->getApp()->render();
     $data    = base64_encode(json_encode($this->getApp()->getData()));
-    $n       = 'App';
+    $n       = $this->getApp()->getDir();
     $path    =  $n . '/' . $n . '.app.js' ;
 ?>
 <!DOCTYPE html>
@@ -24,8 +24,7 @@
         <title><?php echo $appName ;?></title>
     </head>
     <body>
-
-    <div class="masthead">
+        <div class="masthead">
             <div class="container">
                 <h1><?php echo $appName ;?></h1>
             </div>
@@ -34,8 +33,11 @@
             <header>
             <div id="app-data" style="display: none;" data="<?php echo $data;?>"></div>
             </header>
-            <div id="main_content"><?php echo $render;?></div>
+            <div id="main_content">
+
+            </div>
         </div>
+
     </body>
     <footer>
         <script src="/static/js/vue.js" type="text/javascript"></script>

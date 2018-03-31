@@ -26,5 +26,7 @@ require_once('restaurant/ControllerRestaurant.php');
 require_once('restaurant/ViewRestaurantRoaster.php');
 require_once('restaurant/ControllerRestaurantRoaster.php');
 
-
-
+// Dashboard App
+require_once('dashboard/ControllerDashboard.php');
+require_once('dashboard/ViewDashboard.php');
+require_once('dashboard/Dashboard.php');

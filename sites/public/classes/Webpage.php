@@ -17,8 +17,15 @@ class Webpage implements Renderable {
      */
     private $data;
     
+    private $page;
+    
     public function __construct(App $app) {
         $this->addApp($app);
+        $this->page = 'templates/Webpage.tpl.php';
+    }
+    
+    public function setPage(string $page) {
+        $this->page = $page;
     }
     
     public function addApp(App $app): void {
@@ -32,7 +39,7 @@ class Webpage implements Renderable {
     public function render(): string {
         try{
             ob_start();
-            include 'templates/webpage.html';
+            include $this->page;
             $page = ob_get_contents();
             ob_end_clean();
             return $page;
