@@ -13,27 +13,18 @@ class Dashboard extends App {
     
     public function getDir(): string {
         return 'Dashboard';
-    }
+    }    
         
     public function getData(): Array {
-        $restaurantPage = [
-            'index'  => 'restaurant/id/index.php',
-            'folder' => 'restaurant',
-            'caption'=>'View Restaurant'
-        ];
-        $restaurant = [
-            'index' => 'restaurant/index.php',
-            'folder' => 'restaurant',
-            'caption' => 'Manage Restaurants'
-        ];
-        $dashboard = [
-            'index' => 'dashboard/index.php',
-            'folder'=> 'dashboard',
-            'caption'=> 'Dashboard: Statistics'
-        ];
-        $apps = [$restaurantPage, $restaurant, $dashboard];
+        $e_data     = new Restaurant();
+        
+        $exercise_e = [
+            'data' => $e_data->getAverageTypeCategory(),
+            'columns' => ['average', 'category', 'type']
+        ];        
+        
         $r = [
-            'available_apps' => $apps
+            'exercise_e' => $exercise_e
         ];
         return $r;
     }

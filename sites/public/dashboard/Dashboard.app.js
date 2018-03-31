@@ -35,9 +35,8 @@ var mixin = {
 }
 
 var data = {
-    dump: null,
+    exercise_e: null,
 };
-
 
 
 var wm = new Vue({
@@ -47,9 +46,8 @@ var wm = new Vue({
     created: function() {
         var b64  = appData.getAttribute("data");
         var jsn  = atob(b64);
-        var r    = JSON.parse(jsn);
-        this.dump = r;
-        console.log('Data:' + r);
+        var obj  = JSON.parse(jsn);
+        this.exercise_e = obj['exercise_e'];
 
     },
     computed:{

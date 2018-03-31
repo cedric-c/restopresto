@@ -62,6 +62,13 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function getAverageTypeCategory(): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT DISTINCT RE.type, (SELECT TRUNC(avg(mi.price), 2) FROM restaurant r, menuitem mi WHERE (r.type=RE.type AND MEI.category=mi.category AND r.rid=mi.rid) GROUP BY r.type, mi.category) AS average, MEI.category FROM restaurant RE, menuitem MEI WHERE (RE.rid=MEI.rid) ORDER BY RE.type";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function getTypes(): array {
         $conn = Connection::init()->getConnection();
         $q    = "SELECT DISTINCT type FROM restaurant";

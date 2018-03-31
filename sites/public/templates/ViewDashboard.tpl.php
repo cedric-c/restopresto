@@ -34,7 +34,35 @@
             <div id="app-data" style="display: none;" data="<?php echo $data;?>"></div>
             </header>
             <div id="main_content">
-
+              
+              
+              
+              
+              <!-- EXERCISE E START -->
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading"><h2 class="panel-title">Average Menu Items by Categories and Restaurant Types</h2></div>
+                    <div class="panel-body">
+                    <ul>
+                      <transition-group name="list">
+                        <div class="row menuObject reviews" v-for="(o, index) in exercise_e.data" :key="index">
+                          <div v-cloak>
+                              <b>Category</b>: {{o.category}}<br> 
+                              <b>Type</b>: {{o.type}}<br> 
+                              <b>Average</b>: {{o.average}}<br>                           
+                          </div>
+                        </div>
+                      </transition-group>
+                    </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <!-- EXERCISE E END -->              
+              
+              <div class="row"></div>
+            
             </div>
         </div>
 
