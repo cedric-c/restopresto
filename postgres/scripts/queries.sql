@@ -142,3 +142,15 @@ group by P.name,P.email
 having sum(R.price +R.food +R.mood+ R.staff)<(select sum(R1.price +R1.food +R1.mood+ R1.staff)
 											  from Rating as R1 INNER JOIN Person as P1 ON (R1.uid=P1.uid)
 											  where P1.name like 'Sacha%');
+
+-- [ ] O)-- This prints out all rating starting with the most diverse rater to the least
+SELECT P.name, P.type, P.email, Res.name, Ra.price, Ra.food, Ra.mood, Ra.staff, MAX(RatingsApart) as HighestApart
+FROM Person as P,Rating as Ra,Restaurant as Res,(SELECT P1.uid as PersonId,P1.type AS Type, (MAX(R.price +R.food +R.mood+ R.staff) - MIN(R.price +R.food +R.mood+ R.staff)) AS RatingsApart
+     			  FROM Rating R
+	              		INNER JOIN Person as P1 ON (P1.uid = R.uid) 
+				  		INNER JOIN Restaurant as Re ON (Re.rid =R.rid)
+                  GROUP BY P1.uid, P1.type) as Personsdata
+where P.uid=PersonId and Ra.uid=P.uid and Res.rid=Ra.rid
+GROUP BY P.name,P.type, P.email, Res.name, Ra.comment, Ra.price, Ra.food, Ra.mood, Ra.staff
+ORDER BY HighestApart DESC;
+
