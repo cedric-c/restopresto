@@ -9,6 +9,8 @@ class ControllerPersonRoaster extends Controller {
 
     const INSERT_USER = 'create_user';
     const DELETE_USER = 'delete_user';
+    const GET_HIGHEST_RATERS_FOOD_AND_MOOD = 'highest_raters_food_and_mood';
+    const GET_HIGHEST_RATERS_FOOD_OR_MOOD  = 'highest_raters_food_or_mood';
 
     /**
      * The location for all the app's files.
@@ -40,7 +42,7 @@ class ControllerPersonRoaster extends Controller {
         try{
             
             if($action == self::INSERT_USER){
-                $model = new Person();
+                // $model = new Person();
                 $id = (int) $model->getNextId();
                 $n = $data['name'];
                 $e = $data['email'];
@@ -64,7 +66,15 @@ class ControllerPersonRoaster extends Controller {
                     // Response::add('state', 'error');
                     Response::error($pdo);
                 }
-
+            } else if ($action == self::GET_HIGHEST_RATERS_FOOD_OR_MOOD) {
+                $d = $model->getHighestFoodOrMood();
+                Response::add('state', 'success');
+                Response::add('payload', $d);
+            } else if ($action == self::GET_HIGHEST_RATERS_FOOD_AND_MOOD) {
+                $d = $model->getHighestFoodAndMood();
+                Response::add('state', 'success');
+                Response::add('payload', $d);
+                
             } else {
                 Response::add('message', 'Received unidentified action');
             }

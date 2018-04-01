@@ -52,12 +52,12 @@ This repository contains the final project for the Databases I course. This proj
 
 - [x] ~~i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)~~
 - [x] ~~i) The system must list the details of the highest rated (by food) restaurants for each respective category of restaurant.~~
-- [x] j) Provide a query to determine whether Type Y restaurants are “more popular” than other restaurants. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.) Yes, this query is open to your own interpretation!
+- [x] ~~j) Provide a query to determine whether Type Y restaurants are “more popular” than other restaurants. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.) Yes, this query is open to your own interpretation!~~
 
 #### Raters and their ratings
 
-- [x] k) Find the names, join‐date and reputations of the raters that give the highest overall rating, in terms of the Food and the Mood of restaurants. Display this information together with the names of the restaurant and the dates the ratings were done.
-- [x] l) Find the names and reputations of the raters that give the highest overall rating, in terms of the Food or the Mood of restaurants. Display this information together with the names of the restaurant and the dates the ratings were done.
+- [x] ~~k) Find the names, join‐date and reputations of the raters that give the highest overall rating, in terms of the **Food _and_ the Mood** of restaurants. _Display this information together with the names of the restaurant and the dates the ratings were done._~~
+- [x] ~~l) Find the **names** and **reputations** of the raters that give the **highest overall rating**, in terms of the **Food _or_ the Mood** of restaurants. _Display this information together with the names of the restaurant and the dates the ratings were done._~~
 - [x] m) Find the names and reputations of the raters that rated a specific restaurant (say Restaurant Z) the most frequently. Display this information together with their comments and the names and prices of the menu items they discuss. (Here Restaurant Z refers to a restaurant of your own choice, e.g. Ma Cuisine).
 - [x] n) Find the names and emails of all raters who gave ratings that are lower than that of a rater with a name called John, in terms of the combined rating of Price, Food, Mood and Staff. (Note that there may be more than one rater with this name).
 - [x] o) Find the names, types and emails of the raters that provide the most diverse ratings. Display this information together with the restaurants names and the ratings. For example, Jane Doe may have rated the Food at the Imperial Palace restaurant as a 1 on 1 January 2015, as a 5 on 15 January 2015, and a 3 on 4 February 2015. Clearly, she changes her mind quite often.

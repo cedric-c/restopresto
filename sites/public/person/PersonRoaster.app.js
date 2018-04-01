@@ -34,6 +34,48 @@ var mixin = {
     }
 }
 
+Vue.component('highest-overall-and-component',{
+    template:'#highest-overall-and-list',
+    mixins:[mixin],
+    data: function(){
+        return {
+            raters: [],
+        }
+    },
+    created: function(){
+        this.getHighestFoodAndMood();
+    },
+    methods: {
+        getHighestFoodAndMood: function(){
+            this.getPackage('person-roaster', 'highest_raters_food_and_mood',-1,this.setHighestFoodAndMood);
+        },
+        setHighestFoodAndMood: function(response){
+            this.raters = response.payload;
+        },
+    },
+});
+
+Vue.component('highest-overall-or-component',{
+    template:'#highest-overall-or-list',
+    mixins:[mixin],
+    data: function(){
+        return {
+            raters: [],
+        }
+    },
+    created: function(){
+        this.getHighestFoodOrMood();
+    },
+    methods: {
+        getHighestFoodOrMood: function(){
+            this.getPackage('person-roaster', 'highest_raters_food_or_mood',-1,this.setHighestFoodOrMood);
+        },
+        setHighestFoodOrMood: function(response){
+            this.raters = response.payload;
+        },
+    },
+});
+
 Vue.component('user-item-component',{
     template: '#user-item',
     mixins:[mixin],
