@@ -9,7 +9,9 @@ var mixin = {
             var r = new XMLHttpRequest();
             r.open('POST', '../dispatch/index.php');
             r.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            r.send('application='+application+'&action='+action+'&data='+data);
+            var q = 'application='+application+'&action='+action+'&data='+data;
+            // console.log(q);
+            r.send(q);
             // var self = this;
             r.onload = function(){
                 var response = JSON.parse(r.responseText);
@@ -34,10 +36,35 @@ var mixin = {
     }
 }
 
-var data = {
-    exercise_e: null,
-};
 
+Vue.component('highest-rated-component', {
+    template:'#highest-rated-list',
+    props:['types'],
+    mixins:[mixin],
+    data:function(){
+        return {
+            restaurants: [],
+            type: this.types[0],
+        }
+    },
+    created: function(){
+        this.getPackage('dashboard', 'highest_rated_food', this.type, this.setHighestRated);
+    },
+    methods: {
+        setHighestRated: function(response){
+            // console.log(response);
+            this.restaurants = response.payload;
+        },
+        getHighestRated: function(){
+            this.getPackage('dashboard', 'highest_rated_food', this.type, this.setHighestRated);
+        }
+    },
+});
+
+var data = {
+    rtypes: null,
+    ex_e: null,
+};
 
 var wm = new Vue({
     el: '#app',
@@ -47,7 +74,9 @@ var wm = new Vue({
         var b64  = appData.getAttribute("data");
         var jsn  = atob(b64);
         var obj  = JSON.parse(jsn);
-        this.exercise_e = obj['exercise_e'];
+        this.rtypes = obj['types'];
+        this.ex_e = obj['exercise_e'];
+        
 
     },
     computed:{
