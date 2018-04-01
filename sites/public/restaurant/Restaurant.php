@@ -90,21 +90,26 @@ class Restaurant extends Model {
     // H) 678015
     public function staffRateLowerThanRater(int $raterId): array {
         $conn = Connection::init()->getConnection();
-        $q    = "SELECT Re.name, L.opened
-                FROM restaurant as Re, location AS L,rating AS R, rating AS R1 
-                WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId  AND R1.rid = Re.rid AND R.staff< R1.price
-                UNION
-                SELECT Re.name, L.opened
-                FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
-                WHERE Re.rid=L.rid and Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.food 
-                UNION
-                SELECT Re.name, L.opened
-                FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
-                WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.mood 
-                UNION
-                SELECT Re.name, L.opened
-                FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
-                WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.staff";
+        $q    = "(SELECT Re.name, L.opened as opened,Re.rid
+                  FROM restaurant as Re,location as L,rating as R, rating as R1 
+                  WHERE Re.rid=L.rid and Re.rid =R.rid and R1.uid = $raterId and R1.rid=Re.rid AND R.staff< R1.price
+                  GROUP BY Re.name, L.opened,Re.rid)
+                 UNION 
+                 (SELECT Re.name, L.opened as opened,Re.rid
+                  FROM restaurant as Re, location as L,rating as R, rating as R1 
+                  WHERE Re.rid=L.rid and Re.rid =R.rid and R1.uid = $raterId and R1.rid=Re.rid AND R.staff< R1.food 
+                  GROUP BY Re.name, L.opened,Re.rid)
+                 UNION 
+                 (SELECT Re.name, L.opened as opened,Re.rid
+                 FROM restaurant as Re, location as L,rating as R, rating as R1
+                 WHERE Re.rid=L.rid and Re.rid =R.rid and R1.uid = $raterId and R1.rid=Re.rid AND R.staff< R1.mood 
+                 GROUP BY Re.name, L.opened,Re.rid)
+                 UNION 
+                 (SELECT Re.name, L.opened as opened,Re.rid
+                  FROM restaurant as Re, location as L,rating as R, rating as R1
+                  WHERE Re.rid=L.rid and Re.rid =R.rid and R1.uid = $raterId and R1.rid=Re.rid AND R.staff< R1.staff
+                 GROUP BY Re.name, L.opened,Re.rid)
+                 ORDER BY opened desc";
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }

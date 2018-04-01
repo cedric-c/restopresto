@@ -6,6 +6,7 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 require_once('core.php');
+	
 try {
     $app = new App();
     $view = new Webpage($app);

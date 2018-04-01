@@ -49,21 +49,27 @@ where Re.rid=L.rid and Re.rid not in (select Res.rid
 Group by Re.rid, Re.url, Re.name,L.phone, Re.type; 
 
 --[ ] h) -- (MODEL DONE->RESTAURANT.php) StaffRateLowerThanRater(int)
-select Re.name, L.opened
+(select Re.name, L.opened as opened,Re.rid
+from restaurant as Re,location as L,rating as R, rating as R1 
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678013 and R1.rid=Re.rid AND R.staff< R1.price
+group by Re.name, L.opened,Re.rid)
+UNION 
+(select Re.name, L.opened as opened,Re.rid
 from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015  and R1.rid = Re.rid and R.staff< R1.price
-UNION
-select Re.name, L.opened
-from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and R.staff< R1.food 
-UNION
-select Re.name, L.opened
-from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and R.staff< R1.mood 
-UNION
-select Re.name, L.opened
-from restaurant as Re, location as L,rating as R, rating as R1 
-where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678015 and R1.rid = Re.rid and R.staff< R1.staff;
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678013 and R1.rid=Re.rid AND R.staff< R1.food 
+group by Re.name, L.opened,Re.rid)
+UNION 
+(select Re.name, L.opened as opened,Re.rid
+from restaurant as Re, location as L,rating as R, rating as R1
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678013 and R1.rid=Re.rid AND R.staff< R1.mood 
+group by Re.name, L.opened,Re.rid)
+UNION 
+(select Re.name, L.opened as opened,Re.rid
+from restaurant as Re, location as L,rating as R, rating as R1
+where Re.rid=L.rid and Re.rid =R.rid and R1.uid = 678013 and R1.rid=Re.rid AND R.staff< R1.staff
+group by Re.name, L.opened,Re.rid)
+order by opened desc;
+
 
 -- [ ] i) (MODEL DONE->RESTAURANT.php) HighestRatedInType(string)
 --List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
