@@ -48,10 +48,10 @@ This repository contains the final project for the Databases I course. This proj
 - [x] ~~g2) The system must display the name of the restaurant, the phone number, and the type of food.~~
 
 - [x] ~~h1) The system must display the names and opening dates for a given restaurant which obtained Staff rating which is lower than any rating given by a rater.~~
-- [x] h2) The system must order the results by the dates of the ratings.
+- [x] ~~h2) The system must order the results by the dates of the ratings.~~
 
-- [x] i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)
-- [x] i) The system must list the details of the highest rated (by food) restaurants for each respective category of restaurant. 
+- [x] ~~i) List the details of the Type Y restaurants that obtained the highest Food rating. Display the restaurant name together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.)~~
+- [x] ~~i) The system must list the details of the highest rated (by food) restaurants for each respective category of restaurant. ~~
 - [x] j) Provide a query to determine whether Type Y restaurants are “more popular” than other restaurants. (Here, Type Y refers to any restaurant type of your choice, e.g. Indian or Burger.) Yes, this query is open to your own interpretation!
 
 #### Raters and their ratings
