@@ -40,6 +40,27 @@
                   </div>
                 </div>
               </template>
+              
+
+              <template id="more-popular-list">
+                <div class="panel panel-default">
+                  <div class="panel panel-heading"><h3 class="panel-title">More Popular Restaurants</h3></div>
+                  <div class="panel-body">
+                    <select v-model="type" v-on:change="getMorePopular">
+                    <option v-for="t in types" v-bind:value="t">{{t}}</option></select>
+                    <ul>
+                      <transition-group name="list">
+                        <div class="row menuObject" v-for="(o, index) in restaurants" :key="index">
+                          <!-- <b>{{o.pname}}</b> –– <b>{{o.rname}}</b> -->
+                          {{o.type}}
+                        </div>
+                      </transition-group>
+                    </ul>
+                  </div>
+                </div>
+              </template>              
+              
+              
         <div class="masthead">
             <div class="container">
                 <h1><?php echo $appName ;?></h1>
@@ -55,6 +76,7 @@
               
               <!-- EXERCISE E START -->
               <div class="row">
+                <div class="col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading"><h2 class="panel-title">Average Menu Items by Categories and Restaurant Types</h2></div>
                     <div class="panel-body">
@@ -71,11 +93,17 @@
                     </ul>
                   </div>
                   </div>
+                </div>
               </div>
               <!-- EXERCISE E END -->              
               
               <div class="row">
+                <div class="col-xs-6">
                 <highest-rated-component :types="rtypes"></highest-rated-component>
+              </div>
+              <div class="col-xs-6">
+                <more-popular-component :types="rtypes"></more-popular-component>
+              </div>
               </div>
             
             </div>

@@ -123,7 +123,7 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
     //QUERY J
-    public function RestaurantsTypeMorePopular(string $restaurantType): array {
+    public function getMorePopularThanType(string $restaurantType): array {
         $conn = Connection::init()->getConnection();
         $q    = "SELECT Res.type
                  FROM Restaurant AS Res, rating AS Ra
