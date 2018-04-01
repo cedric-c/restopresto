@@ -16,7 +16,6 @@ Vue.component('create-resto-component', {
     },
     methods: {
         createResto: function (resto){
-            console.log(resto[0]);
             var r = new Object();
             var newResto = wm.createResto(resto[0]);
             data.restaurants.push(newResto);

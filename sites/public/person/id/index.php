@@ -7,8 +7,9 @@
  */
 require_once('core.php');
 try {
-    $app = new App();
-    $view = new Webpage($app);
+    $model = new Person();
+    $controller = ControllerPerson::getInstance();
+    $view = new ViewPerson($controller, $model);
     echo $view->render();
 } catch (Exception $e){
     echo $e;
