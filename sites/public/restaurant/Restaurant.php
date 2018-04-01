@@ -83,6 +83,7 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // M) 
     public function getFrequentRaters(int $restaurantId): array {
         $conn = Connection::init()->getConnection();
         $q    = "SELECT P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
@@ -98,8 +99,9 @@ class Restaurant extends Model {
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public function StaffRateLowerThanRater(int $raterId): array {
+    
+    // H) 678015
+    public function staffRateLowerThanRater(int $raterId): array {
         $conn = Connection::init()->getConnection();
         $q    = "SELECT Re.name, L.opened
                 FROM restaurant as Re, location AS L,rating AS R, rating AS R1 
@@ -120,7 +122,8 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function HighestRatedInType(string $restaurantType): array {
+    // I) 
+    public function highestRatedInType(string $restaurantType): array {
         $conn = Connection::init()->getConnection();
         $q    = "SELECT Res.name,Pe.name
                  FROM restaurant AS Res, Rating AS Ra, person AS Pe,
