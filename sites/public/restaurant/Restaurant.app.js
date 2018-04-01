@@ -50,6 +50,28 @@ var data = {
     rater_counts: [],
 };
 
+Vue.component('frequent-raters-list-component',{
+    template: '#frequent-raters-list',
+    mixins: [mixin],
+    data: function(){
+        return{
+            raters: [],
+        }
+    },
+    created: function(){
+        this.getFrequentRaters();
+    },
+    methods:{
+        getFrequentRaters: function(){
+            this.getPackage('restaurant', 'get_frequent_raters', data.rid,this.setFrequentRaters);
+        },
+        setFrequentRaters: function(response){
+            console.log(response);
+            this.raters = response.payload;
+        },
+    },
+});
+
 Vue.component('create-menu-item-component', {
     template: '#create-menu-item',
     mixins: [mixin],
