@@ -33,7 +33,7 @@
                     <ul>
                       <transition-group name="list">
                         <div class="row menuObject" v-for="(o, index) in restaurants" :key="index">
-                          {{o.pname}} {{o.rname}}
+                          <b>{{o.pname}}</b> –– <b>{{o.rname}}</b>
                         </div>
                       </transition-group>
                     </ul>
