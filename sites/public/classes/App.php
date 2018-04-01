@@ -34,7 +34,7 @@ class App implements Renderable {
         $person = [
             'index' => 'person/index.php',
             'folder'=> 'person',
-            'caption'=> 'Person'
+            'caption'=> 'Raters'
         ];
         $apps = [$restaurantPage, $restaurant, $dashboard, $person];
         $r = [

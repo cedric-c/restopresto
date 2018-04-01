@@ -28,16 +28,7 @@ class Restaurant extends Model {
         $r = $s->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
-    
-    public function jsonSerialize(): string {
-        if($this->isLoaded())
-            $data = $this->get($this->getId());
-        else
-            $data = $this->getAll();
         
-        return json_encode($data);
-    }
-    
     public function getAll(): array{
         return $this->getAllWithNumber();
     }
@@ -90,19 +81,19 @@ class Restaurant extends Model {
     // H) 678015
     public function staffRateLowerThanRater(int $raterId): array {
         $conn = Connection::init()->getConnection();
-        $q    = "SELECT Re.name, L.opened
+        $q    = "SELECT Re.name, L.opened, Re.rid
                 FROM restaurant as Re, location AS L,rating AS R, rating AS R1 
                 WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId  AND R1.rid = Re.rid AND R.staff< R1.price
                 UNION
-                SELECT Re.name, L.opened
+                SELECT Re.name, L.opened, Re.rid
                 FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
                 WHERE Re.rid=L.rid and Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.food 
                 UNION
-                SELECT Re.name, L.opened
+                SELECT Re.name, L.opened, Re.rid
                 FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
                 WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.mood 
                 UNION
-                SELECT Re.name, L.opened
+                SELECT Re.name, L.opened, Re.rid
                 FROM restaurant AS Re, location AS L,rating AS R, rating AS R1 
                 WHERE Re.rid=L.rid AND Re.rid =R.rid AND R1.uid = $raterId AND R1.rid = Re.rid AND R.staff< R1.staff";
         $s    = $conn->query($q);
