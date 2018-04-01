@@ -9,7 +9,14 @@ abstract class Model implements JsonSerializable {
     
     private $id;
     
-    public function __construct(){}
+    private $loaded = false;
+    
+    public function __construct(int $id = null){
+        if($id != null){
+            $this->loaded = true;
+            $this->setId($id);
+        }
+    }
     
     public function setId(int $id): void {
         $this->id = $id;
@@ -18,6 +25,10 @@ abstract class Model implements JsonSerializable {
     public function getId(): int {
         return $this->id;
     }
+    
+    public function isLoaded(): bool {
+        return $this->loaded;
+    }    
     
     public function getData(): Array {
         $conn = Connection::init()->getConnection();

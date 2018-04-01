@@ -8,22 +8,9 @@
 class Restaurant extends Model {
 
     const PRIMARY_KEY = 'rid';
-    
-    private $loaded = false;
-    
+        
     public function getPK(): string {
         return self::PRIMARY_KEY;
-    }
-    
-    public function isLoaded(): bool {
-        return $this->loaded;
-    }
-
-    public function __construct(int $id = null){
-        if($id != null){
-            $this->loaded = true;
-            $this->setId($id);
-        }
     }
         
     public function insert(int $id, string $name, string $type, string $url): int{
