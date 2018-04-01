@@ -40,7 +40,7 @@ where P.uid=R.uid and R.rid= Re.rid and Re.rid=100400
 GROUP BY P.name, P.uid order by count DESC;
 
 --g-restuarants that has not been rated in january in 2015
-select Re.rid, Re.url, Re.name, L.phone, Re.type 
+select Re.rid, Re.name, L.phone, Re.type, Re.url
 from restaurant as Re, location as L, rating as R
 where Re.rid=L.rid and Re.rid not in (select Res.rid
 						FROM restaurant as Res, rating as Ra
@@ -80,13 +80,15 @@ where Res.name=Rname and Pe.uid=Ra.uid and Ra.rid=Res.rid
 group by Res.name,Pe.name;
 
 
--- [ ] J)
-select Re.type, sum(R.price) as price, sum(R.food) as food, sum(mood) as mood, sum(staff) as staff
-from Restaurant as Re, rating as R
-where Re.rid=R.rid
-Group By Re.type
-order by price desc, food desc, mood desc, staff desc
-limit 1;
+-- [ ] J) (MODEL DONE ->Restaurant.php) RestaurantsTypeMorePopular(string)
+select Res.type
+from  Restaurant as Res, rating as Ra
+where Ra.rid=Res.rid
+group by Res.type
+having sum(Ra.price+ Ra.food + Ra.mood + Ra.staff) >(select sum(R.price+ R.food + R.mood + R.staff) 
+												   from Restaurant as Re, rating as R
+												   where Re.type ='Thai' and R.rid=Re.rid)
+order by  sum(Ra.price+ Ra.food + Ra.mood + Ra.staff) desc;
 
 
 -- [ ] k) Find the names, join‐date and reputations of the raters that give the highest overall rating, in terms of the Food and the Mood of restaurants. Display this information together with the names of the restaurant and the dates the ratings were done.

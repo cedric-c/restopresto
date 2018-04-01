@@ -13,7 +13,7 @@ try {
 	//var_dump($result);
 
 	//$model  = new Restaurant();
-	//$result = $model->HighestRatedInType("Canadian");
+	//$result = $model->RestaurantsTypeMorePopular("Thai");
 	//var_dump($result);
 	
 

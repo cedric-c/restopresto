@@ -129,9 +129,24 @@ class Restaurant extends Model {
                  WHERE Re.type= '$restaurantType' AND Re.rid=R.rid AND P.uid=R.uid
                  GROUP BY Re.name
                  ORDER BY f_sum desc
-                 LIMIT 1) as Sum
+                 LIMIT 1) AS Sum
                  WHERE Res.name=Rname AND Pe.uid=Ra.uid AND Ra.rid=Res.rid 
                  GROUP BY Res.name,Pe.name";
+        $s    = $conn->query($q);
+        return $s->fetchAll(PDO::FETCH_ASSOC);
+    }
+    //QUERY J
+    public function RestaurantsTypeMorePopular(string $restaurantType): array {
+        $conn = Connection::init()->getConnection();
+        $q    = "SELECT Res.type
+                 FROM Restaurant AS Res, rating AS Ra
+                 WHERE Ra.rid=Res.rid
+                 GROUP BY Res.type
+                 HAVING sum(Ra.price + Ra.food + Ra.mood + Ra.staff) 
+                 >(SELECT sum(R.price + R.food + R.mood + R.staff) 
+                   FROM Restaurant AS Re, rating AS R
+                   WHERE Re.type ='$restaurantType' AND R.rid = Re.rid)
+                   ORDER BY sum(Ra.price + Ra.food + Ra.mood + Ra.staff) DESC";
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
