@@ -115,6 +115,7 @@ Vue.component('create-rating-item-component', {
             ob.rid     = data.rid;
             var package = JSON.stringify(ob);
             wm.getPackage('restaurant', 'create_review', package, wm.addRatingItem);
+            this.clear();
         },
     }
 });

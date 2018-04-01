@@ -19,6 +19,12 @@ Vue.component('create-resto-component', {
             var r = new Object();
             var newResto = wm.createResto(resto[0]);
             data.restaurants.push(newResto);
+            this.clear();
+        },
+        clear: function(){
+            this.name = '',
+            this.type = '',
+            this.url  = ''
         },
         post: function(){
             var request = new XMLHttpRequest()
