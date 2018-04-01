@@ -43,7 +43,11 @@ abstract class Model implements JsonSerializable {
     }
 
     public function jsonSerialize(): string {
-        $data = $this->getData();
+        if($this->isLoaded())
+            $data = $this->get($this->getId());
+        else
+            $data = $this->getAll();
+        
         return json_encode($data);
     }
     

@@ -6,20 +6,10 @@
  * (c) Copyright 2018 Cédric Clément.
  */
 class ControllerDashboard extends Controller {
-
-    const GET_LOCATION          = 'get_location';  // a2
-    const GET_MENU              = 'get_menu';      // c1 d2
-    const GET_MOST_EXPENSIVE    = 'get_most_expensive'; // d1
-    const GET_MANAGER_INFO      = 'get_manager_info';
-    const NEW_MENU_ITEM         = 'new_menu_item';
-    const DELETE_MENU_ITEM      = 'delete_menu_item';
-    const GET_RATINGS           = 'get_ratings';
-
-    const INSERT_REVIEW         = 'create_review';
-    const DELETE                = 'delete';
-    const GET_HIGHEST_RATERS    = 'get_high_raters';
     
-
+    // I)
+    const GET_HIGHEST_RATED_FOOD = 'highest_rated_food';
+    
     /**
      * The location for all the app's files.
      */
@@ -43,9 +33,18 @@ class ControllerDashboard extends Controller {
     
     
     public function processPost(array $post): void {
-        Response::add('payload', $post);
-        Response::add('custom', ';)');
-        Response::add('state', 'success');
+        $data = json_decode($post['data'], true);
+        $action = $post['action'];
+        
+        if($action == self::GET_HIGHEST_RATED_FOOD){
+            $model = new Restaurant();
+            $d = $model->highestRatedInType($post['data']);
+            Response::add('state', 'success');
+            Response::add('payload',$d);
+        } else {
+            Response::add('state', 'error');
+            Response::add('message', 'Unknown command');            
+        }
         Response::send();
             
     }

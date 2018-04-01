@@ -16,16 +16,16 @@ class Dashboard extends App {
     }    
         
     public function getData(): Array {
-        $e_data     = new Restaurant();
+        $R     = new Restaurant();
         
-        $exercise_e = [
-            'data' => $e_data->getAverageTypeCategory(),
-            'columns' => ['average', 'category', 'type']
-        ];        
+
+        
         
         $r = [
-            'exercise_e' => $exercise_e
+            'types'=>$R->getTypes(),
+            'exercise_e' => $R->getAverageTypeCategory(),
         ];
+        
         return $r;
     }
     

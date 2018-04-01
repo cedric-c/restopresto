@@ -28,16 +28,7 @@ class Restaurant extends Model {
         $r = $s->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
-    
-    public function jsonSerialize(): string {
-        if($this->isLoaded())
-            $data = $this->get($this->getId());
-        else
-            $data = $this->getAll();
         
-        return json_encode($data);
-    }
-    
     public function getAll(): array{
         return $this->getAllWithNumber();
     }
@@ -110,6 +101,7 @@ class Restaurant extends Model {
                   WHERE Re.rid=L.rid and Re.rid =R.rid and R1.uid = $raterId and R1.rid=Re.rid AND R.staff< R1.staff
                  GROUP BY Re.name, L.opened,Re.rid)
                  ORDER BY opened desc";
+
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -117,7 +109,7 @@ class Restaurant extends Model {
     // I) 
     public function highestRatedInType(string $restaurantType): array {
         $conn = Connection::init()->getConnection();
-        $q    = "SELECT Res.name,Pe.name
+        $q    = "SELECT Res.name as rname, Pe.name as pname
                  FROM restaurant AS Res, Rating AS Ra, person AS Pe,
                 (SELECT Re.name AS Rname, sum(R.food) AS f_sum
                  FROM restaurant AS Re, rating AS R, person AS P

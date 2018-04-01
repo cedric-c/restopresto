@@ -21,13 +21,5 @@ class Person extends Model {
         $query = "INSERT INTO $table (uid, email, name, joined, type, reputation) VALUES ('$id','$email', '$name','$date', '$type', '$rep')";
         return $conn->exec($query);
     }    
-    
-    // public function jsonSerialize(): string {
-        // if($this->isLoaded())
-            // $data = $this->get($this->getId());
-        // else
-            // $data = $this->getAll();
-        // return json_encode($data);
-    // }
-    
+        
 }

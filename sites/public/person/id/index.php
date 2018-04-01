@@ -7,7 +7,7 @@
  */
 require_once('core.php');
 try {
-    $model = new Person();
+    $model = new Person( (int) $_GET['id']);
     $controller = ControllerPerson::getInstance();
     $view = new ViewPerson($controller, $model);
     echo $view->render();

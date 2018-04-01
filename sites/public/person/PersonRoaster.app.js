@@ -7,7 +7,7 @@ var mixin = {
     methods: {
         getPackage: function(application, action, data, callback){
             var r = new XMLHttpRequest();
-            r.open('POST', '../../dispatch/index.php');
+            r.open('POST', '../dispatch/index.php');
             r.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             r.send('application='+application+'&action='+action+'&data='+data);
             // var self = this;
@@ -53,7 +53,8 @@ Vue.component('user-item-component',{
             this.getPackage('person-roaster', 'delete_user',this.uid, wm.removeUser);
         },
         visitProfile: function(){
-            console.log('visiting profile for user with id '+this.uid);
+            // console.log('visiting profile for user with id '+this.uid);
+            window.location.href="/person/id/index.php?id="+this.uid;
         },
     }
     
