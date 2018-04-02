@@ -76,6 +76,7 @@ class Restaurant extends Model {
                 GROUP BY P.name,P.reputation,Rat.comment,M.name,M.price";
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
+
     }
     
     // H) 678015
@@ -123,7 +124,7 @@ class Restaurant extends Model {
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
     //QUERY J
-    public function RestaurantsTypeMorePopular(string $restaurantType): array {
+    public function restaurantsTypeMorePopular(string $restaurantType): array {
         $conn = Connection::init()->getConnection();
         $q    = "SELECT Res.type
                  FROM Restaurant AS Res, rating AS Ra

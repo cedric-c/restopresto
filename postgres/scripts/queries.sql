@@ -135,13 +135,14 @@ where Pe.uid in (select P1.uid
 -- [ ] M)-(MODEL DONE->Restaurant.php) getFrequentRaters(int)
 select P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
 from Person as P, Rating as R,RatingItem as Rat, MenuItem as M, (select R1.uid as Rater,count(*) as count
-																 from Person as P,Restaurant as Res, Rating as R1
-																 where Res.name ='Kochin Kitchen'and P.uid=R1.uid and R1.rid=Res.rid
-																 group by R1.uid
-																 order by count desc
-																 limit 1) as MostFrequent
+																 					from Person as P,Restaurant as Res, Rating as R1
+																 					where Res.rid =100300 and P.uid=R1.uid and R1.rid=Res.rid
+																 					group by R1.uid
+																 					order by count desc
+																 					limit 1) as MostFrequent
 where R.uid =Rater and P.uid=R.uid and Rat.uid= R.uid and M.mid = Rat.mid and M.rid = R.rid
 Group by P.name,P.reputation,Rat.comment,M.name,M.price;
+
 
 -- [ ] N) The name should be 'John' but I changed it to 'Sacha' to test to make sure the query is work
 select P.name,P.email
@@ -150,7 +151,7 @@ where R.uid=P.uid and Res.rid=R.rid
 group by P.name,P.email
 having sum(R.price +R.food +R.mood+ R.staff)<(select sum(R1.price +R1.food +R1.mood+ R1.staff)
 											  from Rating as R1 INNER JOIN Person as P1 ON (R1.uid=P1.uid)
-											  where P1.name like 'Sacha%');
+											  where P1.name like 'Sasha%');
 
 -- [ ] O)-- This prints out all rating starting with the most diverse rater to the least
 SELECT P.name, P.type, P.email, Res.name, Ra.price, Ra.food, Ra.mood, Ra.staff, MAX(RatingsApart) as HighestApart

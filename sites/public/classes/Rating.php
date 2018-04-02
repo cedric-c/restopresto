@@ -48,5 +48,56 @@ class Rating extends Model {
       $s = $conn->query("SELECT p.name as name, r.date_rated, r.uid, r.price, r.food, r.mood, r.staff, r.comment, r.rid from rating r, person p where r.rid='$restaurantId' and p.uid=r.uid");
       return $s->fetchAll(PDO::FETCH_ASSOC);
     }
+  // Query N
+  public function ratersBelowAllJohns(): array {
+      $conn = Connection::init()->getConnection();
+      $q    = "SELECT P.name,P.email
+               FROM Rating AS R, Person AS P, Restaurant AS Res 
+               WHERE R.uid=P.uid AND Res.rid=R.rid
+               GROUP BY P.name,P.email
+               HAVING sum(R.price +R.food +R.mood+ R.staff)
+               <(SELECT sum(R1.price +R1.food +R1.mood+ R1.staff)
+                FROM Rating AS R1 INNER JOIN Person AS P1 ON (R1.uid=P1.uid)
+                WHERE P1.name LIKE 'John%')";
+      $s    = $conn->query($q);
+      return $s->fetchAll(PDO::FETCH_ASSOC);
+  }
+  //Query O
+  public function mostDiverseRaters(): array {
+    $conn = Connection::init()->getConnection();
+    $q    = "SELECT P.name, P.type, P.email, Res.name, Ra.price, Ra.food, Ra.mood, Ra.staff, 
+             MAX(RatingsApart) AS HighestApart
+             FROM Person AS P,Rating AS Ra,Restaurant AS Res,
+             (SELECT P1.uid AS PersonId,P1.type AS Type, 
+             (MAX(R.price +R.food +R.mood+ R.staff) - MIN(R.price +R.food +R.mood+ R.staff)) AS RatingsApart
+             FROM Rating R
+             INNER JOIN Person AS P1 ON (P1.uid = R.uid) 
+             INNER JOIN Restaurant AS Re ON (Re.rid =R.rid)
+             GROUP BY P1.uid, P1.type) AS Personsdata
+             WHERE P.uid=PersonId AND Ra.uid=P.uid AND Res.rid=Ra.rid
+             GROUP BY P.name,P.type, P.email, Res.name, Ra.comment, Ra.price, Ra.food, Ra.mood, Ra.staff
+             ORDER BY HighestApart DESC";
+    $s    = $conn->query($q);
+    return $s->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  //QUERY K
+  public function highestOverallRaters():array{
+    $conn = Connection::init()->getConnection();
+    $q    = "SELECT Pe.name,Pe.joined, Pe.reputation, Re.name, R.date_rated
+             FROM Rating AS R, Person AS Pe, Restaurant AS Re
+             WHERE Pe.uid IN (SELECT P1.uid
+             FROM Person AS P1
+             GROUP BY P1.uid
+             HAVING (SELECT AVG(ra.mood + ra.food)
+             FROM Rating as Ra
+             WHERE Ra.uid=P1.uid)>= All(SELECT avg(Rat.mood +Rat.food)
+                          FROM Rating AS Rat, person AS p2
+                          WHERE Rat.uid = p2.uid
+                          GROUP BY p2.uid))
+            AND R.uid = Pe.uid AND R.rid = Re.rid";
+    $s    = $conn->query($q);
+    return $s->fetchAll(PDO::FETCH_ASSOC);
+  }
 
 }

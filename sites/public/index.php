@@ -8,6 +8,10 @@
 require_once('core.php');
 	
 try {
+	//$model = new Rating();
+	//$result= $model->highestOverallRaters();
+	//var_dump ($result);
+
     $app = new App();
     $view = new Webpage($app);
     echo $view->render();
