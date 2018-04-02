@@ -64,16 +64,16 @@ class Restaurant extends Model {
     // M) 
     public function getFrequentRaters(int $restaurantId): array {
         $conn = Connection::init()->getConnection();
-        $q    = "SELECT P.name as pname,P.reputation,Rat.comment,M.name as mname,M.price, count(*)
-                FROM Person AS P, Rating AS R,RatingItem AS Rat, MenuItem AS M, 
-                (SELECT R1.uid AS Rater,count(*) AS count
-                FROM Person AS P,Restaurant AS Res, Rating AS R1
-                WHERE Res.rid = $restaurantId AND P.uid=R1.uid AND R1.rid=Res.rid
-                GROUP BY R1.uid
-                ORDER BY count desc
-                LIMIT 1) AS MostFrequent
-                WHERE R.uid =Rater AND P.uid=R.uid AND Rat.uid= R.uid AND M.mid = Rat.mid AND M.rid = R.rid
-                GROUP BY P.name,P.reputation,Rat.comment,M.name,M.price";
+        $q    = "SELECT R.rid,P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
+                 FROM Person AS P, Rating AS R,RatingItem AS Rat, MenuItem AS M, 
+                 (SELECT R1.uid AS Rater,Res.rid AS Restaurant, count(*) AS count
+                 FROM Person AS P,Restaurant AS Res, Rating AS R1
+                 WHERE Res.rid =100500 AND P.uid=R1.uid AND R1.rid=Res.rid
+                 GROUP BY R1.uid, Res.rid
+                 ORDER BY count DESC
+                 LIMIT 1) AS MostFrequent
+                 WHERE R.uid =Rater AND R.rid=Restaurant AND P.uid=R.uid AND Rat.uid= R.uid AND M.mid = Rat.mid AND M.rid = R.rid
+                 GROUP BY R.rid,P.name,P.reputation,Rat.comment,M.name,M.price";
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
 
