@@ -24,7 +24,14 @@
         <title><?php echo $appName ;?></title>
     </head>
     <body>
-
+    <template id="serverMessage">
+        <div id="serverMessage" class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          {{message}}
+        </div>        
+    </template>
     <template id="login">
         <div>
             <button id="myModalTrigger" @click="showModal" class="btn btn-primary" type="button" data-toggle="modal" data-target="#myModal">Login</button>
@@ -89,6 +96,7 @@
                 <h1><?php echo $appName ;?></h1>
             </div>
         </div>
+        
         <div id="app" class="container">
             <header>
             <div id="app-data" style="display: none;" data="<?php echo $data;?>"></div>

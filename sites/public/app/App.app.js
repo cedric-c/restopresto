@@ -50,6 +50,11 @@ var data = {
     apps: [],
 };
 
+Vue.component('message-component', {
+    template: '#serverMessage',
+    mixins:[mixin],
+});
+
 Vue.component('app-component', {
     props:['data'],
     methods: {
