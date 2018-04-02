@@ -49,16 +49,18 @@ where Re.rid=L.rid and Re.rid not in (select Res.rid
 Group by Re.rid, Re.url, Re.name,L.phone, Re.type; 
 ------------------------------------------------------------------------------------------
 -- This prints the restaurants with now ratings to but those restaurant repeats, not sure how to fix this.
-select Re.rid, Re.name, L.phone, Re.type, Re.url 
+
+
+
+(select Re.rid 
 from restaurant as Re, location as L, rating as R
 where Re.rid=L.rid and Re.rid not in (select Res.rid
 						FROM restaurant as Res, rating as Ra
 						WHERE Res.rid =Ra.rid and extract(year from Ra.date_rated) = 2015  AND extract(month from Ra.date_rated)  = 1
 						group by Res.rid)
-	 or NOT EXISTS (SELECT * 
-                   FROM   rating as Ra 
-                   WHERE Re.rid =Ra.rid)
-Group by Re.rid, Re.url, Re.name,L.phone, Re.type;
+	 or Re.rid not in (SELECT distinct rid 
+                   FROM rating)
+Group by Re.rid);
 
 
 
