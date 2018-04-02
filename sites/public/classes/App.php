@@ -44,6 +44,6 @@ class App implements Renderable {
     }
     
     public function render(): string {
-        return '<h1>Welcome to RestoPresto!</h1><p class=txtb>Some available applications:</p><applications-component></applications-component>';
+        return '<login-component></login-component><h1>Welcome to RestoPresto!</h1><p class=txtb>Some available applications:</p><applications-component></applications-component>';
     }
 }

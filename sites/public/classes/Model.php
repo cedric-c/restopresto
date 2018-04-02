@@ -75,7 +75,7 @@ abstract class Model implements JsonSerializable {
             throw new Exception("Must have an attribute value to compare to. Value cannot be null ($attribute)");
         $conn = Connection::init()->getConnection();
         $table = get_called_class();
-        $s = $conn->query("select * from $table where $attribute=$value");
+        $s = $conn->query("select * from $table where $attribute='$value'");
         $r = $s->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }

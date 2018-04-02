@@ -66,7 +66,6 @@ Vue.component('frequent-raters-list-component',{
             this.getPackage('restaurant', 'get_frequent_raters', data.rid,this.setFrequentRaters);
         },
         setFrequentRaters: function(response){
-            console.log(response);
             this.raters = response.payload;
         },
     },
