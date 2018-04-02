@@ -86,6 +86,52 @@
             </div>
           </div>
         </template>        
+
+
+        <template id="most-diverse-list">
+          <div class="panel panel-default">
+            <div class="panel panel-heading"><h3 class="panel-title">Most Diverse Raters</h3></div>
+            <div class="panel-body">
+                <transition-group tag="ul" name="list">
+                  <div class="row recordObject mg5" v-for="(o, index) in raters" :key="index">
+                    <div class="row">
+                        <div class="col-xs-12"><b>{{o.pname}}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><b> {{o.email}}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><b> {{o.rname}}</b></div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3"><b>Food</b>: {{o.food}} </div>
+                        <div class="col-xs-3"><b>Mood</b>: {{o.mood}} </div>
+                        <div class="col-xs-3"><b>Price</b>: {{o.price}} </div>
+                        <div class="col-xs-3"><b>Staff</b>: {{o.staff}} </div>
+                    </div>
+                  </div>
+                </transition-group>
+            </div>
+          </div>
+        </template>
+
+        <template id="raters-below-john-list">
+          <div class="panel panel-default">
+            <div class="panel panel-heading"><h3 class="panel-title">Raters Below John</h3></div>
+            <div class="panel-body">
+                <transition-group tag="ul" name="list">
+                  <div class="row recordObject mg5" v-for="(o, index) in raters" :key="index">
+                    <div class="row">
+                        <div class="col-xs-12"><b>{{o.name}}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><b> {{o.email}}</b></div>
+                    </div>
+                  </div>
+                </transition-group>
+            </div>
+          </div>
+        </template>
         
         <template id="user-item">
             <div class="recordObject">
@@ -146,6 +192,10 @@
               <div class="row">
                   <div class="col-xs-6"><highest-overall-and-component></highest-overall-and-component></div>
                   <div class="col-xs-6"><highest-overall-or-component></highest-overall-or-component></div>
+              </div>
+              <div class="row">
+                  <div class="col-xs-6"><most-diverse-component></most-diverse-component></div>
+                  <div class="col-xs-6"><raters-below-john-component></raters-below-john-component></div>
               </div>
               <div class="row">
                   <div class="col-xs-12">

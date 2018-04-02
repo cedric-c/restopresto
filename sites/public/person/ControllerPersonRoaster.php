@@ -11,6 +11,8 @@ class ControllerPersonRoaster extends Controller {
     const DELETE_USER = 'delete_user';
     const GET_HIGHEST_RATERS_FOOD_AND_MOOD = 'highest_raters_food_and_mood';
     const GET_HIGHEST_RATERS_FOOD_OR_MOOD  = 'highest_raters_food_or_mood';
+    const GET_MOST_DIVERSE = 'get_most_diverse';
+    const GET_RATERS_BELOW_JOHN = 'raters_below_john';
 
     /**
      * The location for all the app's files.
@@ -58,6 +60,16 @@ class ControllerPersonRoaster extends Controller {
                     Response::add('state', 'error');
                     Response::add('message', 'could not create user');
                 }
+            } else if ($action == self::GET_MOST_DIVERSE) {
+                $model = new Rating();
+                $r = $model->mostDiverseRaters();
+                Response::add('state', 'success');
+                Response::add('payload', $r);
+            } else if ($action == self::GET_RATERS_BELOW_JOHN) {
+                $model = new Rating();
+                $r = $model->ratersBelowAllJohns();
+                Response::add('state', 'success');
+                Response::add('payload', $r);
             } else if ($action == self::DELETE_USER) {
                 Response::add('payload', $data);
                 try{
