@@ -65,18 +65,18 @@ class Rating extends Model {
   //Query O
   public function mostDiverseRaters(): array {
     $conn = Connection::init()->getConnection();
-    $q    = "SELECT P.name as pname, P.type, P.email, Res.name as rname, Ra.price, Ra.food, Ra.mood, Ra.staff, 
-             MAX(RatingsApart) AS HighestApart
-             FROM Person AS P,Rating AS Ra,Restaurant AS Res,
-             (SELECT P1.uid AS PersonId,P1.type AS Type, 
-             (MAX(R.price +R.food +R.mood+ R.staff) - MIN(R.price +R.food +R.mood+ R.staff)) AS RatingsApart
-             FROM Rating R
-             INNER JOIN Person AS P1 ON (P1.uid = R.uid) 
-             INNER JOIN Restaurant AS Re ON (Re.rid =R.rid)
-             GROUP BY P1.uid, P1.type) AS Personsdata
-             WHERE P.uid=PersonId AND Ra.uid=P.uid AND Res.rid=Ra.rid
-             GROUP BY P.name,P.type, P.email, Res.name, Ra.comment, Ra.price, Ra.food, Ra.mood, Ra.staff
-             ORDER BY HighestApart DESC";
+    $q    = "SELECT P.name, P.type, P.email, Res.name, Ra.price, Ra.food, Ra.mood, Ra.staff, 
+            MAX(RatingsApart) AS HighestApart
+            FROM Person as P,Rating AS Ra,Restaurant AS Res,(SELECT P1.uid AS PersonId,P1.type AS Type, (MAX(R.price +R.food +R.mood+ R.staff) - MIN(R.price +R.food +R.mood+ R.staff)) AS RatingsApart
+            FROM Rating R
+            INNER JOIN Person AS P1 ON (P1.uid = R.uid) 
+            INNER JOIN Restaurant AS Re ON (Re.rid = R.rid)
+            GROUP BY P1.uid, P1.type
+            ORDER BY RatingsApart DESC
+            LIMIT 3) AS Personsdata
+            WHERE P.uid=PersonId AND Ra.uid=P.uid AND Res.rid=Ra.rid
+            GROUP BY P.name,P.type, P.email, Res.name, Ra.comment, Ra.price, Ra.food, Ra.mood, Ra.staff
+            ORDER BY HighestApart DESC";
     $s    = $conn->query($q);
     return $s->fetchAll(PDO::FETCH_ASSOC);
   }

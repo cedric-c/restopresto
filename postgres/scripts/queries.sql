@@ -167,8 +167,11 @@ FROM Person as P,Rating as Ra,Restaurant as Res,(SELECT P1.uid as PersonId,P1.ty
      			  FROM Rating R
 	              		INNER JOIN Person as P1 ON (P1.uid = R.uid) 
 				  		INNER JOIN Restaurant as Re ON (Re.rid =R.rid)
-                  GROUP BY P1.uid, P1.type) as Personsdata
+                  GROUP BY P1.uid, P1.type
+				  ORDER BY RatingsApart DESC
+				  LIMIT 3) as Personsdata
 where P.uid=PersonId and Ra.uid=P.uid and Res.rid=Ra.rid
 GROUP BY P.name,P.type, P.email, Res.name, Ra.comment, Ra.price, Ra.food, Ra.mood, Ra.staff
 ORDER BY HighestApart DESC;
+
 
