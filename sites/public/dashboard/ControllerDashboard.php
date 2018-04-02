@@ -10,6 +10,9 @@ class ControllerDashboard extends Controller {
     // I)
     const GET_HIGHEST_RATED_FOOD = 'highest_rated_food';
     
+    // J)
+    const GET_MORE_POPULAR_THAN_TYPE = 'more_popular_than_type';
+    
     /**
      * The location for all the app's files.
      */
@@ -41,6 +44,11 @@ class ControllerDashboard extends Controller {
             $d = $model->highestRatedInType($post['data']);
             Response::add('state', 'success');
             Response::add('payload',$d);
+        } else if ($action == self::GET_MORE_POPULAR_THAN_TYPE){
+            $model = new Restaurant();
+            $d = $model->getMorePopularThanType($post['data']);
+            Response::add('state', 'success');
+            Response::add('payload', $d);
         } else {
             Response::add('state', 'error');
             Response::add('message', 'Unknown command');            

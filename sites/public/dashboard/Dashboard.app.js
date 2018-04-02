@@ -36,6 +36,28 @@ var mixin = {
     }
 }
 
+Vue.component('more-popular-component',{
+    template:'#more-popular-list',
+    props:['types'],
+    mixins:[mixin],
+    data:function(){
+        return {
+            restaurants: [],
+            type: this.types[0],
+        }
+    },
+    created: function(){
+        this.getMorePopular();
+    },
+    methods: {
+        setMorePopular: function(response){
+            this.restaurants = response.payload;
+        },
+        getMorePopular: function(){
+            this.getPackage('dashboard', 'more_popular_than_type',this.type, this.setMorePopular)
+        },
+    },
+});
 
 Vue.component('highest-rated-component', {
     template:'#highest-rated-list',
@@ -48,7 +70,7 @@ Vue.component('highest-rated-component', {
         }
     },
     created: function(){
-        this.getPackage('dashboard', 'highest_rated_food', this.type, this.setHighestRated);
+        this.getHighestRated();
     },
     methods: {
         setHighestRated: function(response){

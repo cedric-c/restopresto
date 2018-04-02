@@ -15,10 +15,10 @@ class ControllerRestaurant extends Controller {
     const DELETE_MENU_ITEM      = 'delete_menu_item';
     const GET_RATINGS           = 'get_ratings';
     const GET_RATING_COUNTS     = 'get_rating_counts';
-    
     const INSERT_REVIEW         = 'create_review';
     const DELETE                = 'delete';
     const GET_HIGHEST_RATERS    = 'get_high_raters';
+    const GET_FREQUENT_RATERS   = 'get_frequent_raters'; // M
     
 
     /**
@@ -62,6 +62,10 @@ class ControllerRestaurant extends Controller {
             $result     = $menuModel->getMenuByCategory((int) $data);
             Response::add('state', 'success');
             Response::add('payload', $result);
+        } else if ($action == self::GET_FREQUENT_RATERS) {
+            $d = $model->getFrequentRaters($data);
+            Response::add('state', 'success');
+            Response::add('payload', $d);
         } else if ($action == self::DELETE_MENU_ITEM) {
             try{
                 $model  = new MenuItem();
@@ -105,7 +109,7 @@ class ControllerRestaurant extends Controller {
         } else if ($action == self::INSERT_REVIEW) {
             try {
                 $model = new Rating();
-                $uid = 678004; // TODO: THIS WILL BE CHANGED ONCE WE GET SESSION GOING
+                $uid = ControllerSession::getUserId();
                 $p = (float) $data['price'];
                 $f = (float) $data['food'];
                 $m = (float) $data['mood'];
