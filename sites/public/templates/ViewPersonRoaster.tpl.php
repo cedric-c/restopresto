@@ -40,6 +40,53 @@
             </div>
         </template>
         
+        <template id="highest-overall-and-list">
+          <div class="panel panel-default">
+            <div class="panel panel-heading"><h3 class="panel-title">Highest Overall by Food and Mood</h3></div>
+            <div class="panel-body">
+                <transition-group tag="ul" name="list">
+                  <div class="row recordObject mg5" v-for="(o, index) in raters" :key="index">
+                    <div class="row">
+                        <div class="col-xs-9"><b>{{o.pname}}</b></div>
+                        <div class="col-xs-3"><b> {{o.reputation}}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">joined {{o.joined}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">rated <b>{{o.rname}}</b> on </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">{{o.date_rated}}</div>
+                    </div>
+                  </div>
+                </transition-group>
+            </div>
+          </div>
+        </template>
+
+        <template id="highest-overall-or-list">
+          <div class="panel panel-default">
+            <div class="panel panel-heading"><h3 class="panel-title">Highest Overall by Food or Mood</h3></div>
+            <div class="panel-body">
+                <transition-group tag="ul" name="list">
+                  <div class="row recordObject mg5" v-for="(o, index) in raters" :key="index">
+                    <div class="row">
+                        <div class="col-xs-9"><b>{{o.pname}}</b></div>
+                        <div class="col-xs-3"><b> {{o.reputation}}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">rated <b>{{o.rname}}</b> on </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">{{o.date_rated}}</div>
+                    </div>
+                  </div>
+                </transition-group>
+            </div>
+          </div>
+        </template>        
+        
         <template id="user-item">
             <div class="recordObject">
                 <div class="row">
@@ -91,9 +138,20 @@
             <div id="app-data" style="display: none;" data="<?php echo $data;?>"></div>
             </header>
             <div id="main_content">
-              
-              <create-person-component></create-person-component>
-              <user-list-component></user-list-component>
+              <div class="row">
+                <div class="col-xs-12">
+                  <create-person-component></create-person-component>
+                </div>
+            </div>
+              <div class="row">
+                  <div class="col-xs-6"><highest-overall-and-component></highest-overall-and-component></div>
+                  <div class="col-xs-6"><highest-overall-or-component></highest-overall-or-component></div>
+              </div>
+              <div class="row">
+                  <div class="col-xs-12">
+                      <user-list-component></user-list-component>
+                  </div>
+              </div>
             </div>
         </div>
 

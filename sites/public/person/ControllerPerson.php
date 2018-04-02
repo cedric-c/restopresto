@@ -41,36 +41,8 @@ class ControllerPerson extends Controller {
             $result = $model->staffRateLowerThanRater($data);
             Response::add('state', 'success');
             Response::add('payload', $result);
-        } else if ($action == '') {
-            $id = (int) $model->getNextId();
-            $name = $data['name'];
-            $type = $data['type'];
-            $url  = $data['url'];
-            // echo 'nextid: ',$id;
-            $result = $model->insert($id, $name, $type, $url);
-            if ($result == 1){
-                $newResto = $model->get($id);
-                Response::add('payload', $newResto);
-                Response::add('state', 'success');
-            } else {
-                Response::add('state', 'error');
-                Response::add('message', 'Could not create restaurant');
-            }
-        } else if ($action == '') {
-            $menuModel  = new MenuItem();
-            $result     = $menuModel->getKeyValue('rid', $data);
-            Response::add('payload', $result);
-            Response::add('state', 'success');
-        
-        } else if ($action == '') {
-            $data       = $model->getAll();
-            Response::add('payload', $data);
-            Response::add('state', 'success');
-                
-        } else if ($action == '') {
-            $result         = $model->getUnrated();
-            Response::add('payload',$result);
-            Response::add('state', 'success');
+        // } else if ($action == '') {
+
         } else {
             Response::add('state', 'error');
             Response::add('message', 'Unknown command');

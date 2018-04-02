@@ -17,6 +17,7 @@ require_once('classes/Webpage.php');
 require_once('classes/Rating.php');
 require_once('classes/Response.php');
 require_once('classes/MenuItem.php');
+require_once('classes/ControllerSession.php');
 
 // Restaurant App
 require_once('restaurant/Restaurant.php');

@@ -64,7 +64,7 @@ class Restaurant extends Model {
     // M) 
     public function getFrequentRaters(int $restaurantId): array {
         $conn = Connection::init()->getConnection();
-        $q    = "SELECT P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
+        $q    = "SELECT P.name as pname,P.reputation,Rat.comment,M.name as mname,M.price, count(*)
                 FROM Person AS P, Rating AS R,RatingItem AS Rat, MenuItem AS M, 
                 (SELECT R1.uid AS Rater,count(*) AS count
                 FROM Person AS P,Restaurant AS Res, Rating AS R1
@@ -123,8 +123,9 @@ class Restaurant extends Model {
         $s    = $conn->query($q);
         return $s->fetchAll(PDO::FETCH_ASSOC);
     }
+
     //QUERY J
-    public function restaurantsTypeMorePopular(string $restaurantType): array {
+    public function getMorePopularThanType(string $restaurantType): array {
         $conn = Connection::init()->getConnection();
         $q    = "SELECT Res.type
                  FROM Restaurant AS Res, rating AS Ra

@@ -79,6 +79,21 @@
       
       
       </template>
+      
+      <template id="frequent-raters-list">
+        <div class="panel panel-default">
+          <div class="panel panel-heading"><h3 class="panel-title">Most Frequent Raters</h3></div>
+          <div class="panel-body">
+            <transition-group tag="ul" name="list">
+              <div class="row recordObject mg5" v-for="(o, index) in raters" :key="index">
+                {{o.pname}} -- {{o.mname}}
+                {{o.comment}} {{o.price}}
+                {{o.reputation}}
+              </div>
+            </transition-group>
+          </div>
+        </div>
+      </template>
 
         <div class="masthead">
             <div class="container">
@@ -178,16 +193,23 @@
                     
                     
                       <div class="row">
+                        <div class="col-xs-6">
+                          
                         <div class="panel panel-default">
                           <div class="panel-heading"><h2 class="panel-title">Rater Counts</h2></div>
                           <div class="panel-body">
-                            <ul><transition-group name="list">
+                            <transition-group tag="ul" name="list">
                               <div class="row menuObject reviews" v-for="(o, index) in rater_counts" :key="o.uid">
                                 <b>{{o.name}}</b>({{o.count}})
                               </div>
-                            </transition-group></ul>
+                            </transition-group>
                           </div>
                         </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <frequent-raters-list-component></frequent-raters-list-component>
+                        </div>
+                        
                       </div>
                       
                       
