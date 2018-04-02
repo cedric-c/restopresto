@@ -138,6 +138,7 @@ INSERT INTO PERSON(uid,email,name,joined,type,reputation)
           (678012,'Bloom101@gmail.com','Orlando Bloom','2007-03-28','Blog',2.8),
           (678013,'Stanley2988@hotmail.com','Stanley Holloway','2004-07-27','Online',3.2),
           (678014,'Helena@gmail.com','Helena Bonham Carter','2009-04-10','Foodcritic',1.5),
+          (-1, 'anon', 'anon', '0001-01-01','none',1),
           (678015,'Natasha.richardson@microsoft.com','Natasha Richardson ','2013-11-30','Online',4.8);
 
 INSERT INTO Location (lid,opened,manager,phone,address,hour_start,hour_end,rid)

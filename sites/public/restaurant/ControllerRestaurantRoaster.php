@@ -76,15 +76,7 @@ class ControllerRestaurantRoaster extends Controller {
             $data       = $model->getAll();
             Response::add('payload', $data);
             Response::add('state', 'success');
-        
-        // } else if ($action == self::GET_LOCATION) {
-            // Response::add('state', 'success');
-            // Response::add('message','UNIMPLEMENTED');
-        
-        // } else if ($action == self::GET_LOCATION) {
-            // Response::add('state', 'success');
-            // Response::add('message','UNIMPLEMENTED');
-        
+                
         } else if ($action == self::GET_UNRATED) {
             $result         = $model->getUnrated();
             Response::add('payload',$result);

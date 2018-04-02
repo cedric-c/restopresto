@@ -109,7 +109,7 @@ class ControllerRestaurant extends Controller {
         } else if ($action == self::INSERT_REVIEW) {
             try {
                 $model = new Rating();
-                $uid = 678004; // TODO: THIS WILL BE CHANGED ONCE WE GET SESSION GOING
+                $uid = ControllerSession::getUserId();
                 $p = (float) $data['price'];
                 $f = (float) $data['food'];
                 $m = (float) $data['mood'];

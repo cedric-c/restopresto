@@ -42,6 +42,14 @@ class ControllerSession extends Controller {
         return $_SESSION;
     }
     
+    public static function getUserId(): int {
+        if(!self::isActive())
+            return -1;
+        
+        $s = self::getSession();
+        return $s['uid'];
+    }
+    
     public static function isActive(): bool {
         session_start();
         return $_SESSION != [];
@@ -61,7 +69,6 @@ class ControllerSession extends Controller {
         session_destroy();
         
     }
-    
     
     public function processPost(array $post): void {
         $data = json_decode($post['data'], true);
@@ -84,13 +91,30 @@ class ControllerSession extends Controller {
             }
             
         } else if($action == self::REGISTER){
+            // currently an issue w.r.t logins as emails should be unique, but there is no constraint for them to be so
+            // also, should check that email DNE
+            $newId = (int) $model->getNextId();
             $pw    = $data['password'];
             $email = $data['email'];
             $name  = $data['name'];
             $type  = $data['type'];
+            $rep   = 0;
+            // this is buggy, can cause problems, place in try-catch
+            $result = $model->insert($newId, $name, $email, $type, $rep);
+            if($result == 1){
+                $user = $model->get($newId);
+                self::startSession($newId);
+                Response::add('state', 'success');
+                Response::add('message', 'creating session');
+            } else {
+                Response::add('state', 'error');
+                Response::add('message', 'could not register user');
+            }
             
             Response::add('state', 'success');
+
         } else if ($action == self::LOGOUT){
+
             $this->killSession();
             Response::add('state', 'success');
             Response::add('message', 'Successfully logged out');
