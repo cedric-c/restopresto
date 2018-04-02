@@ -81,23 +81,4 @@ class Rating extends Model {
     return $s->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  //QUERY K
-  public function highestOverallRaters():array{
-    $conn = Connection::init()->getConnection();
-    $q    = "SELECT Pe.name,Pe.joined, Pe.reputation, Re.name, R.date_rated
-             FROM Rating AS R, Person AS Pe, Restaurant AS Re
-             WHERE Pe.uid IN (SELECT P1.uid
-             FROM Person AS P1
-             GROUP BY P1.uid
-             HAVING (SELECT AVG(ra.mood + ra.food)
-             FROM Rating as Ra
-             WHERE Ra.uid=P1.uid)>= All(SELECT avg(Rat.mood +Rat.food)
-                          FROM Rating AS Rat, person AS p2
-                          WHERE Rat.uid = p2.uid
-                          GROUP BY p2.uid))
-            AND R.uid = Pe.uid AND R.rid = Re.rid";
-    $s    = $conn->query($q);
-    return $s->fetchAll(PDO::FETCH_ASSOC);
-  }
-
 }
