@@ -55,6 +55,27 @@ Vue.component('highest-overall-and-component',{
     },
 });
 
+Vue.component('most-diverse-component',{
+    template:'#most-diverse-list',
+    mixins:[mixin],
+    data: function(){
+        return {
+            raters: [],
+        }
+    },
+    created: function(){
+        this.getMostDiverse();
+    },
+    methods: {
+        getMostDiverse: function(){
+            this.getPackage('person-roaster', 'get_most_diverse', -1, this.setMostDiverse);
+        },
+        setMostDiverse: function(response){
+            this.raters = response.payload;
+        },
+    },
+});
+
 Vue.component('highest-overall-or-component',{
     template:'#highest-overall-or-list',
     mixins:[mixin],
@@ -74,6 +95,28 @@ Vue.component('highest-overall-or-component',{
             this.raters = response.payload;
         },
     },
+});
+
+// seems legit
+Vue.component('raters-below-john-component',{
+    template: '#raters-below-john-list',
+    mixins:[mixin],
+    data: function(){
+        return {
+            raters: [],
+        }
+    },
+    created: function(){
+        this.getRatersBelowJohn();
+    },
+    methods: {
+        getRatersBelowJohn: function(){
+            this.getPackage('person-roaster', 'raters_below_john', -1, this.setRatersBelowJohn);
+        },
+        setRatersBelowJohn: function(response){
+            this.raters = response.payload;
+        },
+    }
 });
 
 Vue.component('user-item-component',{
