@@ -14,11 +14,11 @@ class Person extends Model {
     }
     
     
-    public function insert(int $id, string $name, string $email, string $type, string $rep): int{
+    public function insert(int $id, string $name, string $email,string $password, string $type, string $rep): int{
         $conn = Connection::init()->getConnection();
         $table = get_called_class();
         $date = date("Y-m-d");
-        $query = "INSERT INTO $table (uid, email, name, joined, type, reputation) VALUES ('$id','$email', '$name','$date', '$type', '$rep')";
+        $query = "INSERT INTO $table (uid, email, password, name, joined, type, reputation) VALUES ('$id','$email', '$name','$date', '$type', '$rep')";
         return $conn->exec($query);
     }    
         
