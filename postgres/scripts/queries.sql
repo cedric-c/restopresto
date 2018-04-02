@@ -123,13 +123,20 @@ from Rating as R, Person as Pe, Restaurant as Re
 where Pe.uid in (select P1.uid
 				from Person as P1
 				group by P1.uid
-				having (select avg(ra.mood + ra.food)
+				having (select avg(ra.mood)
 						from Rating as Ra
-						where Ra.uid=P1.uid)>= All(select avg(Rat.mood +Rat.food)
+						where Ra.uid=P1.uid)>= All(select avg(Rat.mood)
 												  from Rating as Rat, person as p2
 												  where Rat.uid = p2.uid
-												  group by p2.uid))
+												  group by p2.uid)
+				OR     (select avg(ra.food)
+							 from Rating as Ra
+						     where Ra.uid=P1.uid)>= All(select avg(Rat.food)
+												        from Rating as Rat, person as p2
+												        where Rat.uid = p2.uid
+												        group by p2.uid))
 			    and R.uid = Pe.uid and R.rid = Re.rid;
+
 
 
 -- [ ] M)-(MODEL DONE->Restaurant.php) getFrequentRaters(int)
