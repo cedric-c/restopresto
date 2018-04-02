@@ -64,7 +64,7 @@ class Restaurant extends Model {
     // M) 
     public function getFrequentRaters(int $restaurantId): array {
         $conn = Connection::init()->getConnection();
-        $q    = "SELECT R.rid,P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
+        $q    = "SELECT P.name,P.reputation,Rat.comment,M.name,M.price, count(*)
                  FROM Person AS P, Rating AS R,RatingItem AS Rat, MenuItem AS M, 
                  (SELECT R1.uid AS Rater,Res.rid AS Restaurant, count(*) AS count
                  FROM Person AS P,Restaurant AS Res, Rating AS R1
