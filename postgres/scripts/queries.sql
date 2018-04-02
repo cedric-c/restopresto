@@ -47,7 +47,22 @@ where Re.rid=L.rid and Re.rid not in (select Res.rid
 						WHERE Res.rid =Ra.rid and extract(year from Ra.date_rated) = 2015  AND extract(month from Ra.date_rated)  = 1
 						group by Res.rid)
 Group by Re.rid, Re.url, Re.name,L.phone, Re.type; 
+------------------------------------------------------------------------------------------
+-- This prints the restaurants with now ratings to but those restaurant repeats, not sure how to fix this.
+select Re.rid, Re.name, L.phone, Re.type, Re.url 
+from restaurant as Re, location as L, rating as R
+where Re.rid=L.rid and Re.rid not in (select Res.rid
+						FROM restaurant as Res, rating as Ra
+						WHERE Res.rid =Ra.rid and extract(year from Ra.date_rated) = 2015  AND extract(month from Ra.date_rated)  = 1
+						group by Res.rid)
+	 or NOT EXISTS (SELECT * 
+                   FROM   rating as Ra 
+                   WHERE Re.rid =Ra.rid)
+Group by Re.rid, Re.url, Re.name,L.phone, Re.type;
 
+
+
+-------------------------------------------------------------------------------------------
 --[ ] h) -- (MODEL DONE->RESTAURANT.php) StaffRateLowerThanRater(int)
 (select Re.name, L.opened as opened,Re.rid
 from restaurant as Re,location as L,rating as R, rating as R1 
@@ -159,7 +174,7 @@ where R.uid=P.uid and Res.rid=R.rid
 group by P.name,P.email
 having sum(R.price +R.food +R.mood+ R.staff)<(select sum(R1.price +R1.food +R1.mood+ R1.staff)
 											  from Rating as R1 INNER JOIN Person as P1 ON (R1.uid=P1.uid)
-											  where P1.name like 'Sasha%');
+											  where P1.name like 'John%');
 
 -- [ ] O)-- This prints out all rating starting with the most diverse rater to the least
 SELECT P.name, P.type, P.email, Res.name, Ra.price, Ra.food, Ra.mood, Ra.staff, MAX(RatingsApart) as HighestApart
