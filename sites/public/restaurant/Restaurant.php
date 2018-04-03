@@ -68,7 +68,7 @@ class Restaurant extends Model {
                  FROM Person AS P, Rating AS R,RatingItem AS Rat, MenuItem AS M, 
                  (SELECT R1.uid AS Rater,Res.rid AS Restaurant, count(*) AS count
                  FROM Person AS P,Restaurant AS Res, Rating AS R1
-                 WHERE Res.rid =100500 AND P.uid=R1.uid AND R1.rid=Res.rid
+                 WHERE Res.rid =$restaurantId AND P.uid=R1.uid AND R1.rid=Res.rid
                  GROUP BY R1.uid, Res.rid
                  ORDER BY count DESC
                  LIMIT 1) AS MostFrequent
