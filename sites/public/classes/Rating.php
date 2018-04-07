@@ -65,7 +65,7 @@ class Rating extends Model {
   //Query O
   public function mostDiverseRaters(): array {
     $conn = Connection::init()->getConnection();
-    $q    = "SELECT P.name, P.type, P.email, Res.name, Ra.price, Ra.food, Ra.mood, Ra.staff, 
+    $q    = "SELECT P.name as pname, P.type, P.email, Res.name as rname, Ra.price, Ra.food, Ra.mood, Ra.staff, 
             MAX(RatingsApart) AS HighestApart
             FROM Person as P,Rating AS Ra,Restaurant AS Res,(SELECT P1.uid AS PersonId,P1.type AS Type, (MAX(R.price +R.food +R.mood+ R.staff) - MIN(R.price +R.food +R.mood+ R.staff)) AS RatingsApart
             FROM Rating R

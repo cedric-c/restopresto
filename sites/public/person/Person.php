@@ -41,7 +41,7 @@ class Person extends Model {
     // L)
     public function getHighestFoodOrMood(): array{
         $c = Connection::init()->getConnection();
-        $q = "SELECT Pe.name,Pe.reputation, Re.name, R.date_rated
+        $q = "SELECT Pe.name as pname,Pe.reputation, Re.name as rname, R.date_rated
              FROM Rating AS R, Person AS Pe, Restaurant AS Re
              WHERE Pe.uid IN (SELECT P1.uid
              FROM Person AS P1
