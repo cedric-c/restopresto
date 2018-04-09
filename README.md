@@ -72,7 +72,7 @@ This repository contains the final project for the Databases I course. This proj
 
 ## Diagram
 
-[Relational Model](res/diagram.png)
+![Relational Model](res/diagram.png)
 
 ## Setup (outdated)
 
