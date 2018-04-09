@@ -68,7 +68,7 @@ This repository contains the final project for the Databases I course. This proj
 
 ### Bonus (20 marks)
 
-- [ ] Additional effort, such as creating a superb front‐end, conducting sentiment analysis (i.e., text mining), or including a multimedia component, may earn you up to 20 bonus marks.
+- [x] ~~Additional effort, such as creating a superb front‐end, conducting sentiment analysis (i.e., text mining), or including a multimedia component, may earn you up to 20 bonus marks.~~
 
 ## Diagram
 
