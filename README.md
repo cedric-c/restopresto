@@ -70,6 +70,10 @@ This repository contains the final project for the Databases I course. This proj
 
 - [ ] Additional effort, such as creating a superb front‐end, conducting sentiment analysis (i.e., text mining), or including a multimedia component, may earn you up to 20 bonus marks.
 
+## Diagram
+
+[Relational Model](res/diagram.png)
+
 ## Setup (outdated)
 
 Note that these were the instructions for the server setup at the start of the project. A lot has changed and these are now mostly outdated. The folder structure is different, some of the dependencies have changed.
