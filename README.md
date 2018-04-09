@@ -6,7 +6,7 @@ This repository contains the final project for the Databases I course. This proj
 
 ### Question 1 (10 marks)
 
-- [ ] 1a) Transform the description into a relational model
+- [x] ~~1a) Transform the description into a relational model~~
 - [x] ~~1b) Create all the tables in POstgreSQL.~~
 - [x] ~~1c) Add all other relevant attributes and remember to enforce entity and referential integrity.~~
 
@@ -70,11 +70,14 @@ This repository contains the final project for the Databases I course. This proj
 
 - [ ] Additional effort, such as creating a superb front‐end, conducting sentiment analysis (i.e., text mining), or including a multimedia component, may earn you up to 20 bonus marks.
 
-## Setup
+## Setup (outdated)
+
+Note that these were the instructions for the server setup at the start of the project. A lot has changed and these are now mostly outdated. The folder structure is different, some of the dependencies have changed.
 
 1. Download Docker.
-2. Pull this repository to your system.
-3. Create a file named `php.ini` inside of the `sites` directory. `<YOUR USERNAME>` and `<YOUR PASSWORD>` must be the same as in the `docker-compose.yml` file. The `php.ini` file will contain the following
+2. Download VirtualBox.
+3. Pull this repository to your system.
+4. Create a file named `php.ini` inside of the `sites` directory. `<YOUR USERNAME>` and `<YOUR PASSWORD>` must be the same as in the `docker-compose.yml` file. The `php.ini` file will contain the following
 
 ```
 [php]

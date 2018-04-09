@@ -78,20 +78,24 @@ class ControllerSession extends Controller {
         if($action == self::LOGIN){
             $email        = $data['email'];
             $userRecord   = $model->getKeyValue('email', $email)[0];
-            $uid          = $userRecord['uid'];
-            $recordedPW   = $userRecord['password'];
-            $pw           = $data['password'];
-            $userPW = Person::getHashed($pw);
-            $samePw = hash_equals($recordedPW, $userPW);
-            if(($uid != null) && ($samePw)){// and email is valid
-                self::startSession($uid);
-                Response::add('state', 'success');
-                
-            } else {
-                Response::add('state', 'error');
-                Response::add('message', 'could not locate user with that email');
-            }
             
+            if($userRecord == null){
+                Response::add('state', 'error');
+                Response::add('message','invalid username or password');
+            } else {
+                $uid          = $userRecord['uid'];
+                $recordedPW   = $userRecord['password'];
+                $pw           = $data['password'];
+                $userPW = Person::getHashed($pw);
+                $samePw = hash_equals($recordedPW, $userPW);
+                if(($uid != null) && ($samePw)){// and email is valid
+                    self::startSession($uid);
+                    Response::add('state', 'success');
+                } else {
+                    Response::add('state', 'error');
+                    Response::add('message', 'invalid username or password');
+                }                
+            }
         } else if($action == self::REGISTER){
             // currently an issue w.r.t logins as emails should be unique, but there is no constraint for them to be so
             // also, should check that email DNE

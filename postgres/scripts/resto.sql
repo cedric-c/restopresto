@@ -41,7 +41,7 @@ create table Location(
     hour_end TIME,
     rid INTEGER,
     PRIMARY KEY (lid),
-    FOREIGN KEY (manager) REFERENCES Person,
+    FOREIGN KEY (manager) REFERENCES Person ON DELETE CASCADE,
     FOREIGN KEY (rid) REFERENCES Restaurant ON DELETE CASCADE
 );
 
@@ -58,7 +58,7 @@ create table Rating(
     comment VARCHAR(200),
     rid INTEGER,
     PRIMARY KEY (uid,date_rated),
-    FOREIGN KEY (uid) REFERENCES Person,
+    FOREIGN KEY (uid) REFERENCES Person ON DELETE CASCADE,
     FOREIGN KEY (rid) REFERENCES Restaurant ON DELETE CASCADE,
     constraint price_range
         check(price>=1 AND price<=5),
