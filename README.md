@@ -74,7 +74,7 @@ This repository contains the final project for the Databases I course. This proj
 
 ![Relational Model](res/diagram.png)
 
-## Setup (outdated)
+## Setup
 
 Note that these were the instructions for the server setup at the start of the project. A lot has changed and these are now mostly outdated. The folder structure is different, some of the dependencies have changed.
 
@@ -104,31 +104,98 @@ password = <YOUR PASSWORD>
 Once you have completed the steps above, your directory structure should look like this
 
 ```
-sites
+project
 .
-├── build
+├── nginx
+│   ├── 404.html
+│   ├── default.conf
 │   └── nginx.conf
-├── data
-│   └── postgres
-│       └── postgresql.conf
-├── public
-│   ├── res
-│   │   ├── bootstrap-native.min.js
-│   │   └── vue.js
-│   ├── index.php
-│   ├── Model.php
-│   ├── PDOLoader.php
-│   └── Person.php
-├── scripts
-│   └── init.sql
-├── docker-compose.yml
-├── Dockerfile
-├── php.ini
-├── postgre.docker
-├── postgresql.conf
-├── pq-setup.docker
-├── psql.docker
-├── set-config.sh
-├── test.sh
-└── README.md
+├── php
+│   ├── php.ini
+│   ├── www.conf
+│   └── Docker
+├── postgres
+│   ├── scripts
+│   │   ├── init.sql
+│   │   ├── more_artists.sql
+│   │   ├── queries.sql
+│   │   └── resto.sql
+│   ├── postgresql.conf
+│   └── Docker
+├── res
+│   └── diagram.png
+├── sites
+│   └── public
+│       ├── app
+│       │   └── App.app.js
+│       ├── classes
+│       │   ├── App.php
+│       │   ├── Connection.php
+│       │   ├── Controller.php
+│       │   ├── ControllerSession.php
+│       │   ├── Form.php
+│       │   ├── Location.php
+│       │   ├── MenuItem.php
+│       │   ├── Model.php
+│       │   ├── Rating.php
+│       │   ├── Renderable.php
+│       │   ├── Response.php
+│       │   ├── View.php
+│       │   └── Webpage.php
+│       ├── dashboard
+│       │   ├── Dashboard.app.js
+│       │   ├── ControllerDashboard.php
+│       │   ├── Dashboard.php
+│       │   ├── index.php
+│       │   └── ViewDashboard.php
+│       ├── dispatch
+│       │   └── index.php
+│       ├── person
+│       │   ├── id
+│       │   │   └── index.php
+│       │   ├── Person.app.js
+│       │   ├── PersonRoster.app.js
+│       │   ├── ControllerPerson.php
+│       │   ├── ControllerPersonRoster.php
+│       │   ├── index.php
+│       │   ├── Person.php
+│       │   ├── ViewPerson.php
+│       │   └── ViewDashboard.php
+│       ├── restaurant
+│       │   ├── id
+│       │   │   └── index.php
+│       │   ├── Restaurant.app.js
+│       │   ├── RestaurantRoster.app.js
+│       │   ├── ControllerRestaurant.php
+│       │   ├── ControllerRestaurantRoster.php
+│       │   ├── index.php
+│       │   ├── Restaurant.php
+│       │   ├── ViewRestaurant.php
+│       │   └── ViewDashboard.php
+│       ├── static
+│       │   ├── css
+│       │   │   ├── styles.css
+│       │   │   ├── font-awesome.min.css
+│       │   │   ├── bootstrap.css.map
+│       │   │   └── bootstrap.css
+│       │   ├── fonts
+│       │   │   └── fontawesome
+│       │   └── js
+│       │       ├── bootstrap-native.min.js
+│       │       └── vue.js
+│       ├── tempaltes
+│       │   ├── ViewDashboard.tpl.php
+│       │   ├── ViewPerson.tpl.php
+│       │   ├── ViewPersonRoster.tpl.php
+│       │   ├── ViewRestaurant.tpl.php
+│       │   ├── ViewRestaurantRoster.tpl.php
+│       │   └── Webpage.tpl.php
+│       ├── Core.php
+│       └── index.php
+├── README.md
+└── docker-compose.yml
 ```
+
+- Type `docker-compose up` to start the server.
+- Type `docker-compose down` to stop the server.
+
