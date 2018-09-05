@@ -33,8 +33,8 @@ password = <YOUR PASSWORD>
 You will also need to create a file in the root directory (same as `docker-compose.yaml`) named `.env`. This file contains the database password and will look like the following
 
 ```
-POSTGRES_USER=admin
-POSTGRES_PASSWORD=frost-marker
+POSTGRES_USER=<YOUR USERNAME>
+POSTGRES_PASSWORD=<YOUR PASSWORD>
 ```
 
 ## Running the Webserver
